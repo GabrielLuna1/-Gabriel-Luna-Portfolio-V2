@@ -1,6 +1,8 @@
-export const experience = [
+import { ExperienceItem } from "./types";
+
+export const experience: ExperienceItem[] = [
   {
-    id: 1,
+    id: "1", // <-- PRECISA DE ASPAS AQUI
     role: "exp.esc.role",
     company: "ESC Cursos",
     period: "exp.esc.date",
@@ -14,7 +16,7 @@ export const experience = [
     ]
   },
   {
-    id: 2,
+    id: "2", // <-- PRECISA DE ASPAS AQUI
     role: "exp.freela.role",
     company: "Projetos Diversos",
     period: "exp.freela.date",
