@@ -2,6 +2,7 @@ export interface Profile {
   name: string;
   role: string;
   bio: string;
+  avatarUrl: string;
   location: string;
   email: string;
   linkedin: string;
@@ -20,7 +21,7 @@ export interface Project {
 }
 
 export interface ExperienceItem {
-  id: string; // <--- Agora aceita texto ("1")
+  id: string; 
   role: string;
   company: string;
   period: string;
