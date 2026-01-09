@@ -70,11 +70,11 @@ export function Hero({ data }: HeroProps) {
           className="relative flex justify-center"
         >
           <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border border-white/10 bg-surface/50 backdrop-blur-sm flex items-center justify-center overflow-hidden p-2">
-             <img 
-               src="/me.png" 
-               alt={data.name} 
-               className="w-full h-full object-cover rounded-full border-2 border-primary/20"
-             />
+            <img 
+  src="/me.png" 
+  alt={data.name} 
+  className="w-full h-full object-cover rounded-full border-2 border-primary/20"
+/>
           </div>
         </motion.div>
       </div>
