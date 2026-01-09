@@ -35,6 +35,7 @@ export interface TechItem {
 }
 
 export interface EducationItem {
+  id: string;
   course: string;
   institution: string;
   period: string;
