@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Gabriel Luna | Front-end Developer",
   description: "Desenvolvedor Front-end especializado em React, Next.js e Interfaces Modernas.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.svg",
   },
   openGraph: {
     title: "Gabriel Luna | Portfolio",
