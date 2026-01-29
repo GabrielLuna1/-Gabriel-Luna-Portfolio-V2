@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Globe, Database, Cpu } from "lucide-react";
+import { Code2, Globe, Database } from "lucide-react";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -23,6 +23,18 @@ export function About() {
       id="about"
       className="py-24 bg-background relative overflow-hidden"
     >
+      {/* --- 1. GRID PATTERN (Restaurado) --- */}
+      <div
+        className="absolute inset-0 z-0 opacity-20 pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px)`,
+          backgroundSize: "40px 40px",
+        }}
+      >
+        {/* Máscara para suavizar nas bordas */}
+        <div className="absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,transparent_0%,black_100%)]" />
+      </div>
+
       <div className="container mx-auto px-4 relative z-10">
         <SectionTitle subtitle={t("about.subtitle")} title={t("about.title")} />
 
@@ -36,14 +48,14 @@ export function About() {
             className="space-y-6"
           >
             <div className="prose prose-invert max-w-none">
-              <p className="text-secondary text-lg leading-relaxed border-l-4 border-primary/50 pl-6 italic bg-surface/30 py-4 rounded-r-lg">
+              <p className="text-secondary text-lg leading-relaxed border-l-4 border-primary/50 pl-6 italic bg-surface/30 py-4 rounded-r-lg backdrop-blur-sm">
                 &quot;{t("about.journey")}&quot;
               </p>
 
-              {/* CORREÇÃO AQUI: leading-loose para dar espaço vertical no mobile */}
+              {/* Texto com correção para Mobile (leading-loose) */}
               <p className="text-secondary text-lg leading-loose md:leading-relaxed mt-6">
                 {t("about.focus.start")}
-                {/* Tags com estilo 'inline-block' e 'whitespace-nowrap' */}
+                {/* Tags que não quebram linha */}
                 <span className={techTagStyle}>Next.js 14</span>
                 <span className={techTagStyle}>Node.js</span>
                 <span className={techTagStyle}>MongoDB</span>e
@@ -74,7 +86,7 @@ export function About() {
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center justify-center p-6 bg-surface border border-white/5 rounded-2xl hover:border-primary/30 transition-colors group"
+                className="flex flex-col items-center justify-center p-6 bg-surface/80 backdrop-blur-sm border border-white/5 rounded-2xl hover:border-primary/30 transition-colors group shadow-lg"
               >
                 <div className="p-3 bg-primary/10 rounded-full text-primary mb-3 group-hover:scale-110 transition-transform">
                   <stat.icon size={24} />
