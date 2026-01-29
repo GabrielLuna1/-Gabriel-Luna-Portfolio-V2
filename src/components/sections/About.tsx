@@ -1,115 +1,92 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Code2, Globe, Database, Cpu } from "lucide-react";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Code2, Globe, Rocket } from "lucide-react"; // Ícones para os stats
 
 export function About() {
   const { t } = useLanguage();
 
+  // Estilo reutilizável para as Tech Tags (Otimizado para Mobile)
+  const techTagStyle =
+    "inline-block mx-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20 text-xs md:text-sm font-bold whitespace-nowrap align-baseline transform translate-y-px hover:bg-primary/20 transition-colors cursor-default";
+
   const stats = [
-    { label: t("about.stats.exp"), value: "2+", icon: <Code2 size={20} /> },
-    {
-      label: t("about.stats.projects"),
-      value: "5+",
-      icon: <Rocket size={20} />,
-    },
-    { label: t("about.stats.english"), value: "B1", icon: <Globe size={20} /> },
+    { label: t("about.stats.exp"), value: "+2", icon: Code2 },
+    { label: t("about.stats.projects"), value: "+5", icon: Database },
+    { label: t("about.stats.english"), value: "B1", icon: Globe },
   ];
 
   return (
     <section
       id="about"
-      className="py-24 bg-surface/30 border-y border-white/5 overflow-hidden"
+      className="py-24 bg-background relative overflow-hidden"
     >
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Lado Esquerdo: Título e Stats */}
+      <div className="container mx-auto px-4 relative z-10">
+        <SectionTitle subtitle={t("about.subtitle")} title={t("about.title")} />
+
+        <div className="grid md:grid-cols-2 gap-12 items-center mt-16">
+          {/* Coluna 1: Texto */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-          >
-            <SectionTitle
-              subtitle={t("about.subtitle")}
-              title={t("about.title")}
-            />
-
-            {/* Grid de Stats com Cards */}
-            <div className="grid grid-cols-3 gap-4 mt-10">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  className="bg-background border border-white/5 p-4 rounded-2xl text-center group hover:border-primary/30 transition-colors"
-                >
-                  <div className="flex justify-center mb-2 text-primary/70 group-hover:text-primary transition-colors">
-                    {stat.icon}
-                  </div>
-                  <h4 className="text-2xl lg:text-3xl font-display font-bold text-white mb-1">
-                    {stat.value}
-                  </h4>
-                  <p className="text-[10px] lg:text-xs text-secondary uppercase tracking-wider font-medium">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Lado Direito: Texto com Elementos Visuais */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6 text-secondary leading-relaxed text-lg relative"
+            className="space-y-6"
           >
-            {/* Decoração de Fundo (Aspas ou Elemento Gráfico) */}
-            <div className="absolute -top-10 -left-10 text-[120px] text-primary/5 font-serif font-bold leading-none select-none z-0">
-              &ldquo;
-            </div>
-
-            <div className="relative z-10 space-y-6">
-              <p className="border-l-2 border-primary/20 pl-4">
-                {t("about.journey")}
+            <div className="prose prose-invert max-w-none">
+              <p className="text-secondary text-lg leading-relaxed border-l-4 border-primary/50 pl-6 italic bg-surface/30 py-4 rounded-r-lg">
+                &quot;{t("about.journey")}&quot;
               </p>
 
-              <p>
+              {/* CORREÇÃO AQUI: leading-loose para dar espaço vertical no mobile */}
+              <p className="text-secondary text-lg leading-loose md:leading-relaxed mt-6">
                 {t("about.focus.start")}
-                <span className="inline-block px-2 py-0.5 mx-1 rounded bg-primary/10 text-primary font-bold border border-primary/20">
-                  Next.js 14
-                </span>
-                <span className="inline-block px-2 py-0.5 mx-1 rounded bg-primary/10 text-primary font-bold border border-primary/20">
-                  Node.js
-                </span>
-                <span className="inline-block px-2 py-0.5 mx-1 rounded bg-primary/10 text-primary font-bold border border-primary/20">
-                  MongoDB
-                </span>
-                e
-                <span className="inline-block px-2 py-0.5 mx-1 rounded bg-primary/10 text-primary font-bold border border-primary/20">
-                  TypeScript
-                </span>
-                .{t("about.focus.end")}
+                {/* Tags com estilo 'inline-block' e 'whitespace-nowrap' */}
+                <span className={techTagStyle}>Next.js 14</span>
+                <span className={techTagStyle}>Node.js</span>
+                <span className={techTagStyle}>MongoDB</span>e
+                <span className={techTagStyle}>TypeScript</span>.{" "}
+                {t("about.focus.end")}
               </p>
             </div>
 
-            {/* Botão sutil de "Saiba mais" ou Link para LinkedIn (Opcional, mas bom para engajamento) */}
-            <div className="pt-4">
+            <div className="flex items-center gap-4 pt-4">
               <a
                 href="https://linkedin.com/in/gabriel-luna-14b00821b"
                 target="_blank"
-                className="text-sm font-bold text-primary hover:text-primary/80 transition-colors flex items-center gap-2"
+                className="text-primary font-bold hover:underline flex items-center gap-2"
               >
-                Vamos conectar no LinkedIn{" "}
-                <span aria-hidden="true">&rarr;</span>
+                Vamos conectar no LinkedIn <span aria-hidden="true">→</span>
               </a>
             </div>
+          </motion.div>
+
+          {/* Coluna 2: Stats / Visual */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-3 gap-4"
+          >
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center justify-center p-6 bg-surface border border-white/5 rounded-2xl hover:border-primary/30 transition-colors group"
+              >
+                <div className="p-3 bg-primary/10 rounded-full text-primary mb-3 group-hover:scale-110 transition-transform">
+                  <stat.icon size={24} />
+                </div>
+                <span className="text-3xl font-display font-bold text-white mb-1">
+                  {stat.value}
+                </span>
+                <span className="text-xs text-secondary uppercase tracking-wider text-center">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
           </motion.div>
         </div>
       </div>
