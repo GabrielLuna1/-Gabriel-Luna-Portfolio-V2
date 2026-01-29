@@ -15,17 +15,15 @@ export function Hero({ data }: HeroProps) {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">
-      {/* --- GRID PATTERN (CSS PURO - GARANTIDO) --- */}
+      {/* --- GRID PATTERN (CSS PURO) --- */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          // Cria um grid de 50x50px com linhas brancas bem sutis
           backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
                             linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)`,
           backgroundSize: "50px 50px",
         }}
       >
-        {/* Máscara para suavizar as bordas (Vignette) */}
         <div className="absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,transparent_20%,black_100%)]" />
       </div>
 
@@ -139,12 +137,12 @@ export function Hero({ data }: HeroProps) {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - CORRIGIDO: hidden no mobile, flex no desktop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ delay: 1.5, duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-secondary/50 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-secondary/50 hidden md:flex flex-col items-center gap-2"
       >
         <span className="text-[10px] uppercase tracking-widest">Scroll</span>
         <Mouse size={24} />
