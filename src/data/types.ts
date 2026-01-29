@@ -9,19 +9,20 @@ export interface Profile {
   github: string;
 }
 
+// ATUALIZADO PARA O NOVO COMPONENTE DE PROJETOS
 export interface Project {
-  id: string; // <--- Agora aceita texto ("1")
+  id: string;
   title: string;
   description: string;
-  tech: string[];
-  repo: string;
-  link?: string; // O ? significa que é opcional (pois alguns estão offline)
-  image: string;
+  tags: string[]; // Antes era 'tech'
+  imageUrl: string; // Antes era 'image'
+  githubUrl: string; // Antes era 'repo'
+  demoUrl: string; // Antes era 'link'
   featured: boolean;
 }
 
 export interface ExperienceItem {
-  id: string; 
+  id: string;
   role: string;
   company: string;
   period: string;
@@ -29,16 +30,21 @@ export interface ExperienceItem {
   achievements: string[];
 }
 
+// ATUALIZADO PARA SUPORTAR CATEGORIAS (FRONT, BACK, DEVOPS)
 export interface TechItem {
-  name: string;
-  category: "Frontend" | "Backend" | "Ferramentas";
-  icon: string;
+  category: string;
+  items: {
+    name: string;
+    icon: string;
+  }[];
 }
 
+// ATUALIZADO PARA SUPORTAR DESTAQUE DE GRADUAÇÃO
 export interface EducationItem {
   id: string;
   course: string;
   institution: string;
   period: string;
   description: string;
+  type?: "degree" | "certificate"; // <--- ADICIONADO AQUI (O ? significa opcional)
 }

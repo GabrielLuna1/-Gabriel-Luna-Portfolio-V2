@@ -2,33 +2,43 @@ import { Project } from "./types";
 
 export const projects: Project[] = [
   {
-    id: "1",
-    title: "proj.galactic.title", // <--- Chave
-    description: "proj.galactic.desc", // <--- Chave
-    tech: ["JavaScript", "Gulp", "Security", "CSS3"], // Mantido igual
-    repo: "https://github.com/GabrielLuna1/GabrielLuna1.github.io",
-    link: "https://gabrielluna1.github.io",
-    image: "/galactic-luna.png",
-    featured: true
+    id: "stockmaster-pro",
+    title: "proj.stockmaster.title", // O Novo Flagship Full Stack
+    description: "proj.stockmaster.desc",
+    tags: ["Next.js 14", "MongoDB", "NextAuth", "Server Actions", "TypeScript"],
+    imageUrl: "/stockmaster.png", // Certifique-se que a imagem está na pasta public com esse nome
+    githubUrl: "https://github.com/GabrielLuna1/Stock-master-pro", // <--- LINK CORRIGIDO AQUI
+    demoUrl: "https://stock-master-pro-app.vercel.app/",
+    featured: true, // Destaque máximo
   },
   {
-    id: "2",
-    title: "proj.esc.title", // <--- Chave
-    description: "proj.esc.desc", // <--- Chave
-    tech: ["JavaScript", "Gulp", "Bootstrap", "SaaS"], // Mantido igual
-    repo: "https://github.com/GabrielLuna1/esc-new",
-    link: "#",
-    image: "/esc.png",
-    featured: true
+    id: "galactic-luna",
+    title: "proj.galactic.title",
+    description: "proj.galactic.desc",
+    tags: ["JavaScript", "Gulp", "Security", "CSS3"],
+    imageUrl: "/galactic-luna.png",
+    githubUrl: "https://github.com/GabrielLuna1/GabrielLuna1.github.io",
+    demoUrl: "https://gabrielluna1.github.io",
+    featured: false,
   },
   {
-    id: "3",
-    title: "proj.v2.title", // <--- Chave
-    description: "proj.v2.desc", // <--- Chave
-    tech: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"], // Mantido igual
-    repo: "https://github.com/GabrielLuna1/portfolio-v2",
-    link: "#",
-    image: "/Portfólio-V2.png",
-    featured: true
-  }
+    id: "esc-cursos",
+    title: "proj.esc.title",
+    description: "proj.esc.desc",
+    tags: ["JavaScript", "Gulp", "Bootstrap", "SaaS"],
+    imageUrl: "/esc.png",
+    githubUrl: "https://github.com/GabrielLuna1/esc-new",
+    demoUrl: "#",
+    featured: false,
+  },
+  {
+    id: "portfolio-v2",
+    title: "proj.v2.title",
+    description: "proj.v2.desc",
+    tags: ["Next.js 14", "TypeScript", "Tailwind", "Framer Motion"],
+    imageUrl: "/Portfólio-V2.png",
+    githubUrl: "https://github.com/GabrielLuna1/portfolio-v2",
+    demoUrl: "#",
+    featured: false,
+  },
 ];
