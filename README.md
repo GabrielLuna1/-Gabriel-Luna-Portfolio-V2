@@ -1,49 +1,97 @@
-# 🚀 Gabriel Luna | Portfolio V2
-### *Desenvolvedor Front-end & Especialista em Performance*
+# 🚀 Gabriel Luna | Full Stack Portfolio
 
-Este projeto representa a evolução técnica do meu portfólio profissional. Desenvolvido com **Next.js 14**, ele foca em escalabilidade, arquitetura limpa e uma experiência de usuário internacionalizada através de um sistema robusto de tradução em tempo real.
+![Project Status](https://img.shields.io/badge/status-active-success?style=for-the-badge)
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
+![Tailwind](https://img.shields.io/badge/Tailwind-3-38B2AC?style=for-the-badge&logo=tailwind-css)
 
----
+> **Arquitetura Escalável, i18n & Engenharia de Performance**
 
-## 🛠️ Arquitetura Técnica
-
-O projeto foi segmentado seguindo padrões modernos de desenvolvimento para garantir manutenção simplificada e alta performance:
-
-* **Core**: Next.js 14 (App Router) com React 18.
-* **Linguagem**: TypeScript para segurança de tipos e redução de bugs em produção.
-* **Estilização**: Tailwind CSS para um design responsivo e otimizado.
-* **Internacionalização (i18n)**: Sistema customizado utilizando Context API para alternância entre Português e Inglês sem refresh de página.
-* **Gestão de Dados**: Arquitetura baseada em dados (`src/data`), permitindo atualizações de conteúdo sem tocar na lógica dos componentes.
+Este projeto representa a evolução técnica do meu perfil profissional. Mais do que um portfólio visual, é uma aplicação **Full Stack** moderna que resolve problemas reais de engenharia de software, como invalidade de cache em SPAs e internacionalização sem flicker.
 
 ---
 
-## 📑 Documentação do Projeto
+## 📸 Preview
 
-### FASE 1: CONCEPÇÃO DO PRODUTO
-* **Brainstorm**: Criação de uma vitrine digital global e interativa.
-* **Escopo**: Implementação de Hero, Sobre Mim, Tech Stack, Carreira, Projetos, Educação e Contato.
-* **Marca**: Foco em transmitir precisão técnica e robustez.
-* **Visual**: Interface Dark Mode com paleta baseada em `#0A0A0A` e acentos em `#00E5FF`.
-
-### FASE 2: ARQUITETURA TÉCNICA
-* **Stack**: Seleção de Next.js pela eficiência em SSR (Server Side Rendering) e SSG (Static Site Generation).
-* **Modelagem de Dados**: Centralização de informações em arquivos `.ts` para facilitar a manutenção.
-* **Componentização**: UI baseada em componentes atômicos (Button, FadeIn, SectionTitle) e seções modulares.
-* **API**: Integração com Formspree para gerenciamento de contatos.
-
-### FASE 3: CODIFICAÇÃO & IA
-* **Clean Code**: Refatoração constante para manter o princípio DRY (Don't Repeat Yourself).
-* **i18n**: Implementação de um `LanguageProvider` para gerenciar o dicionário de traduções.
-* **Debugging**: Alinhamento de case-sensitivity e resolução de conflitos de importação dinâmica.
-
-### FASE 4: QUALIDADE & OPS
-* **Security**: Prevenção de injeções via sanitização de inputs e gerenciamento de estado controlado.
-* **Deploy**: Pipeline de CI/CD configurado via GitHub para deploy automático na **Vercel**.
+![Preview do Projeto]([INSIRA O CAMINHO DO SEU PRINT DE CAPA AQUI])
 
 ---
 
+## 📑 Índice
 
-✉️ Contato
-Desenvolvido por Gabriel Luna.
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Arquitetura Técnica](#-arquitetura-técnica)
+- [Engenharia & Performance (Destaques)](#-engenharia--performance)
+- [Estrutura de Pastas](#-estrutura-de-pastas)
+
+---
+
+## 💡 Sobre o Projeto
+
+### FASE 1: CONCEPÇÃO & PRODUTO
+
+O objetivo foi transformar uma vitrine estática em uma ferramenta de comunicação global e resiliente.
+
+- **Global Ready:** Sistema de tradução (PT/EN) via Context API com troca instantânea.
+- **Smart UX:** Navegação fluida, scroll spy, feedback visual e adaptação total para Mobile.
+- **Identidade Visual:** "Tech Premium" — Utilizando Grid Pattern, Glassmorphism (efeito vidro) e Glows estratégicos sobre um tema Deep Space (`#0A0A0A`).
+
+---
+
+## 🛠 Arquitetura Técnica
+
+### FASE 2: STACK & DADOS
+
+O projeto foi construído sobre pilares de **Clean Code** e **Performance**.
+
+| Categoria | Tecnologias |
+|-----------|-------------|
+| **Core** | Next.js 14 (App Router), React 19|
+| **Linguagem** | TypeScript (Strict Mode) |
+| **Estilo** | Tailwind CSS, Framer Motion (Animações), Lucide React (Ícones) |
+| **Deploy** | Vercel Edge Network |
+
+#### Engenharia de Dados
+- **Desacoplamento:** Todo o conteúdo textual vive em `src/data/`, separado da lógica visual. Isso permite atualizar textos e projetos sem risco de quebrar o layout.
+- **Versionamento:** Script customizado (`generate-version.js`) que roda no build para controle de cache.
+
+---
+
+## ⚙️ Engenharia & Performance
+
+Aqui estão os diferenciais técnicos que elevam este projeto além de um site estático comum.
+
+### 1. AutoUpdate & Cache Busting (Version Polling) 🔄
+**O Problema:** Em Single Page Applications (SPAs), usuários que deixam a aba aberta por dias não recebem novas atualizações (CSS/JS) a menos que recarreguem a página manualmente, podendo causar quebras visuais.
+
+**A Solução:**
+1.  Um script (`generate-version.js`) roda antes do build e cria um arquivo `version.json` com um ID único.
+2.  O componente invisível `<AutoUpdate />` faz polling no cliente a cada 60 segundos.
+3.  Se a versão do servidor diferir da versão local, o sistema força uma atualização limpa e silenciosa.
+
+### 2. Internacionalização (i18n) Nativa 🌐
+Implementação de um **LanguageProvider** proprietário utilizando React Context.
+- Dicionários de tradução separados (`pt.ts` / `en.ts`).
+- Zero "Layout Shift" ou "Flicker" durante a troca de idioma.
+- Persistência de preferência do usuário.
+
+---
+
+## 📂 Estrutura de Pastas
+
+```
+src/
+├── app/               # Next.js App Router & Layouts
+├── components/
+│   ├── layout/        # Header, Footer (Estruturais)
+│   ├── sections/      # Blocos de conteúdo (Hero, Projects, About)
+│   ├── ui/            # Design System (Buttons, Badges)
+│   └── utils/         # Lógica invisível (AutoUpdate.tsx)
+├── contexts/          # Gestão de Estado Global (LanguageContext)
+└── data/              # Conteúdo estático tipado (CMS-like)
+generate-version.js    # Script de versionamento pré-build
+```
+📬 Contato
+Projeto desenvolvido e mantido por Gabriel Luna. Código limpo, interfaces vivas.
 
 Entre em contato através do meu LinkedIn ou e-mail: gabriellunajob@gmail.com.
