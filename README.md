@@ -1,9 +1,9 @@
 # 🚀 Gabriel Luna | Full Stack Portfolio
 
-![Project Status](https://img.shields.io/badge/status-active-success?style=for-the-badge)
-![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
-![Tailwind](https://img.shields.io/badge/Tailwind-3-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Project Status](https://img.shields.io/badge/status-active-success?style=for-the-badge) 
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js) 
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript) 
+![Tailwind](https://img.shields.io/badge/Tailwind-3-38B2AC?style=for-the-badge&logo=tailwind-css) 
 
 > **Arquitetura Escalável, i18n & Engenharia de Performance**
 
