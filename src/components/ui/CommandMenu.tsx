@@ -55,37 +55,6 @@ export function CommandMenu() {
     { id: "esc-cursos", label: "Portal ESC Cursos — Educação", icon: <BookOpen className="w-4 h-4 text-amber-500" />, category: "Projetos", keywords: "portal educacional gulp cache build", action: () => window.open("https://github.com/GabrielLuna1/esc-new", "_blank") },
   ];
 
-  const techActions: Action[] = stack.flatMap(group =>
-    group.items.map((tech, i) => ({
-      id: `tech-${group.category}-${i}`,
-      label: `${tech.name} — ${group.category}`,
-      icon: <img src={tech.icon} alt="" className="w-4 h-4" />,
-      category: "Tecnologias",
-      keywords: `${tech.name} ${group.category} tecnologia ferramenta`,
-      action: () => { document.getElementById("tech")?.scrollIntoView({ behavior: "smooth" }); setOpen(false); },
-    }))
-  );
-
-  const careerActions: Action[] = experience.flatMap(exp => [
-    {
-      id: `exp-${exp.id}`,
-      label: exp.role,
-      icon: <User className="w-4 h-4 text-blue-400" />,
-      category: "Carreira",
-      keywords: `${exp.role} ${exp.company} experiencia`,
-      action: () => { document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" }); setOpen(false); },
-    },
-  ]);
-
-  const eduActions: Action[] = education.map(edu => ({
-    id: `edu-${edu.id}`,
-    label: edu.course,
-    icon: <GraduationCap className="w-4 h-4 text-yellow-500" />,
-    category: "Educação",
-    keywords: `${edu.course} ${edu.institution}`,
-    action: () => { document.getElementById("education")?.scrollIntoView({ behavior: "smooth" }); setOpen(false); },
-  }));
-
   const socialActions: Action[] = [
     { id: "github", label: "GitHub — GabrielLuna1", icon: <Github className="w-4 h-4" />, category: "Redes", keywords: "repositorio codigo fonte", action: () => window.open("https://github.com/GabrielLuna1", "_blank") },
     { id: "linkedin", label: "LinkedIn — Gabriel Luna", icon: <Linkedin className="w-4 h-4" />, category: "Redes", keywords: "perfil profissional rede contato", action: () => window.open("https://linkedin.com/in/gabriel-luna-14b00821b", "_blank") },
@@ -93,7 +62,7 @@ export function CommandMenu() {
     { id: "casechat", label: "Abrir CaseChat Copilot", icon: <Bot className="w-4 h-4 text-primary" />, category: "Ferramentas", keywords: "chat ia assistente perguntas", action: () => { document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true })); setOpen(false); } },
   ];
 
-  const allActions = [...sections, ...projectActions, ...techActions, ...careerActions, ...eduActions, ...socialActions];
+  const allActions = [...sections, ...projectActions, ...socialActions];
 
   const filtered = allActions.filter(action => {
     const q = query.toLowerCase();

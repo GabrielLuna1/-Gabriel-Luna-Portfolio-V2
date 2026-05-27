@@ -150,16 +150,6 @@ export function Footer() {
             </span>
           </p>
 
-          <button
-            onClick={scrollToTop}
-            className="group flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-secondary hover:text-primary transition-colors px-4 py-2 rounded-full border border-white/[0.04] hover:border-primary/15 hover:bg-white/[0.02] bg-surface/20"
-          >
-            {t("footer.back_to_top")}
-            <ArrowUp
-              size={13}
-              className="group-hover:-translate-y-0.5 transition-transform"
-            />
-          </button>
         </div>
       </div>
     </footer>

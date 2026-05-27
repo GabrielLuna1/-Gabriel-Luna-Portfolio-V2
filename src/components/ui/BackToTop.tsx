@@ -36,13 +36,12 @@ export function BackToTop() {
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           onClick={scrollToTop}
-          className="fixed bottom-8 left-8 z-40 flex items-center gap-2 px-4 py-2.5 rounded-full glass-strong text-secondary hover:text-white hover:border-primary/25 transition-all group"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
+          className="fixed bottom-24 right-6 z-40 flex items-center justify-center w-12 h-12 rounded-full glass border border-white/[0.04] text-secondary hover:text-white hover:border-primary/40 hover:bg-white/[0.03] shadow-elevated transition-all group"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           aria-label="Voltar ao topo"
         >
-          <ArrowUp size={16} strokeWidth={2.5} className="group-hover:-translate-y-0.5 transition-transform" />
-          <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline">Topo</span>
+          <ArrowUp size={20} strokeWidth={2.5} className="group-hover:-translate-y-1 transition-transform" />
         </motion.button>
       )}
     </AnimatePresence>
