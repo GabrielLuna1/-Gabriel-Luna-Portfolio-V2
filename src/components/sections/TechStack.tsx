@@ -27,7 +27,7 @@ export function TechStack({ data }: TechStackProps) {
           title={t("stack.title")}
         />
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-start">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 items-start">
           {data.map((group, groupIndex) => (
             <Reveal key={group.category} direction="up" delay={groupIndex * 0.1}>
               <div className="space-y-5">
