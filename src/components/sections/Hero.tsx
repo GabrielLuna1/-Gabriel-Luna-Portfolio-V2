@@ -23,28 +23,38 @@ export function Hero({ data }: HeroProps) {
       </div>
 
       {/* Radial gradient depth overlay — mid layer */}
-      <div className="absolute inset-0 z-[1] pointer-events-none opacity-60"
+      <div className="absolute inset-0 z-[1] pointer-events-none opacity-50"
         style={{
-          background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(59,130,246,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(59,130,246,0.05) 0%, transparent 70%)',
         }}
       />
 
-      {/* Glow Orbs — back depth */}
+      {/* Glow Orbs — with temperature variation */}
       <ParallaxOrb
-        color="bg-primary/15"
-        size={500}
-        top="10%"
-        right="-8%"
+        color="bg-primary/12"
+        size={450}
+        top="8%"
+        right="-6%"
         blur={120}
-        yOffset={150}
+        yOffset={120}
       />
+      {/* Warm accent orb for temperature contrast */}
       <ParallaxOrb
-        color="bg-primary/10"
-        size={350}
-        bottom="-5%"
-        left="-5%"
+        color="bg-accent-warm/8"
+        size={300}
+        bottom="-8%"
+        left="-4%"
         blur={100}
-        yOffset={-100}
+        yOffset={-80}
+      />
+      {/* Cool accent orb */}
+      <ParallaxOrb
+        color="bg-accent-cool/6"
+        size={250}
+        top="60%"
+        left="20%"
+        blur={110}
+        yOffset={-60}
       />
 
       <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10">
@@ -53,33 +63,45 @@ export function Hero({ data }: HeroProps) {
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-6"
+          className="space-y-7"
         >
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-primary/20 text-primary text-xs font-bold tracking-wide"
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-strong border border-primary/15 text-primary text-xs font-bold tracking-wide"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
             {t("hero.badge")}
           </motion.div>
 
-          {/* Title */}
+          {/* Title — impactful hierarchy */}
           <div>
-            <h1 className="text-display-xl font-display font-bold leading-[1.05]">
-              <AnimatedTitle text="Full Stack" gradient />
+            <h1 className="font-display font-bold leading-[1.02]">
+              <span className="text-display-xl">
+                <AnimatedTitle text="Full Stack" gradient />
+              </span>
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/50">
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="text-display-lg text-white/80 font-semibold"
+              >
                 Developer
-              </span>
-              <span className="inline-block text-primary ml-0.5 animate-pulse-glow rounded-full">
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+                className="inline-block text-primary ml-0.5 text-display-lg"
+              >
                 .
-              </span>
+              </motion.span>
             </h1>
           </div>
 
@@ -88,7 +110,7 @@ export function Hero({ data }: HeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-secondary text-body-lg max-w-lg leading-relaxed border-l-2 border-primary/30 pl-4"
+            className="text-secondary text-body-lg max-w-lg leading-relaxed border-l-2 border-primary/25 pl-4"
           >
             {t("hero.description")}
           </motion.p>
@@ -128,32 +150,32 @@ export function Hero({ data }: HeroProps) {
           className="relative flex justify-center md:justify-end"
         >
           <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="relative mt-8 md:mt-0"
           >
             {/* Glow behind */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary to-primary-light rounded-full blur-[80px] opacity-20 -z-10 scale-110" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary to-accent-cool rounded-full blur-[80px] opacity-15 -z-10 scale-110" />
 
-            {/* HALO DASHED — anel giratório */}
+            {/* HALO DASHED — faster rotation for "alive" feel */}
             <motion.div
-              className="absolute -inset-6 md:-inset-10 border-2 border-dashed border-primary/40 rounded-full"
+              className="absolute -inset-6 md:-inset-10 border-2 border-dashed border-primary/30 rounded-full"
               animate={{ rotate: 360 }}
-              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             />
-            <div className="absolute -inset-6 md:-inset-10 border border-primary/20 rounded-full shadow-[0_0_40px_rgba(59,130,246,0.15)]" />
+            <div className="absolute -inset-6 md:-inset-10 border border-primary/15 rounded-full shadow-[0_0_30px_rgba(59,130,246,0.1)]" />
 
-            {/* Bolinha brilhante girando no anel — Framer Motion */}
+            {/* Orbiting dot */}
             <motion.div
               className="absolute -inset-6 md:-inset-10"
               animate={{ rotate: 360 }}
               transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
             >
-              <div className="absolute top-0 left-1/2 -ml-1.5 w-3 h-3 bg-primary rounded-full shadow-[0_0_15px_rgba(59,130,246,1)]" />
+              <div className="absolute top-0 left-1/2 -ml-1.5 w-3 h-3 bg-primary rounded-full shadow-[0_0_12px_rgba(59,130,246,0.8)]" />
             </motion.div>
 
             {/* Photo container with stacked depth */}
-            <div className="relative w-64 h-64 md:w-96 md:h-96 rounded-full bg-surface/30 backdrop-blur-md flex items-center justify-center p-2 shadow-elevated ring-1 ring-white/5 z-10 stacked-depth">
+            <div className="relative w-64 h-64 md:w-96 md:h-96 rounded-full bg-surface/25 backdrop-blur-md flex items-center justify-center p-2 shadow-elevated ring-1 ring-white/5 z-10 stacked-depth">
               <img
                 src="/me.png"
                 alt={data.name}
@@ -168,21 +190,21 @@ export function Hero({ data }: HeroProps) {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator — more elegant */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3"
       >
-        <span className="text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-mono">
+        <span className="text-[10px] uppercase tracking-[0.25em] text-secondary/40 font-mono">
           Scroll
         </span>
         <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ y: [0, 5, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Mouse size={20} className="text-secondary/30" />
+          <Mouse size={18} className="text-secondary/25" />
         </motion.div>
       </motion.div>
     </section>

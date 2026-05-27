@@ -68,7 +68,7 @@ export function EnhancedCursor() {
     <>
       {/* Main Cursor Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9990]"
         style={{
           background: "var(--gradient-brand)",
           mixBlendMode: "screen" as const,
@@ -82,19 +82,19 @@ export function EnhancedCursor() {
         transition={{ type: "tween", ease: [0.16, 1, 0.3, 1], duration: 0.15 }}
       />
 
-      {/* Trailing Ring */}
+      {/* Trailing Ring — subtler, more premium */}
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 rounded-full pointer-events-none z-[9998]"
+        className="fixed top-0 left-0 w-10 h-10 rounded-full pointer-events-none z-[9989]"
         style={{
-          border: "1.5px solid rgba(59, 130, 246, 0.3)",
+          border: "1.5px solid rgba(59, 130, 246, 0.2)",
         }}
         animate={{
           x: mousePosition.x - 20,
           y: mousePosition.y - 20,
-          scale: isHovering ? 1.6 : 1,
+          scale: isHovering ? 1.4 : 1,
           borderColor: isHovering
-            ? "rgba(96, 165, 250, 0.5)"
-            : "rgba(59, 130, 246, 0.3)",
+            ? "rgba(96, 165, 250, 0.35)"
+            : "rgba(59, 130, 246, 0.2)",
         }}
         transition={{ type: "tween", ease: [0.16, 1, 0.3, 1], duration: 0.25 }}
       />

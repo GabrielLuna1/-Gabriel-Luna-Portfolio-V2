@@ -24,8 +24,11 @@ export function ScrollProgress() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary via-primary-light to-primary origin-left z-[100]"
+      className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-primary-light to-primary origin-left z-[100]"
       style={{ scaleX }}
-    />
+    >
+      {/* Glow bleed below the progress bar */}
+      <div className="absolute inset-x-0 top-full h-[6px] bg-gradient-to-r from-primary/30 via-primary-light/20 to-primary/30 blur-[4px] pointer-events-none" />
+    </motion.div>
   );
 }

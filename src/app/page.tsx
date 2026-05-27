@@ -5,7 +5,6 @@ import { Experience } from "@/components/sections/Experience";
 import { Projects } from "@/components/sections/Projects";
 import { Education } from "@/components/sections/Education";
 import { Contact } from "@/components/sections/Contact";
-import { Reveal } from "@/components/ui/Reveal";
 
 // Data
 import { profile } from "@/data/profile";
@@ -19,38 +18,30 @@ export default function Home() {
     <main>
       <Hero data={profile} />
 
-      <Reveal delay={0.1}>
-        <About />
-      </Reveal>
+      {/* Smooth visual separator */}
+      <div className="section-fade-separator" />
 
-      {/* Depth separator */}
-      <div className="section-depth-overlay" />
+      <About />
 
-      <Reveal delay={0.1}>
-        <TechStack data={stack} />
-      </Reveal>
+      <div className="section-fade-separator" />
 
-      <div className="section-depth-overlay" />
+      <TechStack data={stack} />
 
-      <Reveal delay={0.1}>
-        <Experience data={experience} />
-      </Reveal>
+      <div className="section-fade-separator" />
 
-      <div className="section-depth-overlay" />
+      <Experience data={experience} />
 
-      <Reveal delay={0.1}>
-        <Projects data={projects} />
-      </Reveal>
+      <div className="section-fade-separator" />
 
-      <div className="section-depth-overlay" />
+      <Projects data={projects} />
 
-      <Reveal delay={0.1}>
-        <Education data={education} />
-      </Reveal>
+      <div className="section-fade-separator" />
 
-      <Reveal delay={0.1}>
-        <Contact />
-      </Reveal>
+      <Education data={education} />
+
+      <div className="section-fade-separator" />
+
+      <Contact />
     </main>
   );
 }

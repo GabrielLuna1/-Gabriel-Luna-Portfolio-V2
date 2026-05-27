@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ArrowRight, ExternalLink, Github, BookOpen, Code2, Layers, Server, Cpu, Database, Globe, Zap, Target, Shield, BarChart3, Workflow, Network, Brain, FlaskConical } from "lucide-react";
+import { Search, ArrowRight, BookOpen } from "lucide-react";
 
 interface CmdAction {
   id: string;
@@ -43,7 +43,7 @@ export function ProjectCommandMenu({ projectName, sections, actions }: ProjectCo
     id: `sec-${s.id}`,
     label: `Ir para: ${s.label}`,
     icon: s.icon,
-    keywords: `${s.label} secao`,
+    keywords: `${s.label} secao section scroll`,
     action: () => {
       document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" });
       setOpen(false);
@@ -73,79 +73,98 @@ export function ProjectCommandMenu({ projectName, sections, actions }: ProjectCo
   return (
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-[60] flex items-start justify-center pt-[20vh] px-4">
+        <div className="fixed inset-0 z-[60] flex items-start justify-center pt-[15vh] px-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/40 backdrop-blur-md"
             onClick={() => setOpen(false)}
           />
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            className="relative w-full max-w-lg bg-surface border border-white/10 rounded-xl shadow-2xl overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95, y: 10, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.95, y: 10, filter: "blur(10px)" }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="relative w-full max-w-xl bg-surface/80 backdrop-blur-2xl border border-white/[0.04] rounded-2xl shadow-[0_0_80px_rgba(0,0,0,0.8)] overflow-hidden"
             onKeyDown={handleKey}
           >
-            <div className="flex items-center gap-3 px-4 py-2 border-b border-white/5 bg-primary/5">
-              <BookOpen size={14} className="text-primary shrink-0" />
-              <span className="text-xs font-medium text-primary">{projectName}</span>
+            {/* Top accent bar */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+
+            <div className="flex items-center gap-3 px-5 py-3 border-b border-white/[0.04] bg-white/[0.02]">
+              <BookOpen size={14} className="text-secondary/60 shrink-0" />
+              <span className="text-xs font-bold text-secondary uppercase tracking-wider">{projectName}</span>
             </div>
 
-            <div className="flex items-center px-4 border-b border-white/5">
-              <Search className="w-5 h-5 text-secondary" />
+            <div className="flex items-center px-5 py-2 border-b border-white/[0.04]">
+              <Search className="w-5 h-5 text-secondary/50" />
               <input
                 autoFocus
                 type="text"
-                placeholder={`Buscar em ${projectName}...`}
-                className="w-full bg-transparent p-4 text-white placeholder:text-secondary focus:outline-none"
+                placeholder={`Buscar no projeto...`}
+                className="w-full bg-transparent p-4 text-white text-lg placeholder:text-secondary/40 focus:outline-none"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKey}
               />
-              <span className="text-xs text-secondary border border-white/10 px-2 py-1 rounded">ESC</span>
+              <span className="text-[10px] font-mono font-bold text-secondary/60 border border-white/[0.04] bg-white/[0.02] px-2 py-1 rounded-md">ESC</span>
             </div>
 
-            <div className="max-h-[350px] overflow-y-auto p-2">
+            <div className="max-h-[350px] overflow-y-auto p-3 custom-scrollbar">
               {filtered.length === 0 ? (
-                <p className="p-4 text-center text-sm text-secondary">Nenhum resultado encontrado.</p>
+                <div className="p-8 text-center flex flex-col items-center">
+                  <div className="w-12 h-12 rounded-full bg-white/[0.02] flex items-center justify-center mb-3">
+                    <Search className="w-5 h-5 text-secondary/40" />
+                  </div>
+                  <p className="text-sm font-medium text-secondary">Nenhum resultado encontrado para &quot;{query}&quot;.</p>
+                </div>
               ) : (
-                filtered.map((action, i) => {
-                  const isSelected = i === selectedIndex;
-                  return (
-                    <button
-                      key={action.id}
-                      onClick={action.action}
-                      onMouseEnter={() => setSelectedIndex(i)}
-                      className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors text-left group ${
-                        isSelected ? "bg-primary/10 text-primary" : "hover:bg-white/5 hover:text-primary"
-                      }`}
-                    >
-                      <div className={`p-2 rounded-md shrink-0 ${
-                        isSelected ? "bg-primary/20 text-primary" : "bg-white/5 text-secondary"
-                      } transition-colors`}>
-                        {action.icon}
-                      </div>
-                      <span className={`flex-1 text-sm font-medium ${
-                        isSelected ? "text-white" : "text-white/80"
-                      }`}>
-                        {action.label}
-                      </span>
-                      <ArrowRight className={`w-4 h-4 transition-all shrink-0 ${
-                        isSelected ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
-                      } text-primary`} />
-                    </button>
-                  );
-                })
+                <div className="space-y-1">
+                  {filtered.map((action, i) => {
+                    const isSelected = i === selectedIndex;
+                    return (
+                      <button
+                        key={action.id}
+                        onClick={action.action}
+                        onMouseEnter={() => setSelectedIndex(i)}
+                        className={`w-full flex items-center gap-4 p-3 rounded-xl transition-all text-left group relative overflow-hidden ${
+                          isSelected ? "bg-white/[0.04]" : "hover:bg-white/[0.02]"
+                        }`}
+                      >
+                        {isSelected && (
+                          <motion.div
+                            layoutId="cmd-active-indicator"
+                            className="absolute left-0 top-1/4 bottom-1/4 w-1 rounded-r-full bg-primary"
+                          />
+                        )}
+                        
+                        <div className={`p-2.5 rounded-lg shrink-0 transition-colors ${
+                          isSelected ? "bg-primary/10 text-primary shadow-glow-sm" : "bg-surface-elevated/40 text-secondary border border-white/[0.04]"
+                        }`}>
+                          {action.icon}
+                        </div>
+                        
+                        <span className={`flex-1 text-sm font-medium transition-colors ${
+                          isSelected ? "text-white" : "text-secondary group-hover:text-white"
+                        }`}>
+                          {action.label}
+                        </span>
+                        
+                        <ArrowRight className={`w-4 h-4 transition-all shrink-0 text-primary ${
+                          isSelected ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+                        }`} />
+                      </button>
+                    );
+                  })}
+                </div>
               )}
             </div>
 
-            <div className="p-2 border-t border-white/5 bg-white/[0.02] text-[10px] text-secondary text-center flex gap-4 justify-center">
-              <span>↑↓ Navegar</span>
-              <span>Enter Selecionar</span>
-              <span>ESC Fechar</span>
+            <div className="p-3 border-t border-white/[0.04] bg-white/[0.01] text-[10px] font-bold text-secondary/60 text-center flex gap-6 justify-center uppercase tracking-widest">
+              <span className="flex items-center gap-1.5"><kbd className="px-1.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.04]">↑↓</kbd> Navegar</span>
+              <span className="flex items-center gap-1.5"><kbd className="px-1.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.04]">Enter</kbd> Selecionar</span>
             </div>
           </motion.div>
         </div>

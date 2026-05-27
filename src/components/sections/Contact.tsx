@@ -58,15 +58,22 @@ export function Contact() {
     }
   }
 
+  const inputClasses = "w-full bg-surface-elevated/40 border border-white/[0.04] rounded-xl p-3.5 text-white text-sm focus:outline-none focus:border-primary/30 focus:ring-2 focus:ring-primary/8 transition-all duration-300 placeholder:text-white/15 hover:border-white/8";
+  const labelClasses = "text-[10px] text-secondary font-mono uppercase font-bold tracking-wider";
+
   return (
-    <section id="contact" className="py-24 bg-background overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-28 bg-background overflow-hidden relative">
+      {/* Background mesh */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-mesh opacity-70" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <SectionTitle
+          number="06"
           subtitle={t("contact.subtitle")}
           title={t("contact.title")}
         />
 
-        <div className="grid lg:grid-cols-2 gap-12 mt-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-14 mt-16 items-start">
           {/* Contact Info */}
           <Reveal direction="left" delay={0.1}>
             <div className="space-y-6">
@@ -78,14 +85,14 @@ export function Contact() {
                 {/* Email Card */}
                 <button
                   onClick={handleCopyEmail}
-                  className="w-full flex items-center gap-3 p-4 rounded-xl glass hover:border-primary/30 transition-all group text-left relative overflow-hidden"
+                  className="w-full flex items-center gap-3 p-4 rounded-xl card-premium hover:border-primary/20 transition-all group text-left relative overflow-hidden"
                   aria-label="Copy email"
                 >
-                  <div className="p-2.5 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <div className="p-2.5 rounded-lg bg-primary/8 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
                     <Mail size={18} />
                   </div>
                   <div className="flex-1">
-                    <p className="text-[10px] text-secondary font-mono uppercase tracking-wider">
+                    <p className="text-[10px] text-secondary/60 font-mono uppercase tracking-wider">
                       Email
                     </p>
                     <p className="text-white font-medium text-sm">
@@ -115,13 +122,13 @@ export function Contact() {
                 <a
                   href="https://linkedin.com/in/gabriel-luna-14b00821b"
                   target="_blank"
-                  className="flex items-center gap-3 p-4 rounded-xl glass hover:border-primary/30 transition-all group"
+                  className="flex items-center gap-3 p-4 rounded-xl card-premium hover:border-[#0A66C2]/20 transition-all group"
                 >
-                  <div className="p-2.5 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <div className="p-2.5 rounded-lg bg-primary/8 text-primary group-hover:bg-[#0A66C2] group-hover:text-white transition-all duration-300">
                     <Linkedin size={18} />
                   </div>
                   <div>
-                    <p className="text-[10px] text-secondary font-mono uppercase tracking-wider">
+                    <p className="text-[10px] text-secondary/60 font-mono uppercase tracking-wider">
                       LinkedIn
                     </p>
                     <p className="text-white font-medium text-sm">Gabriel Luna</p>
@@ -132,13 +139,13 @@ export function Contact() {
                 <a
                   href="https://github.com/GabrielLuna1"
                   target="_blank"
-                  className="flex items-center gap-3 p-4 rounded-xl glass hover:border-primary/30 transition-all group"
+                  className="flex items-center gap-3 p-4 rounded-xl card-premium hover:border-white/15 transition-all group"
                 >
-                  <div className="p-2.5 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <div className="p-2.5 rounded-lg bg-primary/8 text-primary group-hover:bg-white group-hover:text-background transition-all duration-300">
                     <Github size={18} />
                   </div>
                   <div>
-                    <p className="text-[10px] text-secondary font-mono uppercase tracking-wider">
+                    <p className="text-[10px] text-secondary/60 font-mono uppercase tracking-wider">
                       GitHub
                     </p>
                     <p className="text-white font-medium text-sm">GabrielLuna1</p>
@@ -151,20 +158,35 @@ export function Contact() {
           {/* Form */}
           <Reveal direction="right" delay={0.2}>
             <div className="relative">
-              <div className="absolute inset-0 bg-primary/15 blur-[80px] rounded-full -z-10 opacity-15" />
+              <div className="absolute inset-0 bg-primary/10 blur-[80px] rounded-full -z-10 opacity-10" />
 
-              <div className="p-7 rounded-2xl glass-strong border border-white/8 relative overflow-hidden shadow-elevated">
+              <div className="p-7 rounded-2xl card-premium relative overflow-hidden">
                 {isSuccess ? (
-                  <div className="flex flex-col items-center justify-center text-center p-8 animate-in fade-in zoom-in duration-300">
-                    <div className="w-16 h-16 rounded-full bg-success/10 text-success flex items-center justify-center mb-5 border border-success/20">
+                  <div className="flex flex-col items-center justify-center text-center p-8">
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="w-16 h-16 rounded-full bg-success/10 text-success flex items-center justify-center mb-5 border border-success/15"
+                    >
                       <CheckCircle size={36} />
-                    </div>
-                    <h3 className="text-xl font-display font-bold text-white mb-2">
+                    </motion.div>
+                    <motion.h3
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                      className="text-xl font-display font-bold text-white mb-2"
+                    >
                       {t("contact.success.title")}
-                    </h3>
-                    <p className="text-secondary mb-6 leading-relaxed max-w-xs text-sm">
+                    </motion.h3>
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="text-secondary mb-6 leading-relaxed max-w-xs text-sm"
+                    >
                       {t("contact.success.text")}
-                    </p>
+                    </motion.p>
                     <Button
                       onClick={() => setIsSuccess(false)}
                       variant="outline"
@@ -176,8 +198,8 @@ export function Contact() {
                 ) : (
                   <form className="space-y-5" onSubmit={handleSubmit}>
                     <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
-                        <label className="text-[10px] text-secondary font-mono uppercase font-bold tracking-wider">
+                      <div className="space-y-2">
+                        <label className={labelClasses}>
                           {t("contact.form.name")}
                         </label>
                         <input
@@ -185,11 +207,11 @@ export function Contact() {
                           required
                           type="text"
                           placeholder="Seu nome"
-                          className="w-full bg-surface-elevated/50 border border-white/5 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-white/20"
+                          className={inputClasses}
                         />
                       </div>
-                      <div className="space-y-1.5">
-                        <label className="text-[10px] text-secondary font-mono uppercase font-bold tracking-wider">
+                      <div className="space-y-2">
+                        <label className={labelClasses}>
                           {t("contact.form.email")}
                         </label>
                         <input
@@ -197,13 +219,13 @@ export function Contact() {
                           required
                           type="email"
                           placeholder="seu@email.com"
-                          className="w-full bg-surface-elevated/50 border border-white/5 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-white/20"
+                          className={inputClasses}
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-1.5">
-                      <label className="text-[10px] text-secondary font-mono uppercase font-bold tracking-wider">
+                    <div className="space-y-2">
+                      <label className={labelClasses}>
                         {t("contact.form.message")}
                       </label>
                       <textarea
@@ -211,7 +233,7 @@ export function Contact() {
                         required
                         rows={4}
                         placeholder={t("contact.form.placeholder")}
-                        className="w-full bg-surface-elevated/50 border border-white/5 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 transition-all resize-none placeholder:text-white/20"
+                        className={`${inputClasses} resize-none`}
                       />
                     </div>
 
@@ -219,7 +241,7 @@ export function Contact() {
                       <motion.div
                         initial={{ opacity: 0, y: -5 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="p-3 rounded-xl bg-error/10 border border-error/20 text-error text-sm flex items-center gap-2"
+                        className="p-3 rounded-xl bg-error/8 border border-error/15 text-error text-sm flex items-center gap-2"
                       >
                         <span className="text-xs">!</span> {errorMessage}
                       </motion.div>

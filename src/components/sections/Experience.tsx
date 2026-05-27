@@ -15,16 +15,20 @@ export function Experience({ data }: ExperienceProps) {
   const { t } = useLanguage();
 
   return (
-    <section id="experience" className="py-24 bg-background overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section id="experience" className="py-28 bg-background overflow-hidden relative">
+      {/* Subtle mesh background */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-mesh opacity-60" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <SectionTitle
+          number="03"
           subtitle={t("experience.subtitle")}
           title={t("experience.title")}
         />
 
         <div className="mt-16 relative max-w-4xl mx-auto">
-          {/* Timeline Line */}
-          <div className="absolute left-4 md:left-0 top-2 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 via-primary/10 to-transparent" />
+          {/* Timeline Line — consistent positioning */}
+          <div className="absolute left-5 md:left-0 top-2 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary/10 to-transparent" />
 
           <motion.div
             variants={staggerContainer}
@@ -33,52 +37,56 @@ export function Experience({ data }: ExperienceProps) {
             viewport={{ once: true, margin: "-100px" }}
             className="space-y-10"
           >
-            {data.map((item) => (
+            {data.map((item, index) => (
               <motion.div
                 key={item.id}
                 variants={staggerItem}
-                className="relative pl-12 md:pl-16"
+                className="relative pl-14 md:pl-16"
               >
                 {/* Timeline Dot */}
-                <div className="absolute left-[10px] md:left-[-6px] top-3 w-3.5 h-3.5 rounded-full bg-background border-2 border-primary z-10 flex items-center justify-center">
+                <div className="absolute left-[14px] md:left-[-6px] top-3 w-3.5 h-3.5 rounded-full bg-background border-2 border-primary z-10 flex items-center justify-center">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-glow" />
                 </div>
 
-                {/* Experience Card */}
-                <div className="group card-base elevation-3 p-6 md:p-8 hover:border-primary/20 hover:bg-surface/30 hover:-translate-y-0.5">
+                {/* Experience Card — gradient intensity based on recency */}
+                <div
+                  className={`group card-premium p-6 md:p-8 hover:border-primary/20 hover:-translate-y-0.5 transition-all duration-300 ${
+                    index === 0 ? "shadow-glow" : ""
+                  }`}
+                >
                   {/* Header */}
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 mb-5">
                     <div>
-                      <h3 className="text-heading font-display font-bold text-white mb-1 group-hover:text-primary transition-colors">
+                      <h3 className="text-heading font-display font-bold text-white mb-1 group-hover:text-primary transition-colors tracking-tight">
                         {t(item.role)}
                       </h3>
                       <p className="text-secondary font-medium flex items-center gap-2 text-sm">
-                        <Briefcase size={14} className="text-primary" />
+                        <Briefcase size={14} className="text-primary/70" />
                         {item.company}
                       </p>
                     </div>
 
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-secondary whitespace-nowrap font-mono">
-                      <Calendar size={12} className="text-primary/70" />
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-elevated/40 border border-white/[0.04] text-xs text-secondary whitespace-nowrap font-mono">
+                      <Calendar size={12} className="text-primary/60" />
                       {t(item.period)}
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="text-secondary/80 text-body leading-relaxed mb-5">
+                  <p className="text-secondary text-body leading-relaxed mb-5">
                     {t(item.description)}
                   </p>
 
                   {/* Achievements */}
-                  <ul className="grid gap-2.5">
-                    {item.achievements.map((achievementKey, index) => (
+                  <ul className="grid gap-3">
+                    {item.achievements.map((achievementKey, achievementIndex) => (
                       <li
-                        key={index}
+                        key={achievementIndex}
                         className="flex items-start gap-2.5 text-secondary text-sm"
                       >
                         <CheckCircle2
-                          size={16}
-                          className="mt-0.5 text-primary/50 shrink-0 group-hover:text-primary transition-colors"
+                          size={15}
+                          className="mt-0.5 text-primary/40 shrink-0 group-hover:text-primary/70 transition-colors"
                         />
                         <span className="leading-relaxed">
                           {t(achievementKey)}

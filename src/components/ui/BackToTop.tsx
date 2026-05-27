@@ -7,16 +7,14 @@ import { motion, AnimatePresence } from "framer-motion";
 export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Função que monitora a rolagem
   const toggleVisibility = () => {
-    if (window.scrollY > 300) {
+    if (window.scrollY > 400) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
     }
   };
 
-  // Função que faz a mágica de subir
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -25,7 +23,7 @@ export function BackToTop() {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
@@ -33,16 +31,18 @@ export function BackToTop() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.5 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-primary text-background shadow-[0_0_20px_rgba(var(--primary),0.4)] hover:bg-white hover:text-primary transition-colors"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          className="fixed bottom-8 left-8 z-40 flex items-center gap-2 px-4 py-2.5 rounded-full glass-strong text-secondary hover:text-white hover:border-primary/25 transition-all group"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
           aria-label="Voltar ao topo"
         >
-          <ArrowUp size={24} strokeWidth={3} />
+          <ArrowUp size={16} strokeWidth={2.5} className="group-hover:-translate-y-0.5 transition-transform" />
+          <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline">Topo</span>
         </motion.button>
       )}
     </AnimatePresence>

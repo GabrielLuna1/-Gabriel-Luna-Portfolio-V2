@@ -21,9 +21,16 @@ export function Projects({ data }: ProjectsProps) {
   const standard = data.filter((p) => p.layoutType !== "featured");
 
   return (
-    <section id="projects" className="py-24 bg-background overflow-hidden relative">
+    <section id="projects" className="py-28 bg-surface/5 overflow-hidden relative">
+      {/* Background mesh */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-mesh-warm opacity-70" />
+
       <div className="container mx-auto px-4 relative z-10">
-        <SectionTitle subtitle={t("projects.subtitle")} title={t("projects.title")} />
+        <SectionTitle
+          number="04"
+          subtitle={t("projects.subtitle")}
+          title={t("projects.title")}
+        />
 
         <div className="mt-20 space-y-20">
           {/* Featured Projects */}
@@ -38,9 +45,14 @@ export function Projects({ data }: ProjectsProps) {
               <motion.div
                 key={project.id}
                 variants={staggerItem}
-                className={`group relative rounded-3xl overflow-hidden border border-white/5 bg-gradient-to-br from-surface/60 to-surface-elevated/40 hover:border-primary/15 transition-all duration-500 elevation-4 flex flex-col ${
+                className={`group relative rounded-3xl overflow-hidden border border-white/[0.04] bg-gradient-to-br from-surface/50 to-surface-elevated/35 hover:border-primary/12 transition-all duration-500 elevation-4 flex flex-col card-spotlight ${
                   index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
                 }`}
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  e.currentTarget.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+                  e.currentTarget.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+                }}
               >
                 {/* Content Side */}
                 <div className="p-8 md:p-10 lg:w-[45%] flex flex-col justify-center relative z-20 space-y-5">
@@ -50,7 +62,7 @@ export function Projects({ data }: ProjectsProps) {
                       <TechBadge key={tag} name={tag} />
                     ))}
                     {project.tags.length > 4 && (
-                      <span className="px-2.5 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-mono font-medium text-white/40">
+                      <span className="inline-flex items-center px-3 py-1 bg-white/[0.03] border border-white/8 rounded-full text-[10px] font-mono font-medium text-white/35">
                         +{project.tags.length - 4}
                       </span>
                     )}
@@ -58,12 +70,12 @@ export function Projects({ data }: ProjectsProps) {
 
                   {/* Title & Description */}
                   <div className="space-y-3">
-                    <h3 className="text-heading font-display font-bold text-white group-hover:text-primary transition-colors">
+                    <h3 className="text-heading font-display font-bold text-white group-hover:text-primary transition-colors tracking-tight">
                       {project.title.includes("proj.")
                         ? t(project.title)
                         : project.title}
                     </h3>
-                    <p className="text-secondary/80 text-body leading-relaxed">
+                    <p className="text-secondary text-body leading-relaxed">
                       {project.description.includes("proj.")
                         ? t(project.description)
                         : project.description}
@@ -74,7 +86,7 @@ export function Projects({ data }: ProjectsProps) {
                   <div className="flex flex-wrap gap-2.5 pt-2">
                     <Link
                       href={`/projetos/${project.id}`}
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary-light text-white font-bold text-sm hover:shadow-glow-md hover:-translate-y-0.5 transition-all btn-glow"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-primary to-primary-light text-white font-bold text-sm hover:shadow-glow-md hover:-translate-y-0.5 transition-all btn-glow btn-shimmer border border-white/10"
                     >
                       <BookOpen size={15} />
                       Ver Arquitetura
@@ -83,7 +95,7 @@ export function Projects({ data }: ProjectsProps) {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl glass border border-white/5 text-white hover:border-primary/20 transition-all text-sm font-medium"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl glass border border-white/[0.04] text-white hover:border-primary/15 transition-all text-sm font-medium"
                     >
                       <Github size={15} /> Code
                     </a>
@@ -91,15 +103,17 @@ export function Projects({ data }: ProjectsProps) {
                 </div>
 
                 {/* Image Side */}
-                <div className="relative w-full lg:w-[55%] min-h-[280px] lg:min-h-[450px] bg-surface/20 overflow-hidden flex items-end justify-end pt-8 pl-8 md:pt-10 md:pl-10">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative w-full lg:w-[55%] min-h-[280px] lg:min-h-[450px] bg-surface/15 overflow-hidden flex items-end justify-end pt-8 pl-8 md:pt-10 md:pl-10">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                  <div className="relative w-full h-[90%] rounded-tl-2xl overflow-hidden border-t border-l border-white/5 shadow-elevated group-hover:translate-x-1.5 group-hover:-translate-y-1.5 transition-transform duration-700 ease-out">
+                  <div className="relative w-full h-[90%] rounded-tl-2xl overflow-hidden border-t border-l border-white/[0.04] shadow-elevated group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-700 ease-out">
                     <img
                       src={project.imageUrl}
                       alt={project.title}
-                      className="w-full h-full object-cover object-left-top opacity-75 group-hover:opacity-100 transition-opacity duration-500"
+                      className="w-full h-full object-cover object-left-top opacity-70 group-hover:opacity-95 transition-opacity duration-500"
                     />
+                    {/* Image overlay gradient for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
                   </div>
                 </div>
               </motion.div>
@@ -118,15 +132,15 @@ export function Projects({ data }: ProjectsProps) {
               <motion.div
                 key={project.id}
                 variants={staggerItem}
-                className="group flex flex-col rounded-2xl bg-gradient-to-b from-surface/50 to-surface-elevated/30 border border-white/5 hover:border-primary/20 transition-all duration-300 overflow-hidden"
+                className="group flex flex-col rounded-2xl bg-gradient-to-b from-surface/40 to-surface-elevated/25 border border-white/[0.04] hover:border-primary/15 transition-all duration-300 overflow-hidden glass-shine"
               >
-                <div className="relative h-44 overflow-hidden bg-surface/30">
+                <div className="relative h-44 overflow-hidden bg-surface/20">
                   <img
                     src={project.imageUrl}
                     alt={project.title}
-                    className="w-full h-full object-cover opacity-55 group-hover:scale-105 group-hover:opacity-80 transition-all duration-700 ease-out"
+                    className="w-full h-full object-cover opacity-50 group-hover:scale-105 group-hover:opacity-75 transition-all duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-80" />
                 </div>
 
                 <div className="p-5 flex flex-col flex-1 relative z-10 -mt-5">
@@ -137,7 +151,7 @@ export function Projects({ data }: ProjectsProps) {
                     ))}
                   </div>
 
-                  <h4 className="text-lg font-display font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                  <h4 className="text-lg font-display font-bold text-white mb-2 group-hover:text-primary transition-colors tracking-tight">
                     {project.title.includes("proj.")
                       ? t(project.title)
                       : project.title}
@@ -149,7 +163,7 @@ export function Projects({ data }: ProjectsProps) {
                       : project.description}
                   </p>
 
-                  <div className="flex justify-between items-center pt-4 border-t border-white/5">
+                  <div className="flex justify-between items-center pt-4 border-t border-white/[0.04]">
                     <a
                       href={project.githubUrl}
                       target="_blank"
