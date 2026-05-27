@@ -157,11 +157,11 @@ export function CaseChat() {
           exit={{ opacity: 0, scale: 0.85, y: 20 }}
           transition={{ type: "spring", stiffness: 250, damping: 28, mass: 0.9 }}
           style={{ transformOrigin: "bottom right" }}
-          className="fixed bottom-6 right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] bg-background/90 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+          className="fixed bottom-6 right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] bg-[#030303]/90 backdrop-blur-3xl border border-white/[0.08] rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(59,130,246,0.1)] overflow-hidden flex flex-col"
         >
           {/* Header */}
           <div
-            className="relative bg-gradient-to-r from-primary/[0.06] via-blue-500/[0.04] to-transparent border-b border-white/5 p-4 flex items-center justify-between cursor-pointer select-none"
+            className="relative bg-gradient-to-r from-blue-500/10 via-[#050505]/50 to-transparent border-b border-white/[0.08] p-4 flex items-center justify-between cursor-pointer select-none"
             onClick={() => isMinimized && setIsMinimized(false)}
           >
             <div className="flex items-center gap-3">
@@ -243,13 +243,13 @@ export function CaseChat() {
                         <div className="shrink-0 w-7 h-7 rounded-full bg-primary/15 border border-primary/20 flex items-center justify-center mt-0.5">
                           <Sparkles size={13} className="text-primary" />
                         </div>
-                        <div className="relative bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl rounded-tl-sm px-4 py-3">
+                        <div className="relative bg-[#0a0a0a]/80 backdrop-blur-md border border-white/[0.08] rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm glass-shine">
                           <div className="absolute left-0 top-3 bottom-3 w-[2px] bg-primary/40 rounded-full" />
                           <p className="text-[13px] text-secondary/90 leading-relaxed pl-2.5">{msg.text}</p>
                         </div>
                       </div>
                     ) : (
-                      <div className="max-w-[85%] bg-primary text-white rounded-2xl rounded-br-sm px-4 py-3 shadow-[0_4px_16px_rgba(59,130,246,0.2)]">
+                      <div className="max-w-[85%] bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl rounded-br-sm px-4 py-3 shadow-[0_4px_20px_rgba(59,130,246,0.3)] border border-blue-400/20">
                         <p className="text-[13px] leading-relaxed">{msg.text}</p>
                       </div>
                     )}
@@ -272,7 +272,7 @@ export function CaseChat() {
                           setInput(q);
                           handleSendDirect(q);
                         }}
-                        className="px-3 py-1.5 bg-white/[0.03] border border-white/[0.06] rounded-full text-[11px] text-secondary/70 hover:text-primary hover:border-primary/30 hover:bg-primary/[0.04] transition-all"
+                        className="px-3 py-1.5 bg-blue-500/[0.04] border border-blue-500/20 rounded-full text-[11px] text-blue-300/80 hover:text-white hover:border-blue-400/50 hover:bg-blue-500/[0.15] hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all"
                       >
                         {q}
                       </button>
@@ -335,12 +335,12 @@ export function CaseChat() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && !isTyping && handleSend()}
                     placeholder="Pergunte sobre arquitetura, projetos..."
-                    className="w-full bg-background border border-white/[0.08] rounded-xl py-3 pl-4 pr-12 text-sm text-white placeholder:text-secondary/40 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/20 transition-all"
+                    className="w-full bg-[#000000]/50 border border-white/[0.08] shadow-inner rounded-xl py-3 pl-4 pr-12 text-sm text-white placeholder:text-secondary/40 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/30 focus:bg-[#050505] transition-all"
                   />
                   <button
                     onClick={handleSend}
                     disabled={!input.trim() || isTyping}
-                    className="absolute right-1.5 p-2 bg-primary text-white rounded-lg transition-all hover:scale-105 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg shadow-primary/20"
+                    className="absolute right-1.5 p-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg transition-all hover:scale-105 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg shadow-blue-500/25"
                   >
                     <Send size={15} />
                   </button>

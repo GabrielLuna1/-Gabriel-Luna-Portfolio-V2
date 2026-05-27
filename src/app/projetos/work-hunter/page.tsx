@@ -184,15 +184,7 @@ export default function WorkHunterPage() {
         <FloatingTechTags tags={floatingTags} colorTheme="primary" />
 
         <div className="text-center relative z-10 w-full flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-elevated/40 border border-white/[0.04] text-[10px] text-secondary font-mono tracking-wider uppercase mb-12 shadow-sm"
-          >
-            <span>Projetos</span>
-            <span className="text-white/20">&gt;</span>
-            <span className="text-white font-bold">Job Hunter</span>
-          </motion.div>
+
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -221,7 +213,7 @@ export default function WorkHunterPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="flex items-center gap-6"
+            className="flex items-center justify-center"
           >
             <a 
               href="https://github.com/GabrielLuna1/job-hunter-ai" 
@@ -233,15 +225,6 @@ export default function WorkHunterPage() {
               {t.btnCode}
               <ArrowLeft size={16} className="rotate-135 group-hover:translate-x-1 transition-transform" />
             </a>
-
-            {/* Little Tech Orbs */}
-            <div className="flex -space-x-3">
-              {['PY', 'FA', 'NE', 'MO'].map((tech, i) => (
-                <div key={tech} className="w-10 h-10 rounded-full bg-[#0a0a0a] border border-white/10 flex items-center justify-center text-[9px] font-bold font-mono text-secondary z-10 hover:z-20 hover:scale-110 hover:border-blue-500/50 hover:text-white transition-all cursor-default shadow-lg">
-                  {tech}
-                </div>
-              ))}
-            </div>
           </motion.div>
         </div>
 

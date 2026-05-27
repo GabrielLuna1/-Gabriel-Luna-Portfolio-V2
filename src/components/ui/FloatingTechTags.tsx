@@ -25,14 +25,14 @@ export function FloatingTechTags({ tags, colorTheme = "primary" }: FloatingTechT
   // Coordinates represent percentage offset from the center (0,0)
   // Max should be around -40 to 40 so they don't hit the edges and get clipped
   const positions = [
-    { x: -28, y: -30, scale: 0.8 },
-    { x: 30, y: -25, scale: 0.9 },
-    { x: -35, y: 10, scale: 1 },
-    { x: 35, y: 20, scale: 0.75 },
-    { x: -15, y: 35, scale: 0.85 },
-    { x: 15, y: -35, scale: 0.95 },
-    { x: -40, y: -10, scale: 0.7 },
-    { x: 40, y: 5, scale: 0.8 },
+    { x: -28, y: -30, scale: 0.95 },
+    { x: 30, y: -25, scale: 1.1 },
+    { x: -35, y: 10, scale: 1.2 },
+    { x: 35, y: 20, scale: 0.95 },
+    { x: -15, y: 35, scale: 1.05 },
+    { x: 15, y: -35, scale: 1.15 },
+    { x: -40, y: -10, scale: 0.9 },
+    { x: 40, y: 5, scale: 1.0 },
   ];
 
   return (
@@ -66,9 +66,9 @@ export function FloatingTechTags({ tags, colorTheme = "primary" }: FloatingTechT
                 scale: pos.scale
               }}
             >
-              <div className={`flex items-center gap-2 px-4 py-2 rounded-xl border ${colorTheme === "purple" ? "border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.3)]" : "border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.3)]"} bg-[#050505]/90 backdrop-blur-md`}>
-                {tag.icon && <span className={colorTheme === "purple" ? "text-purple-400" : "text-blue-400"}>{tag.icon}</span>}
-                <span className="text-sm font-mono font-bold tracking-wider text-white">{tag.name}</span>
+              <div className={`flex items-center gap-2.5 px-5 py-2.5 rounded-[1rem] border ${colorTheme === "purple" ? "border-purple-500/50 shadow-[0_0_25px_rgba(168,85,247,0.35)]" : "border-blue-500/50 shadow-[0_0_25px_rgba(59,130,246,0.35)]"} bg-[#050505]/95 backdrop-blur-xl`}>
+                {tag.icon && <span className={`scale-110 ${colorTheme === "purple" ? "text-purple-400" : "text-blue-400"}`}>{tag.icon}</span>}
+                <span className="text-sm font-mono font-bold tracking-widest text-white">{tag.name}</span>
               </div>
             </motion.div>
           );
