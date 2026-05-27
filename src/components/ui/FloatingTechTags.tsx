@@ -22,24 +22,22 @@ export function FloatingTechTags({ tags, colorTheme = "primary" }: FloatingTechT
 
   if (!mounted) return null;
 
-  // Define a set of random-ish but pleasing fixed positions around a center
-  // These represent [x, y] coordinates in percentages relative to a central container
+  // Coordinates represent percentage offset from the center (0,0)
+  // Max should be around -40 to 40 so they don't hit the edges and get clipped
   const positions = [
-    { x: -35, y: -45, scale: 0.8 },
-    { x: 40, y: -30, scale: 0.9 },
-    { x: -45, y: 15, scale: 1 },
-    { x: 35, y: 35, scale: 0.75 },
-    { x: -10, y: 55, scale: 0.85 },
-    { x: 15, y: -60, scale: 0.95 },
-    { x: -60, y: -10, scale: 0.7 },
-    { x: 60, y: 5, scale: 0.8 },
+    { x: -28, y: -30, scale: 0.8 },
+    { x: 30, y: -25, scale: 0.9 },
+    { x: -35, y: 10, scale: 1 },
+    { x: 35, y: 20, scale: 0.75 },
+    { x: -15, y: 35, scale: 0.85 },
+    { x: 15, y: -35, scale: 0.95 },
+    { x: -40, y: -10, scale: 0.7 },
+    { x: 40, y: 5, scale: 0.8 },
   ];
 
-  const colorClass = colorTheme === "purple" ? "text-purple-400 border-purple-500/30" : "text-primary border-primary/30";
-
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden">
-      <div className="relative w-full max-w-4xl h-full">
+    <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
+      <div className="relative w-full max-w-5xl h-full">
         {tags.map((tag, index) => {
           const pos = positions[index % positions.length];
           // Randomize timing slightly based on index
@@ -49,11 +47,11 @@ export function FloatingTechTags({ tags, colorTheme = "primary" }: FloatingTechT
           return (
             <motion.div
               key={tag.name}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ 
-                opacity: [0, 0.4, 0.8, 0.4, 0],
-                y: [10, -10, -20, -10, 10],
-                x: [0, 5, 0, -5, 0]
+                opacity: [0, 0.5, 1, 0.5, 0],
+                y: [20, -10, -30, -10, 20],
+                x: ["-50%", `calc(-50% + 10px)`, "-50%", `calc(-50% - 10px)`, "-50%"]
               }}
               transition={{
                 duration: duration,
@@ -61,16 +59,16 @@ export function FloatingTechTags({ tags, colorTheme = "primary" }: FloatingTechT
                 delay: delay,
                 ease: "easeInOut"
               }}
-              className="absolute left-1/2 top-1/2"
+              className="absolute"
               style={{
-                marginLeft: `${pos.x}%`,
-                marginTop: `${pos.y}%`,
-                transform: `scale(${pos.scale})`
+                left: `${50 + pos.x}%`,
+                top: `${50 + pos.y}%`,
+                scale: pos.scale
               }}
             >
-              <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass-strong border ${colorClass} bg-surface/40 backdrop-blur-md shadow-glow-sm`}>
-                {tag.icon && <span className="opacity-80">{tag.icon}</span>}
-                <span className="text-xs font-mono font-bold tracking-wider opacity-90">{tag.name}</span>
+              <div className={`flex items-center gap-2 px-4 py-2 rounded-xl border ${colorTheme === "purple" ? "border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.3)]" : "border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.3)]"} bg-[#050505]/90 backdrop-blur-md`}>
+                {tag.icon && <span className={colorTheme === "purple" ? "text-purple-400" : "text-blue-400"}>{tag.icon}</span>}
+                <span className="text-sm font-mono font-bold tracking-wider text-white">{tag.name}</span>
               </div>
             </motion.div>
           );

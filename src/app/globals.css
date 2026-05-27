@@ -10,8 +10,8 @@
 
 :root {
   /* --- Core Palette (space-separated for Tailwind v3 alpha-value) --- */
-  --bg: 9 9 11;
-  --bg-hex: #09090B;
+  --bg: 2 2 2;
+  --bg-hex: #020202;
   --surface: 24 24 27;
   --surface-hex: #18181B;
   --surface-elevated: 31 31 35;

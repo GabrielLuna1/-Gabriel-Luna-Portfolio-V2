@@ -300,22 +300,19 @@ export default function StockMasterPage() {
         >
           {features.map((feature, i) => {
             const Icon = feature.icon;
-            const isTall = i === 1 || i === 4;
             
             return (
               <motion.div
                 key={i}
                 variants={staggerItem}
-                className={`card-premium p-8 group flex flex-col justify-between ${isTall ? 'md:row-span-2' : ''}`}
+                className="card-premium p-8 group"
               >
-                <div>
-                  <div className="w-12 h-12 rounded-xl bg-surface-elevated border border-white/[0.04] flex items-center justify-center mb-6 group-hover:bg-blue-500/10 group-hover:scale-110 transition-all duration-500 shadow-elevated">
-                    <Icon className="text-blue-400 opacity-80 group-hover:opacity-100" size={20} />
-                  </div>
-                  <h3 className="text-lg font-display font-bold text-white mb-3 group-hover:text-blue-400 transition-colors leading-tight">
-                    {feature.title}
-                  </h3>
+                <div className="w-12 h-12 rounded-xl bg-surface-elevated border border-white/[0.04] flex items-center justify-center mb-6 group-hover:bg-blue-500/10 group-hover:scale-110 transition-all duration-500 shadow-elevated">
+                  <Icon className="text-blue-400 opacity-80 group-hover:opacity-100" size={20} />
                 </div>
+                <h3 className="text-lg font-display font-bold text-white mb-3 group-hover:text-blue-400 transition-colors leading-tight">
+                  {feature.title}
+                </h3>
                 <p className="text-secondary leading-relaxed text-sm">
                   {feature.description}
                 </p>
