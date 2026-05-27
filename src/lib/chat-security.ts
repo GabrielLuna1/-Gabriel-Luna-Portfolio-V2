@@ -1,5 +1,5 @@
 export type ThreatType =
-  | "XSS" | "SQLI" | "CMDI" | "TEMPLATE" | "SSRF" | "CSRF" | "NONE";
+  | "XSS" | "SQLI" | "CMDI" | "TEMPLATE" | "SSRF" | "CSRF" | "INVISIBLE" | "NONE";
 
 export interface ThreatReport {
   threat: ThreatType;
@@ -27,6 +27,7 @@ const SQLI_PATTERNS = [
   /\bEXEC\s+xp_cmdshell\b/i,
   /\bINTO\s+OUTFILE\b/i,
   /\bUNION\s+(ALL\s+)?SELECT\b/i,
+  /\b(SELECT|INSERT|UPDATE|DELETE|DROP|ALTER|CREATE|TRUNCATE)\b/i,
 ];
 
 const CMDI_PATTERNS = [
@@ -67,6 +68,10 @@ const CSRF_PATTERNS = [
   /<a[\s\S]*?href\s*=\s*["']https?:\/\/[^"']*["'][\s\S]*?>/gi,
 ];
 
+const INVISIBLE_PATTERNS = [
+  /[\u200B-\u200D\uFEFF]/,
+];
+
 export function sanitizeInput(input: string): string {
   return input
     .replace(/&/g, "&amp;")
@@ -79,6 +84,12 @@ export function sanitizeInput(input: string): string {
 
 export function analyzeThreat(input: string): ThreatReport {
   const sanitized = sanitizeInput(input);
+
+  for (const pattern of INVISIBLE_PATTERNS) {
+    if (pattern.test(input)) {
+      return { threat: "INVISIBLE", score: 1.0, sanitized, blocked: true };
+    }
+  }
 
   for (const pattern of XSS_PATTERNS) {
     if (pattern.test(input)) {

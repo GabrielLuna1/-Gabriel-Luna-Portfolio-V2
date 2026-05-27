@@ -36,6 +36,8 @@ export function CaseChat() {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [lastSent, setLastSent] = useState(0);
+  const [violationsCount, setViolationsCount] = useState(0);
+  const [cooldownUntil, setCooldownUntil] = useState(0);
   const [blockedThreat, setBlockedThreat] = useState<string | null>(null);
   const [showQuickActions, setShowQuickActions] = useState(true);
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
@@ -55,18 +57,41 @@ export function CaseChat() {
 
   const sendMessage = useCallback(async (text: string) => {
     const now = Date.now();
-    if (now - lastSent < 2000) {
-      setBlockedThreat("Aguarde 2 segundos entre mensagens");
+
+    // Check cooldown
+    if (now < cooldownUntil) {
+      const remaining = Math.ceil((cooldownUntil - now) / 1000 / 60);
+      setBlockedThreat(`Cooldown ativo (DoS protection). Tente novamente em ${remaining} min.`);
+      setTimeout(() => setBlockedThreat(null), 3000);
+      return;
+    }
+
+    // Rate limiting (1 msg/second)
+    if (now - lastSent < 1000) {
+      const newCount = violationsCount + 1;
+      setViolationsCount(newCount);
+      
+      if (newCount >= 3) {
+        setCooldownUntil(now + 5 * 60 * 1000); // 5 min cooldown
+        setBlockedThreat("Rate limit excedido (3 violações). Cooldown de 5 minutos ativado.");
+        setTimeout(() => setBlockedThreat(null), 5000);
+        return;
+      }
+
+      setBlockedThreat(`Aguarde 1 segundo entre mensagens (Aviso ${newCount}/3)`);
       setTimeout(() => setBlockedThreat(null), 2000);
       return;
     }
 
     const threat = analyzeThreat(text);
     if (threat.blocked) {
-      setBlockedThreat(`Ameaça detectada: ${threat.threat}`);
+      setBlockedThreat(`Ameaça bloqueada: ${threat.threat}`);
       setTimeout(() => setBlockedThreat(null), 3000);
       return;
     }
+
+    // Reset violations upon successful message
+    setViolationsCount(0);
 
     setShowQuickActions(false);
     setMessages(prev => [...prev, { role: "user", text }]);
@@ -170,7 +195,16 @@ export function CaseChat() {
                 <GripHorizontal size={15} />
               </button>
               <button
-                onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}
+                onClick={(e) => { 
+                  e.stopPropagation(); 
+                  setIsOpen(false);
+                  setTimeout(() => {
+                    setMessages([{ role: "ai", text: "Olá! Sou o assistente do Gabriel. Pergunte sobre projetos, skills, experiência ou carreira — ou escolha uma sugestão abaixo." }]);
+                    setShowQuickActions(true);
+                    setViolationsCount(0);
+                    setBlockedThreat(null);
+                  }, 300); // Clear after animation finishes
+                }}
                 className="p-1.5 hover:bg-white/5 rounded-lg transition-colors text-secondary hover:text-red-400"
                 aria-label="Fechar"
               >
