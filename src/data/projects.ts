@@ -2,14 +2,26 @@ import { Project } from "./types";
 
 export const projects: Project[] = [
   {
+    id: "work-hunter",
+    title: "proj.jobhunter.title", 
+    description: "proj.jobhunter.desc",
+    tags: ["FastAPI", "MongoDB", "Next.js 15", "Playwright", "LM Studio"],
+    imageUrl: "/jobHunter.png", 
+    githubUrl: "https://github.com/GabrielLuna1/job-hunter-ai", 
+    demoUrl: "#",
+    featured: true, 
+    layoutType: "featured",
+  },
+  {
     id: "stockmaster-pro",
-    title: "proj.stockmaster.title", // O Novo Flagship Full Stack
+    title: "proj.stockmaster.title",
     description: "proj.stockmaster.desc",
     tags: ["Next.js 14", "MongoDB", "NextAuth", "Server Actions", "TypeScript"],
-    imageUrl: "/stockmaster.png", // Certifique-se que a imagem está na pasta public com esse nome
-    githubUrl: "https://github.com/GabrielLuna1/Stock-master-pro", // <--- LINK CORRIGIDO AQUI
+    imageUrl: "/stockmaster.png",
+    githubUrl: "https://github.com/GabrielLuna1/Stock-master-pro",
     demoUrl: "https://stock-master-pro-app.vercel.app/",
-    featured: true, // Destaque máximo
+    featured: true,
+    layoutType: "featured",
   },
   {
     id: "galactic-luna",
@@ -20,6 +32,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/GabrielLuna1/GabrielLuna1.github.io",
     demoUrl: "https://gabrielluna1.github.io",
     featured: false,
+    layoutType: "standard",
   },
   {
     id: "esc-cursos",
@@ -30,6 +43,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/GabrielLuna1/esc-new",
     demoUrl: "#",
     featured: false,
+    layoutType: "standard",
   },
   {
     id: "portfolio-v2",
@@ -40,5 +54,6 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/GabrielLuna1/portfolio-v2",
     demoUrl: "#",
     featured: false,
+    layoutType: "standard",
   },
 ];

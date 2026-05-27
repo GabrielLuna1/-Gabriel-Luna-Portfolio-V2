@@ -19,6 +19,7 @@ export interface Project {
   githubUrl: string; // Antes era 'repo'
   demoUrl: string; // Antes era 'link'
   featured: boolean;
+  layoutType?: "featured" | "standard"; // Define se ocupa tela toda ou grid
 }
 
 export interface ExperienceItem {
@@ -30,12 +31,13 @@ export interface ExperienceItem {
   achievements: string[];
 }
 
-// ATUALIZADO PARA SUPORTAR CATEGORIAS (FRONT, BACK, DEVOPS)
+// ATUALIZADO PARA SUPORTAR CATEGORIAS E NÍVEIS
 export interface TechItem {
   category: string;
   items: {
     name: string;
     icon: string;
+    level?: "Avançado" | "Intermediário" | "Básico"; // Adicionado nível
   }[];
 }
 
