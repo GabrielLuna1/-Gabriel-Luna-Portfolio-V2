@@ -38,8 +38,10 @@ export const stack: TechItem[] = [
     category: "AI/ML",
     items: [
       { name: "Ollama", icon: "https://cdn.simpleicons.org/ollama/FFFFFF" },
+      { name: "LM Studio", icon: "https://cdn.simpleicons.org/lmstudio/FFFFFF" },
       { name: "LangChain", icon: "https://cdn.simpleicons.org/langchain/FFFFFF" },
       { name: "ChromaDB", icon: "https://cdn.simpleicons.org/milvus/FFFFFF" },
+      { name: "Hugging Face", icon: "https://cdn.simpleicons.org/huggingface/FFD21E" },
       { name: "Transformers", icon: "https://cdn.simpleicons.org/huggingface/FFD21E" },
       { name: "Sentence-Transformers", icon: "https://cdn.simpleicons.org/huggingface/FFD21E" },
     ],
