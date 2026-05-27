@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type Language = "pt" | "en";
 
@@ -17,290 +17,267 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 const translations = {
   pt: {
     // --- NAVEGAÇÃO ---
+    "nav.home": "Início",
     "nav.about": "Sobre",
-    "nav.stack": "Stack",
+    "nav.stack": "Tech",
     "nav.career": "Carreira",
     "nav.projects": "Projetos",
-    "nav.studies": "Estudos",
-    "nav.search": "Pesquisar...",
+    "nav.studies": "Educação",
+    "nav.search": "Pesquisar (Ctrl+K)",
     "nav.cta": "Vamos conversar",
 
     // --- HERO ---
-    "hero.badge": "Disponível para novos projetos",
-    "hero.role": "Full Stack Developer",
-    "hero.description":
-      "Especialista em transformar necessidades de negócio em software robusto. Foco em arquitetura escalável, integridade de dados e interfaces de alta performance.",
-    "hero.btn.projects": "Ver Projetos",
-    "hero.btn.linkedin": "LinkedIn",
+    "hero.badge": "Disponível para novos desafios",
+    "hero.role": "Software Engineer",
+    "hero.description": "Transformo complexidade de negócios em software elegante. Foco absoluto em arquiteturas escaláveis, automação inteligente e interfaces de altíssima performance.",
+    "hero.btn.projects": "Explorar Projetos",
+    "hero.btn.linkedin": "Conectar no LinkedIn",
 
     // --- SOBRE ---
     "about.title": "Além do Código",
     "about.subtitle": "Sobre Mim",
     "about.stats.exp": "Anos de Exp.",
-    "about.stats.projects": "Projetos Entregues",
-    "about.stats.english": "Inglês",
-    "about.journey":
-      "Minha jornada técnica é marcada pela prática: não apenas estudei, mas resolvi problemas reais. Na ESC Cursos, aprendi na pele que código limpo é aquele que mantém o sistema estável e o usuário final satisfeito.",
-    "about.focus.start":
-      "Hoje, combino essa vivência de produção com a potência de tecnologias modernas como",
-    "about.focus.end":
-      "Meu foco é criar interfaces que unem performance técnica com a experiência de usuário fluida.",
+    "about.stats.projects": "Sistemas em Produção",
+    "about.stats.english": "Inglês (Técnico)",
+    "about.journey": "Minha trajetória é definida pela prática e resolução de problemas reais. Aprendi construindo sistemas de ponta a ponta, onde estabilidade, segurança e performance não são opcionais — são a fundação.",
+    "about.focus.start": "Hoje, concentro minha expertise no ecossistema de alto desempenho, utilizando tecnologias como",
+    "about.focus.end": "para entregar plataformas que os usuários adoram e os negócios confiam.",
 
     // --- STACK ---
-    "stack.title": "Tecnologias",
-    "stack.subtitle": "Meu cinto de utilidades",
+    "stack.title": "Core Stack",
+    "stack.subtitle": "Tecnologias & Ferramentas",
 
-    // --- EXPERIÊNCIA (ESTRUTURA) ---
+    // --- EXPERIÊNCIA ---
     "experience.title": "Trajetória Profissional",
     "experience.subtitle": "Carreira",
-    "experience.present": "Atualmente",
+    "experience.present": "Presente",
 
-    // --- EXPERIÊNCIA (DADOS - ESC CURSOS) ---
     "exp.esc.role": "Front-end Developer & Suporte",
     "exp.esc.date": "Mar 2023 - Atualmente",
-    "exp.esc.desc":
-      "Atuo como parceiro técnico de longo prazo. O que iniciou como projetos pontuais evoluiu para a gestão completa da infraestrutura digital.",
-    "exp.esc.ach.1":
-      "Desenvolvimento de interfaces responsivas (HTML, CSS, JS, Bootstrap).",
+    "exp.esc.desc": "Atuo como parceiro técnico de longo prazo. O que iniciou como projetos pontuais evoluiu para a gestão completa da infraestrutura digital.",
+    "exp.esc.ach.1": "Desenvolvimento de interfaces responsivas (HTML, CSS, JS, Bootstrap).",
     "exp.esc.ach.2": "Monitoramento de estabilidade e performance em SaaS.",
-    "exp.esc.ach.3":
-      "Resolução de conflitos de integração e gateways de pagamento.",
+    "exp.esc.ach.3": "Resolução de conflitos de integração e gateways de pagamento.",
     "exp.esc.ach.4": "Melhorias de UX e automações com IA.",
     "exp.esc.ach.5": "Gestão de deploys e migração de servidores.",
 
-    // --- EXPERIÊNCIA (DADOS - FREELANCER) ---
-    "exp.freela.role": "Desenvolvedor Web (Freelancer)",
+    "exp.freela.role": "Software Developer (Freelance)",
     "exp.freela.date": "2022 - 2023",
-    "exp.freela.desc":
-      "Foco em entregar soluções rápidas para pequenos negócios, transformando requisitos em páginas de alta conversão.",
-    "exp.freela.ach.1": "Criação de Landing Pages para Clínica Odontológica.",
-    "exp.freela.ach.2": "Site Institucional para Indústria Metalúrgica.",
-    "exp.freela.ach.3": "Otimização de SEO local e configuração de domínios.",
-    "exp.freela.ach.4": "Entregas focadas em performance (Lighthouse).",
+    "exp.freela.desc": "Desenvolvimento de soluções sob medida para impulsionar a presença digital e conversão de negócios locais.",
+    "exp.freela.ach.1": "Engenharia de Landing Pages de alta conversão para o setor de saúde.",
+    "exp.freela.ach.2": "Desenvolvimento de plataformas institucionais corporativas.",
+    "exp.freela.ach.3": "Otimização técnica de SEO e gestão completa de DNS/Domínios.",
+    "exp.freela.ach.4": "Foco estrito em métricas de performance (Lighthouse 100%).",
 
     // --- PROJETOS ---
-    "projects.title": "Projetos Selecionados",
+    "projects.title": "Projetos em Destaque",
     "projects.subtitle": "Portfólio",
-    "projects.btn.code": "Código",
-    "projects.btn.demo": "Demo Online",
+    "projects.btn.code": "Repositório",
+    "projects.btn.demo": "Ver Aplicação",
 
-    // --- PROJETOS REAIS (PT) ---
-    "proj.stockmaster.title": "StockMaster Pro: Enterprise ERP",
-    "proj.stockmaster.desc":
-      "Mini-ERP completo para gestão logística. Apresenta Arquitetura MVC com Next.js 14, Controle de Acesso (RBAC), Auditoria de Logs (SystemLog), Relatórios Financeiros (ExcelJS) e Dashboard com KPIs em tempo real.",
+    "proj.jobhunter.title": "Job Hunter AI",
+    "proj.jobhunter.desc": "Plataforma avançada de hunting com scraping multi-fonte contornando bloqueios via Playwright. Utiliza IA local (Ollama/LM Studio) para match scoring de currículos e auto-apply inteligente.",
+    
+    "proj.stockmaster.title": "StockMaster Pro",
+    "proj.stockmaster.desc": "ERP Enterprise-grade para gestão logística. Arquitetura serverless com Next.js, controle de acesso refinado (RBAC), auditoria imutável de logs e relatórios financeiros dinâmicos.",
 
-    "proj.galactic.title": "Galactic Luna 🚀",
-    "proj.galactic.desc":
-      "Landing Page interativa com tema espacial. O diferencial técnico é um Chatbot desenvolvido com validações manuais de segurança contra ataques XSS e SQL Injection, além de pipeline de build automatizado com Gulp.",
+    "proj.galactic.title": "Galactic Luna",
+    "proj.galactic.desc": "Experiência web interativa espacial. Incorpora um Chatbot customizado com defesas estritas contra XSS/SQL Injection e pipeline de build otimizado com Gulp.",
 
-    "proj.esc.title": "Portal ESC Cursos",
-    "proj.esc.desc":
-      "Infraestrutura completa de front-end focada em performance. Implementei um sistema de build com Gulp para 'Cache Busting' (atualização automática de cache), minificação de assets e automação de deploy para produção.",
+    "proj.esc.title": "ESC Cursos Portal",
+    "proj.esc.desc": "Infraestrutura front-end projetada para carregamento instantâneo. Sistema de build automatizado com minificação de assets e cache busting estratégico.",
 
     "proj.v2.title": "Portfólio Profissional V2",
-    "proj.v2.desc":
-      "Este site que você está navegando! Desenvolvido com a stack mais moderna do mercado: Next.js 14 (App Router), TypeScript e Tailwind CSS. Foco total em arquitetura limpa, performance e animações fluidas.",
+    "proj.v2.desc": "Arquitetura limpa construída com Next.js 14 App Router, TypeScript e Framer Motion. Apresenta design system global, dark mode nativo e suporte multilíngue dinâmico.",
 
     // --- EDUCAÇÃO ---
-    "education.title": "Educação & Certificados",
-    "education.subtitle": "Aprendizado",
+    "education.title": "Formação & Certificações",
+    "education.subtitle": "Acadêmico",
 
-    // --- EDUCAÇÃO (DADOS - PT) ---
     "edu.umc.course": "Análise e Desenvolvimento de Sistemas",
     "edu.umc.inst": "Universidade de Mogi das Cruzes",
     "edu.umc.period": "2019 - 2020",
-    "edu.umc.desc":
-      "Formação superior completa. Foco em engenharia de software, lógica de programação e gestão de projetos de TI.",
+    "edu.umc.desc": "Fundamentos de engenharia de software, estrutura de dados, modelagem de bancos relacionais e ciclo de vida de aplicações.",
 
-    "edu.obc.course": "Programador Fullstack JavaScript",
+    "edu.obc.course": "Desenvolvimento Full Stack",
     "edu.obc.inst": "OneBitCode",
     "edu.obc.period": "Concluído",
-    "edu.obc.desc":
-      "Formação intensiva cobrindo todo o ecossistema JS, do Front ao Back.",
+    "edu.obc.desc": "Bootcamp intensivo focado no ecossistema JavaScript moderno (Node.js, React) e integração de APIs RESTful.",
 
-    "edu.origamid.course": "Especialização Front-end (React & TS)",
+    "edu.origamid.course": "Especialização React & TypeScript",
     "edu.origamid.inst": "Origamid",
-    "edu.origamid.period": "Cursando",
-    "edu.origamid.desc":
-      "Aprofundamento em interfaces modernas com React, TypeScript, Next.js e Redux. Foco em UI Design e Performance.",
+    "edu.origamid.period": "Em Andamento",
+    "edu.origamid.desc": "Aprofundamento em gestão de estado, design de componentes reutilizáveis, UI/UX e arquitetura front-end de alta escala.",
 
-    "edu.impacta.course": "SQL Server 2016",
+    "edu.impacta.course": "SQL Server Analytics",
     "edu.impacta.inst": "Faculdade Impacta",
     "edu.impacta.period": "2019",
-    "edu.impacta.desc":
-      "Curso intensivo de 40h focado em modelagem de dados e consultas complexas em bancos relacionais.",
+    "edu.impacta.desc": "Especialização em arquitetura de dados relacionais, queries avançadas de performance e normalização.",
 
     // --- CONTATO ---
-    "contact.title": "Vamos Conversar?",
+    "contact.title": "Vamos Construir Algo?",
     "contact.subtitle": "Contato",
-    "contact.text":
-      "Procurando iniciar um projeto ou precisa de uma consultoria? Sinta-se à vontade para entrar em contato.",
-    "contact.form.name": "Nome",
-    "contact.form.email": "Email",
-    "contact.form.message": "Mensagem",
-    "contact.form.placeholder": "Sobre o que você quer falar?",
+    "contact.text": "Seja para discutir uma oportunidade de trabalho, projeto inovador ou consultoria técnica, minha caixa de entrada está aberta.",
+    "contact.form.name": "Seu Nome",
+    "contact.form.email": "Seu Email",
+    "contact.form.message": "Sua Mensagem",
+    "contact.form.placeholder": "Como posso ajudar no seu próximo projeto?",
     "contact.btn.send": "Enviar Mensagem",
-    "contact.btn.sending": "Enviando...",
-    "contact.success.title": "Mensagem Enviada!",
-    "contact.success.text":
-      "Obrigado pelo contato. Responderei o mais breve possível.",
-    "contact.btn.again": "Enviar outra mensagem",
+    "contact.btn.sending": "Enviando de forma segura...",
+    "contact.success.title": "Recebido com sucesso!",
+    "contact.success.text": "Agradeço o contato. Retornarei o mais rápido possível.",
+    "contact.btn.again": "Nova mensagem",
 
     // --- FOOTER ---
-    "footer.description":
-      "Full Stack Developer focado em arquitetura escalável, integridade de dados e interfaces de alta performance.",
-    "footer.menu": "Menu",
-    "footer.resources": "Recursos",
-    "footer.repos": "Repositórios",
+    "footer.description": "Software Engineer dedicado a entregar código limpo, arquiteturas testáveis e experiências digitais memoráveis.",
+    "footer.menu": "Navegação",
+    "footer.resources": "Links",
+    "footer.repos": "Repositórios Abertos",
     "footer.profile": "Perfil GitHub",
-    "footer.back_to_top": "Voltar ao topo",
-    "footer.stack": "Tech Stack:",
+    "footer.back_to_top": "Subir",
+    "footer.stack": "Construído com:",
   },
   en: {
     // --- NAVIGATION ---
+    "nav.home": "Home",
     "nav.about": "About",
-    "nav.stack": "Stack",
+    "nav.stack": "Tech",
     "nav.career": "Career",
     "nav.projects": "Projects",
-    "nav.studies": "Studies",
-    "nav.search": "Search...",
-    "nav.cta": "Let's talk",
+    "nav.studies": "Education",
+    "nav.search": "Search (Cmd+K)",
+    "nav.cta": "Let's Talk",
 
     // --- HERO ---
-    "hero.badge": "Available for new projects",
-    "hero.role": "Full Stack Developer",
-    "hero.description":
-      "Specialist in transforming business needs into robust software. Focused on scalable architecture, data integrity, and high-performance interfaces.",
-    "hero.btn.projects": "View Projects",
-    "hero.btn.linkedin": "LinkedIn",
+    "hero.badge": "Available for new challenges",
+    "hero.role": "Software Engineer",
+    "hero.description": "I transform business complexity into elegant software. Absolute focus on scalable architectures, intelligent automation, and blazing-fast interfaces.",
+    "hero.btn.projects": "Explore Work",
+    "hero.btn.linkedin": "Connect on LinkedIn",
 
     // --- ABOUT ---
-    "about.title": "Beyond Code",
+    "about.title": "Beyond the Code",
     "about.subtitle": "About Me",
     "about.stats.exp": "Years Exp.",
-    "about.stats.projects": "Projects Delivered",
-    "about.stats.english": "English",
-    "about.journey":
-      "My technical journey is marked by practice: I didn't just study, I solved real problems. At ESC Cursos, I learned firsthand that clean code is what keeps the system stable.",
-    "about.focus.start":
-      "Today, I combine this production experience with the power of modern technologies like",
-    "about.focus.end":
-      "My focus is creating interfaces that unite technical performance with a fluid user experience.",
+    "about.stats.projects": "Live Systems",
+    "about.stats.english": "English (Technical)",
+    "about.journey": "My journey is defined by hands-on problem solving. I learned by building end-to-end systems where stability, security, and performance are not optional features—they are the foundation.",
+    "about.focus.start": "Today, I focus my expertise on the high-performance ecosystem, utilizing core technologies like",
+    "about.focus.end": "to deliver platforms that users love and businesses trust.",
 
     // --- STACK ---
-    "stack.title": "Tech Stack",
-    "stack.subtitle": "My utility belt",
+    "stack.title": "Core Stack",
+    "stack.subtitle": "Technologies & Tools",
 
-    // --- EXPERIENCE (STRUCTURE) ---
+    // --- EXPERIENCE ---
     "experience.title": "Professional Journey",
     "experience.subtitle": "Career",
     "experience.present": "Present",
 
-    // --- EXPERIENCE (DATA - ESC) ---
     "exp.esc.role": "Front-end Developer & Support",
     "exp.esc.date": "Mar 2023 - Present",
-    "exp.esc.desc":
-      "Acting as a long-term technical partner. What started as one-off projects evolved into full management of digital infrastructure.",
-    "exp.esc.ach.1":
-      "Development of responsive interfaces (HTML, CSS, JS, Bootstrap).",
-    "exp.esc.ach.2": "Stability monitoring and performance in SaaS.",
-    "exp.esc.ach.3":
-      "Resolution of integration conflicts and payment gateways.",
-    "exp.esc.ach.4": "UX improvements and AI automations.",
-    "exp.esc.ach.5": "Deploy management and server migration.",
+    "exp.esc.desc": "Long-term technical partner. What started as occasional projects evolved into full digital infrastructure management.",
+    "exp.esc.ach.1": "Responsive interface development (HTML, CSS, JS, Bootstrap).",
+    "exp.esc.ach.2": "SaaS stability and performance monitoring.",
+    "exp.esc.ach.3": "Integration conflict resolution and payment gateways.",
+    "exp.esc.ach.4": "UX improvements and AI-driven automations.",
+    "exp.esc.ach.5": "Deployment management and server migrations.",
 
-    // --- EXPERIENCE (DATA - FREELANCE) ---
-    "exp.freela.role": "Web Developer (Freelance)",
+    "exp.freela.role": "Software Developer (Freelance)",
     "exp.freela.date": "2022 - 2023",
-    "exp.freela.desc":
-      "Focused on delivering fast solutions for small businesses, transforming requirements into high-conversion pages.",
-    "exp.freela.ach.1": "Creation of Landing Pages for Dental Clinic.",
-    "exp.freela.ach.2": "Institutional Website for Metallurgical Industry.",
-    "exp.freela.ach.3": "Local SEO optimization and domain setup.",
-    "exp.freela.ach.4": "Deliveries focused on performance (Green Lighthouse).",
+    "exp.freela.desc": "Developed custom digital solutions to boost online presence and conversion rates for local businesses.",
+    "exp.freela.ach.1": "Architected high-conversion Landing Pages for the healthcare sector.",
+    "exp.freela.ach.2": "Developed enterprise-grade institutional platforms.",
+    "exp.freela.ach.3": "Technical SEO optimization and complete DNS/Domain management.",
+    "exp.freela.ach.4": "Strict adherence to performance benchmarks (Lighthouse 100%).",
 
     // --- PROJECTS ---
-    "projects.title": "Selected Projects",
+    "projects.title": "Featured Work",
     "projects.subtitle": "Portfolio",
-    "projects.btn.code": "View Code",
-    "projects.btn.demo": "Live Demo",
+    "projects.btn.code": "Source Code",
+    "projects.btn.demo": "Live Application",
 
-    // --- REAL PROJECTS (EN) ---
-    "proj.stockmaster.title": "StockMaster Pro: Enterprise ERP",
-    "proj.stockmaster.desc":
-      "Complete Mini-ERP for logistics management. Features MVC Architecture with Next.js 14, Access Control (RBAC), Log Auditing (SystemLog), Financial Reports (ExcelJS), and Real-time KPI Dashboard.",
+    "proj.jobhunter.title": "Job Hunter AI",
+    "proj.jobhunter.desc": "Advanced hunting platform featuring multi-source scraping that bypasses blockers via Playwright. Utilizes local AI (Ollama/LM Studio) for intelligent resume match scoring and auto-apply.",
 
-    "proj.galactic.title": "Galactic Luna 🚀",
-    "proj.galactic.desc":
-      "Interactive space-themed Landing Page. Technical highlight is a Chatbot developed with manual security validations against XSS and SQL Injection, plus an automated build pipeline with Gulp.",
+    "proj.stockmaster.title": "StockMaster Pro",
+    "proj.stockmaster.desc": "Enterprise-grade ERP for logistics management. Features a Next.js serverless architecture, refined Role-Based Access Control (RBAC), immutable log auditing, and dynamic financial reporting.",
+
+    "proj.galactic.title": "Galactic Luna",
+    "proj.galactic.desc": "Interactive space-themed web experience. Incorporates a custom Chatbot with strict defenses against XSS/SQL Injection and an optimized Gulp build pipeline.",
 
     "proj.esc.title": "ESC Courses Portal",
-    "proj.esc.desc":
-      "Complete front-end infrastructure focused on performance. Implemented a Gulp build system for 'Cache Busting', asset minification, and automated production deployment.",
+    "proj.esc.desc": "Front-end infrastructure engineered for instant loading. Automated build system featuring asset minification and strategic cache busting.",
 
     "proj.v2.title": "Professional Portfolio V2",
-    "proj.v2.desc":
-      "The site you are browsing now! Developed with the most modern stack: Next.js 14 (App Router), TypeScript, and Tailwind CSS. Total focus on clean architecture, performance, and fluid animations.",
+    "proj.v2.desc": "Clean architecture built with Next.js 14 App Router, TypeScript, and Framer Motion. Features a global design system, native dark mode, and dynamic multi-language support.",
 
     // --- EDUCATION ---
     "education.title": "Education & Certifications",
-    "education.subtitle": "Learning",
+    "education.subtitle": "Academic",
 
-    // --- EDUCATION (DATA - EN) ---
-    "edu.umc.course": "Analysis and Systems Development",
+    "edu.umc.course": "Systems Analysis and Development",
     "edu.umc.inst": "University of Mogi das Cruzes",
     "edu.umc.period": "2019 - 2020",
-    "edu.umc.desc":
-      "Complete higher education. Focus on software engineering, programming logic, and IT project management.",
+    "edu.umc.desc": "Fundamentals of software engineering, data structures, relational database modeling, and application lifecycles.",
 
-    "edu.obc.course": "Fullstack JavaScript Programmer",
+    "edu.obc.course": "Full Stack Development",
     "edu.obc.inst": "OneBitCode",
     "edu.obc.period": "Completed",
-    "edu.obc.desc":
-      "Intensive training covering the entire JS ecosystem, from Front to Back.",
+    "edu.obc.desc": "Intensive bootcamp focused on the modern JavaScript ecosystem (Node.js, React) and RESTful API integration.",
 
-    "edu.origamid.course": "Front-end Specialization (React & TS)",
+    "edu.origamid.course": "React & TypeScript Specialization",
     "edu.origamid.inst": "Origamid",
     "edu.origamid.period": "In Progress",
-    "edu.origamid.desc":
-      "Deep dive into modern interfaces with React, TypeScript, Next.js, and Redux. Focus on UI Design and Performance.",
+    "edu.origamid.desc": "Deep dive into state management, reusable component design, UI/UX, and large-scale front-end architecture.",
 
-    "edu.impacta.course": "SQL Server 2016",
+    "edu.impacta.course": "SQL Server Analytics",
     "edu.impacta.inst": "Faculdade Impacta",
     "edu.impacta.period": "2019",
-    "edu.impacta.desc":
-      "Intensive 40h course focused on data modeling and complex queries in relational databases.",
+    "edu.impacta.desc": "Specialization in relational data architecture, advanced performance queries, and normalization.",
 
     // --- CONTACT ---
-    "contact.title": "Let's Talk?",
+    "contact.title": "Let's Build Something?",
     "contact.subtitle": "Contact",
-    "contact.text":
-      "Looking to start a project or need consultancy? Feel free to reach out.",
-    "contact.form.name": "Name",
-    "contact.form.email": "Email",
-    "contact.form.message": "Message",
-    "contact.form.placeholder": "What do you want to talk about?",
+    "contact.text": "Whether you want to discuss a job opportunity, an innovative project, or technical consulting, my inbox is open.",
+    "contact.form.name": "Your Name",
+    "contact.form.email": "Your Email",
+    "contact.form.message": "Your Message",
+    "contact.form.placeholder": "How can I help with your next project?",
     "contact.btn.send": "Send Message",
-    "contact.btn.sending": "Sending...",
-    "contact.success.title": "Message Sent!",
-    "contact.success.text":
-      "Thanks for contacting. I'll reply as soon as possible.",
+    "contact.btn.sending": "Sending securely...",
+    "contact.success.title": "Successfully Received!",
+    "contact.success.text": "Thank you for reaching out. I will get back to you as soon as possible.",
     "contact.btn.again": "Send another message",
 
     // --- FOOTER ---
-    "footer.description":
-      "Full Stack Developer focused on scalable architecture, data integrity, and high-performance interfaces.",
-    "footer.menu": "Menu",
-    "footer.resources": "Resources",
-    "footer.repos": "Repositories",
+    "footer.description": "Software Engineer dedicated to shipping clean code, testable architectures, and memorable digital experiences.",
+    "footer.menu": "Navigation",
+    "footer.resources": "Links",
+    "footer.repos": "Open Repositories",
     "footer.profile": "GitHub Profile",
-    "footer.back_to_top": "Back to top",
-    "footer.stack": "Tech Stack:",
+    "footer.back_to_top": "Scroll Up",
+    "footer.stack": "Built with:",
   },
 };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>("pt");
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("lang") as Language | null;
+    if (saved === "pt" || saved === "en") {
+      setLanguage(saved);
+    }
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (hydrated) {
+      localStorage.setItem("lang", language);
+    }
+  }, [language, hydrated]);
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "pt" ? "en" : "pt"));

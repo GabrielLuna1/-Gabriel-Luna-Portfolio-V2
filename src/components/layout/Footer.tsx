@@ -2,6 +2,7 @@
 
 import { Github, Linkedin, Mail, ArrowUp, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Link from "next/link";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -11,150 +12,105 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-background border-t border-white/5 pt-20 pb-10 relative overflow-hidden">
-      {/* 1. GRID PATTERN (Fundo) */}
-      <div
-        className="absolute inset-0 z-0 opacity-20 pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px)`,
-          backgroundSize: "40px 40px",
-        }}
-      >
-        <div className="absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,transparent_0%,black_100%)]" />
-      </div>
+    <footer className="bg-background border-t border-white/5 relative overflow-hidden">
+      {/* Decorative gradient line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 pt-20 pb-10 relative z-10">
         <div className="grid md:grid-cols-4 gap-12 mb-16">
-          {/* --- COLUNA 1 & 2: MARCA --- */}
-          <div className="md:col-span-2 space-y-8">
+          {/* Brand */}
+          <div className="md:col-span-2 space-y-6">
             <a
               href="#"
               onClick={scrollToTop}
               className="text-5xl font-display font-black text-white tracking-tighter hover:opacity-80 transition-opacity inline-block"
             >
-              GL
-              <span className="text-primary drop-shadow-[0_0_15px_rgba(var(--primary),0.6)]">
-                .
-              </span>
+              GL<span className="gradient-text">.</span>
             </a>
-            {/* TRADUÇÃO AQUI 👇 */}
-            <p className="text-secondary text-lg leading-relaxed max-w-md font-medium">
+            <p className="text-secondary text-base leading-relaxed max-w-md font-medium">
               {t("footer.description")}
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <a
                 href="https://github.com/GabrielLuna1"
                 target="_blank"
-                className="p-4 bg-surface/50 border border-white/10 rounded-2xl text-secondary hover:text-white hover:border-primary/50 hover:bg-primary/10 transition-all group"
+                className="p-3 glass rounded-xl text-secondary hover:text-white hover:border-primary/30 transition-all group"
                 aria-label="GitHub"
               >
                 <Github
-                  size={24}
+                  size={20}
                   className="group-hover:scale-110 transition-transform"
                 />
               </a>
               <a
                 href="https://linkedin.com/in/gabriel-luna-14b00821b"
                 target="_blank"
-                className="p-4 bg-surface/50 border border-white/10 rounded-2xl text-secondary hover:text-white hover:border-primary/50 hover:bg-primary/10 transition-all group"
+                className="p-3 glass rounded-xl text-secondary hover:text-white hover:border-primary/30 transition-all group"
                 aria-label="LinkedIn"
               >
                 <Linkedin
-                  size={24}
+                  size={20}
                   className="group-hover:scale-110 transition-transform"
                 />
               </a>
               <a
                 href="mailto:gabriellunajob@gmail.com"
-                className="p-4 bg-surface/50 border border-white/10 rounded-2xl text-secondary hover:text-white hover:border-primary/50 hover:bg-primary/10 transition-all group"
+                className="p-3 glass rounded-xl text-secondary hover:text-white hover:border-primary/30 transition-all group"
                 aria-label="Email"
               >
                 <Mail
-                  size={24}
+                  size={20}
                   className="group-hover:scale-110 transition-transform"
                 />
               </a>
             </div>
           </div>
 
-          {/* --- COLUNA 3: MENU --- */}
+          {/* Navigation */}
           <div className="md:col-span-1">
-            {/* TRADUÇÃO AQUI 👇 */}
-            <h4 className="text-white font-bold mb-6 text-xl">
+            <h4 className="text-white font-bold mb-5 text-base">
               {t("footer.menu")}
             </h4>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#about"
-                  className="group flex items-center gap-3 px-4 py-3 rounded-full text-secondary hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 transition-all"
-                >
-                  <span className="w-2 h-2 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(var(--primary),0.8)] transition-all" />
-                  <span className="text-base font-medium">
-                    {t("nav.about")}
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#tech"
-                  className="group flex items-center gap-3 px-4 py-3 rounded-full text-secondary hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 transition-all"
-                >
-                  <span className="w-2 h-2 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(var(--primary),0.8)] transition-all" />
-                  <span className="text-base font-medium">
-                    {t("nav.stack")}
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#projects"
-                  className="group flex items-center gap-3 px-4 py-3 rounded-full text-secondary hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 transition-all"
-                >
-                  <span className="w-2 h-2 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(var(--primary),0.8)] transition-all" />
-                  <span className="text-base font-medium">
-                    {t("nav.projects")}
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#experience"
-                  className="group flex items-center gap-3 px-4 py-3 rounded-full text-secondary hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 transition-all"
-                >
-                  <span className="w-2 h-2 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(var(--primary),0.8)] transition-all" />
-                  <span className="text-base font-medium">
-                    {t("nav.career")}
-                  </span>
-                </a>
-              </li>
+            <ul className="space-y-1">
+              {[
+                { href: "/#about", label: t("nav.about") },
+                { href: "/#tech", label: t("nav.stack") },
+                { href: "/#projects", label: t("nav.projects") },
+                { href: "/#experience", label: t("nav.career") },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="group flex items-center gap-2.5 px-3 py-2 rounded-lg text-secondary hover:text-white hover:bg-white/5 transition-all text-sm"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/15 group-hover:bg-primary group-hover:shadow-glow transition-all" />
+                    <span className="font-medium">{item.label}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* --- COLUNA 4: RECURSOS --- */}
+          {/* Resources */}
           <div className="md:col-span-1">
-            {/* TRADUÇÃO AQUI 👇 */}
-            <h4 className="text-white font-bold mb-6 text-xl">
+            <h4 className="text-white font-bold mb-5 text-base">
               {t("footer.resources")}
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               <li>
                 <a
                   href="https://github.com/GabrielLuna1?tab=repositories"
                   target="_blank"
-                  className="group flex items-center gap-3 px-4 py-3 rounded-full text-secondary hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 transition-all"
+                  className="group flex items-center gap-2.5 px-3 py-2 rounded-lg text-secondary hover:text-white hover:bg-white/5 transition-all text-sm"
                 >
                   <Github
-                    size={18}
-                    className="text-white/40 group-hover:text-primary transition-colors"
+                    size={16}
+                    className="text-white/30 group-hover:text-primary transition-colors"
                   />
-                  {/* TRADUÇÃO AQUI 👇 */}
-                  <span className="text-base font-medium">
-                    {t("footer.repos")}
-                  </span>
+                  <span className="font-medium">{t("footer.repos")}</span>
                   <ExternalLink
-                    size={14}
+                    size={12}
                     className="opacity-0 group-hover:opacity-100 transition-opacity ml-auto"
                   />
                 </a>
@@ -163,18 +119,15 @@ export function Footer() {
                 <a
                   href="https://github.com/GabrielLuna1"
                   target="_blank"
-                  className="group flex items-center gap-3 px-4 py-3 rounded-full text-secondary hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 transition-all"
+                  className="group flex items-center gap-2.5 px-3 py-2 rounded-lg text-secondary hover:text-white hover:bg-white/5 transition-all text-sm"
                 >
                   <Github
-                    size={18}
-                    className="text-white/40 group-hover:text-primary transition-colors"
+                    size={16}
+                    className="text-white/30 group-hover:text-primary transition-colors"
                   />
-                  {/* TRADUÇÃO AQUI 👇 */}
-                  <span className="text-base font-medium">
-                    {t("footer.profile")}
-                  </span>
+                  <span className="font-medium">{t("footer.profile")}</span>
                   <ExternalLink
-                    size={14}
+                    size={12}
                     className="opacity-0 group-hover:opacity-100 transition-opacity ml-auto"
                   />
                 </a>
@@ -183,28 +136,27 @@ export function Footer() {
           </div>
         </div>
 
-        {/* --- BARRA INFERIOR --- */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-secondary text-sm font-medium">
-            © {new Date().getFullYear()} Gabriel Luna.
-            <span className="hidden md:inline mx-3 opacity-30">|</span>
-            <span className="block md:inline mt-2 md:mt-0 opacity-70">
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-secondary text-xs font-medium">
+            &copy; {new Date().getFullYear()} Gabriel Luna.
+            <span className="hidden md:inline mx-2 opacity-30">|</span>
+            <span className="block md:inline mt-2 md:mt-0 opacity-60">
               {t("footer.stack")}{" "}
-              <span className="text-white font-semibold">Next.js 14</span>,{" "}
-              <span className="text-white font-semibold">Tailwind</span> &{" "}
-              <span className="text-white font-semibold">Framer Motion</span>.
+              <span className="text-white/80 font-semibold">Next.js</span>,{" "}
+              <span className="text-white/80 font-semibold">Tailwind</span> &{" "}
+              <span className="text-white/80 font-semibold">Framer Motion</span>.
             </span>
           </p>
 
           <button
             onClick={scrollToTop}
-            className="group flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-white hover:text-primary transition-colors px-6 py-3 rounded-full border border-white/10 hover:border-primary/20 hover:bg-white/5 bg-surface/50"
+            className="group flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-secondary hover:text-primary transition-colors px-4 py-2 rounded-full border border-white/5 hover:border-primary/20 hover:bg-white/5 bg-surface/30"
           >
-            {/* TRADUÇÃO AQUI 👇 */}
             {t("footer.back_to_top")}
             <ArrowUp
-              size={16}
-              className="group-hover:-translate-y-1 transition-transform"
+              size={14}
+              className="group-hover:-translate-y-0.5 transition-transform"
             />
           </button>
         </div>

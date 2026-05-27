@@ -2,31 +2,43 @@ import type { Metadata } from "next";
 import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 
-// Imports dos Componentes
+// Components
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { BackToTop } from "@/components/ui/BackToTop";
 import { CommandMenu } from "@/components/ui/CommandMenu";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { AutoUpdate } from "@/components/utils/AutoUpdate"; // <--- Importado
+import { AutoUpdate } from "@/components/utils/AutoUpdate";
+import { EnhancedCursor } from "@/components/ui/EnhancedCursor";
+import { CaseChat } from "@/components/features/CaseChat";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const sora = Sora({ subsets: ["latin"], variable: "--font-sora" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Gabriel Luna | Full Stack Developer",
   description:
     "Desenvolvedor Full Stack especializado em React, Next.js, Node.js e Arquitetura de Software.",
   icons: {
-    icon: "/favicon.svg", // Certifique-se de ter esse arquivo ou remova essa linha
+    icon: "/favicon.svg",
   },
   openGraph: {
     title: "Gabriel Luna | Portfolio",
-    description: "Transformando ideias em código de alta performance.",
+    description: "Transformando ideias em codigo de alta performance.",
     siteName: "Gabriel Luna Portfolio",
     images: [
       {
-        url: "/portfolio-v2.png", // Certifique-se de ter essa imagem em public/
+        url: "/portfolio-v2.png",
         width: 1200,
         height: 630,
       },
@@ -46,22 +58,16 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${sora.variable} font-sans bg-background text-white antialiased`}
       >
+        <ScrollProgress />
+        <EnhancedCursor />
         <LanguageProvider>
-          {/* 1. AutoUpdate: Verifica versões novas invisivelmente */}
           <AutoUpdate />
-
-          {/* 2. Textura de fundo */}
           <div className="bg-noise" />
-
-          {/* 3. Interface Global */}
           <Header />
           <BackToTop />
           <CommandMenu />
-
-          {/* 4. Conteúdo da Página */}
+          <CaseChat />
           <main>{children}</main>
-
-          {/* 5. Rodapé */}
           <Footer />
         </LanguageProvider>
       </body>

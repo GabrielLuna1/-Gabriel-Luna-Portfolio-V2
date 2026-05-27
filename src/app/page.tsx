@@ -1,16 +1,16 @@
 import { Hero } from "@/components/sections/Hero";
-import { About } from "@/components/sections/About"; // <--- 1. O Import que faltava
+import { About } from "@/components/sections/About";
 import { TechStack } from "@/components/sections/TechStack";
 import { Experience } from "@/components/sections/Experience";
 import { Projects } from "@/components/sections/Projects";
 import { Education } from "@/components/sections/Education";
 import { Contact } from "@/components/sections/Contact";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { Reveal } from "@/components/ui/Reveal";
 
-// Dados
+// Data
 import { profile } from "@/data/profile";
 import { stack } from "@/data/stack";
-import { experience } from "@/data/experience"; // Singular (Corrigido)
+import { experience } from "@/data/experience";
 import { projects } from "@/data/projects";
 import { education } from "@/data/education";
 
@@ -19,30 +19,38 @@ export default function Home() {
     <main>
       <Hero data={profile} />
 
-      {/* 2. A seção Sobre Mim volta aqui */}
-      <FadeIn delay={0.2}>
+      <Reveal delay={0.1}>
         <About />
-      </FadeIn>
+      </Reveal>
 
-      <FadeIn delay={0.2}>
+      {/* Depth separator */}
+      <div className="section-depth-overlay" />
+
+      <Reveal delay={0.1}>
         <TechStack data={stack} />
-      </FadeIn>
+      </Reveal>
 
-      <FadeIn delay={0.2}>
+      <div className="section-depth-overlay" />
+
+      <Reveal delay={0.1}>
         <Experience data={experience} />
-      </FadeIn>
+      </Reveal>
 
-      <FadeIn delay={0.2}>
+      <div className="section-depth-overlay" />
+
+      <Reveal delay={0.1}>
         <Projects data={projects} />
-      </FadeIn>
+      </Reveal>
 
-      <FadeIn delay={0.2}>
+      <div className="section-depth-overlay" />
+
+      <Reveal delay={0.1}>
         <Education data={education} />
-      </FadeIn>
+      </Reveal>
 
-      <FadeIn delay={0.2}>
+      <Reveal delay={0.1}>
         <Contact />
-      </FadeIn>
+      </Reveal>
     </main>
   );
 }
