@@ -53,6 +53,7 @@ export const stack: TechItem[] = [
       { name: "Docker", icon: "https://cdn.simpleicons.org/docker/2496ED" },
       { name: "Docker Compose", icon: "https://cdn.simpleicons.org/docker/2496ED" },
       { name: "VS Code", icon: "https://raw.githubusercontent.com/devicons/devicon/refs/heads/master/icons/vscode/vscode-original.svg" },
+      { name: "Cursor", icon: "https://cdn.simpleicons.org/cursor/FFFFFF" },
     ],
   },
 ];
