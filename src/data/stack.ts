@@ -30,7 +30,7 @@ export const stack: TechItem[] = [
       { name: "NextAuth.js", icon: "https://cdn.simpleicons.org/nextdotjs/white" },
       { name: "Redis", icon: "https://cdn.simpleicons.org/redis/DC382D" },
       { name: "Celery", icon: "https://cdn.simpleicons.org/celery/59D180" },
-      { name: "Playwright", icon: "https://cdn.simpleicons.org/microsoft/00ADEF" },
+      { name: "Playwright", icon: "https://raw.githubusercontent.com/devicons/devicon/refs/heads/master/icons/playwright/playwright-original.svg" },
       { name: "BeautifulSoup4", icon: "https://cdn.simpleicons.org/python/3776AB" },
     ],
   },
