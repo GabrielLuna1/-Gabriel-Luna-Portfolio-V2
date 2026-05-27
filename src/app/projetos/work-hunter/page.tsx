@@ -3,13 +3,13 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Github, Code2, Server, Database, Globe, Brain, Zap, Target, BarChart3, Cpu, Network, Layers, Workflow, GitBranch, FlaskConical, Radar, BookOpen } from "lucide-react";
 import Link from "next/link";
-import ProjectNavigation from "@/components/ui/ProjectNavigation";
 import { ParallaxOrb } from "@/components/ui/ParallaxOrb";
 import { ProjectNav } from "@/components/ui/ProjectNav";
 import { ProjectCommandMenu } from "@/components/ui/ProjectCommandMenu";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { TechBadge } from "@/components/ui/TechBadge";
 import { Reveal, staggerContainer, staggerItem } from "@/components/ui/Reveal";
+import { FloatingTechTags } from "@/components/ui/FloatingTechTags";
 
 const getFeatures = (lang: "pt" | "en") => [
   {
@@ -103,9 +103,8 @@ const getFlowSteps = (lang: "pt" | "en") => [
 const pageContent = {
   pt: {
     backBtn: "Voltar",
-    heroBadge: "AI & Automation",
-    heroDesc: "Ecossistema de automação de busca de empregos. De scraping multi-fonte a candidaturas e match scoring com IA local — offline-first e self-hosted.",
-    btnCode: "Source Code",
+    heroDesc: "Plataforma inteligente que unifica scraping multi-fonte, match por inteligência artificial, auto-apply, pipeline kanban e analytics em tempo real.",
+    btnCode: "Repositório",
     statsTitle: "Capacidade",
     stats: [
       { label: "Fontes", value: "9+" },
@@ -122,9 +121,8 @@ const pageContent = {
   },
   en: {
     backBtn: "Back",
-    heroBadge: "AI & Automation",
-    heroDesc: "A comprehensive job search automation ecosystem. From multi-source scraping to automated applications and local AI match scoring — offline-first and self-hosted.",
-    btnCode: "Source Code",
+    heroDesc: "Intelligent platform that unifies multi-source scraping, artificial intelligence matching, auto-apply, kanban pipeline, and real-time analytics.",
+    btnCode: "Repository",
     statsTitle: "Capacity",
     stats: [
       { label: "Sources", value: "9+" },
@@ -141,6 +139,16 @@ const pageContent = {
   }
 };
 
+const floatingTags = [
+  { name: "Python", icon: <Code2 size={12} /> },
+  { name: "Playwright", icon: <Globe size={12} /> },
+  { name: "Celery", icon: <Cpu size={12} /> },
+  { name: "Docker", icon: <Server size={12} /> },
+  { name: "FastAPI", icon: <Zap size={12} /> },
+  { name: "MongoDB", icon: <Database size={12} /> },
+  { name: "React", icon: <Layers size={12} /> },
+];
+
 export default function WorkHunterPage() {
   const { language } = useLanguage();
   const t = pageContent[language];
@@ -153,122 +161,109 @@ export default function WorkHunterPage() {
   const flowSteps = getFlowSteps(language);
 
   return (
-    <main className="min-h-screen bg-background pt-32 pb-24 relative overflow-hidden">
-      {/* Mesh Background — warm theme for AI */}
-      <div className="absolute inset-0 z-0 pointer-events-none bg-mesh opacity-30 mix-blend-screen" />
-      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_80%_80%_at_50%_0%,rgba(168,85,247,0.05),transparent_70%)]" />
+    <main className="min-h-screen bg-[#020202] pt-32 pb-24 relative overflow-hidden transition-all">
+      {/* Mesh Background — pure dark focus */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-noise opacity-[0.03]" />
 
       <ProjectNav
-        projectName="WorkHunter"
-        projectColor="purple-500"
+        projectName="Job Hunter"
+        projectColor="primary"
         sections={navSections}
         prevProject={{ id: "stockmaster", name: "StockMaster Pro" }}
       />
       <ProjectCommandMenu
-        projectName="WorkHunter"
+        projectName="Job Hunter"
         sections={navSections}
         actions={cmdActions}
       />
 
-      <ParallaxOrb color="bg-purple-500/10" size={600} top="-5%" right="-10%" blur={160} yOffset={200} />
-      <ParallaxOrb color="bg-primary/5" size={500} bottom="10%" left="-5%" blur={140} yOffset={-150} />
+      {/* Hero Section — Centered Documentation Style */}
+      <section id="wh-hero" className="container mx-auto px-4 max-w-4xl mb-32 relative z-10 flex flex-col items-center justify-center min-h-[70vh]">
+        
+        {/* Floating tech tags behind the title */}
+        <FloatingTechTags tags={floatingTags} colorTheme="primary" />
 
-      {/* Hero Section */}
-      <section id="wh-hero" className="container mx-auto px-4 max-w-6xl mb-32 relative z-10">
-        <Link href="/projetos" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-secondary hover:text-white transition-colors mb-12 group">
-          <ArrowLeft className="mr-3 transition-transform group-hover:-translate-x-1" size={16} />
-          {t.backBtn}
-        </Link>
+        <div className="text-center relative z-10 w-full flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-elevated/40 border border-white/[0.04] text-[10px] text-secondary font-mono tracking-wider uppercase mb-12 shadow-sm"
+          >
+            <span>Projetos</span>
+            <span className="text-white/20">&gt;</span>
+            <span className="text-white font-bold">Job Hunter</span>
+          </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          <div className="lg:col-span-7">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-elevated/40 border border-white/[0.04] text-[10px] text-purple-400 font-mono tracking-wider uppercase mb-8"
-            >
-              <Brain size={12} />
-              {t.heroBadge}
-            </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-6xl md:text-[7rem] font-display font-black tracking-tighter mb-8 leading-[1]"
+            style={{
+              backgroundImage: "linear-gradient(to right, #ffffff, #3b82f6)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent"
+            }}
+          >
+            Job Hunter
+          </motion.h1>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-display font-black text-white tracking-tighter mb-8 leading-[1.05]"
-            >
-              Work<br/>
-              <span className="text-purple-400">Hunter</span>.
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-lg md:text-xl text-secondary leading-relaxed mb-10 max-w-xl border-l-2 border-purple-500/30 pl-5 glass-elevated py-4 pr-4 rounded-r-2xl"
-            >
-              {t.heroDesc}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-wrap gap-4"
-            >
-              <a href="https://github.com/GabrielLuna1/job-hunter-ai" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-600 text-white font-bold text-sm hover:shadow-glow-md hover:-translate-y-0.5 transition-all btn-shimmer border border-white/10">
-                <Github size={18} />
-                {t.btnCode}
-              </a>
-            </motion.div>
-          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-secondary/80 leading-relaxed mb-12 max-w-2xl font-medium"
+          >
+            {t.heroDesc}
+          </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="lg:col-span-5 relative"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="flex items-center gap-6"
           >
-            {/* Abstract representation of Neural Network / Pipeline */}
-            <div className="card-spotlight rounded-[2.5rem] p-8 elevation-4 border border-white/[0.04] relative overflow-hidden bg-gradient-to-b from-surface/80 to-surface/30 backdrop-blur-xl aspect-square flex flex-col justify-between">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1),transparent_70%)] pointer-events-none" />
-              
-              <div className="flex justify-between items-start z-10">
-                <h3 className="text-[10px] font-mono text-secondary uppercase tracking-[0.2em]">{t.statsTitle}</h3>
-                <Network className="text-purple-400 opacity-50" size={20} />
-              </div>
-              
-              <div className="grid grid-cols-2 gap-8 relative z-10">
-                {t.stats.map((stat, i) => (
-                  <div key={stat.label} className="relative group">
-                    <div className="text-4xl md:text-5xl font-display font-black text-white tracking-tighter mb-1 group-hover:text-purple-400 transition-colors">
-                      {stat.value}
-                    </div>
-                    <div className="text-[10px] text-secondary font-mono tracking-widest uppercase">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <a 
+              href="https://github.com/GabrielLuna1/job-hunter-ai" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#1e40af] text-white font-bold text-sm hover:bg-[#1d4ed8] transition-all shadow-[0_0_40px_rgba(30,64,175,0.6)] hover:shadow-[0_0_60px_rgba(30,64,175,0.8)] border border-blue-400/20 group"
+            >
+              <Github size={18} />
+              {t.btnCode}
+              <ArrowLeft size={16} className="rotate-135 group-hover:translate-x-1 transition-transform" />
+            </a>
 
-              {/* Decorative data stream */}
-              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-purple-500/10 to-transparent pointer-events-none flex items-end justify-around pb-4 px-4 opacity-50">
-                {[1, 2, 3, 4, 5, 6, 7].map((i) => (
-                  <motion.div
-                    key={i}
-                    animate={{ height: ["20%", "80%", "30%"], opacity: [0.3, 1, 0.3] }}
-                    transition={{ duration: 2 + i * 0.2, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-1 bg-purple-400/40 rounded-full"
-                  />
-                ))}
-              </div>
+            {/* Little Tech Orbs */}
+            <div className="flex -space-x-3">
+              {['PY', 'FA', 'NE', 'MO'].map((tech, i) => (
+                <div key={tech} className="w-10 h-10 rounded-full bg-[#0a0a0a] border border-white/10 flex items-center justify-center text-[9px] font-bold font-mono text-secondary z-10 hover:z-20 hover:scale-110 hover:border-blue-500/50 hover:text-white transition-all cursor-default shadow-lg">
+                  {tech}
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="absolute bottom-[-10vh] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50"
+        >
+          <span className="text-[9px] font-mono tracking-[0.3em] uppercase text-secondary">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ArrowLeft size={14} className="-rotate-90 text-secondary" />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Tech Grid */}
-      <section className="container mx-auto px-4 max-w-6xl mb-32 relative z-10">
+      <section className="container mx-auto px-4 max-w-5xl mb-32 relative z-10">
         <div className="flex flex-wrap gap-3 justify-center">
           {techDetails.map((tech, i) => {
             const Icon = tech.icon;
@@ -279,9 +274,9 @@ export default function WorkHunterPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-3 px-5 py-3 rounded-2xl glass-strong border border-white/[0.04] group hover:border-purple-400/30 transition-colors"
+                className="flex items-center gap-3 px-5 py-3 rounded-2xl glass-strong border border-white/[0.04] group hover:border-blue-400/30 transition-colors"
               >
-                <Icon size={18} className="text-purple-400/60 group-hover:text-purple-400 transition-colors" />
+                <Icon size={18} className="text-blue-400/60 group-hover:text-blue-400 transition-colors" />
                 <span className="text-sm font-bold text-white tracking-wide">{tech.name}</span>
               </motion.div>
             );
@@ -289,22 +284,22 @@ export default function WorkHunterPage() {
         </div>
       </section>
 
-      <div className="section-fade-separator" />
+      <div className="section-fade-separator max-w-4xl mx-auto" />
 
       {/* Features */}
-      <section id="wh-features" className="container mx-auto px-4 max-w-6xl py-24 relative z-10">
-        <div className="mb-20 text-center max-w-3xl mx-auto">
+      <section id="wh-features" className="container mx-auto px-4 max-w-5xl py-24 relative z-10">
+        <div className="mb-20 max-w-3xl">
           <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-4xl md:text-6xl font-display font-black text-white tracking-tighter mb-6"
+            className="text-4xl md:text-5xl font-display font-black text-white tracking-tighter mb-4"
           >
             {t.featuresTitle}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-xl text-secondary"
+            className="text-lg text-secondary"
           >
             {t.featuresDesc}
           </motion.p>
@@ -325,10 +320,10 @@ export default function WorkHunterPage() {
                 variants={staggerItem}
                 className="card-premium p-8 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-surface-elevated border border-white/[0.04] flex items-center justify-center mb-6 group-hover:bg-purple-500/10 group-hover:scale-110 transition-all duration-500 shadow-elevated">
-                  <Icon className="text-purple-400 opacity-80 group-hover:opacity-100" size={20} />
+                <div className="w-12 h-12 rounded-xl bg-surface-elevated border border-white/[0.04] flex items-center justify-center mb-6 group-hover:bg-blue-500/10 group-hover:scale-110 transition-all duration-500 shadow-elevated">
+                  <Icon className="text-blue-400 opacity-80 group-hover:opacity-100" size={20} />
                 </div>
-                <h3 className="text-lg font-display font-bold text-white mb-3 group-hover:text-purple-400 transition-colors leading-tight">
+                <h3 className="text-lg font-display font-bold text-white mb-3 group-hover:text-blue-400 transition-colors leading-tight">
                   {feature.title}
                 </h3>
                 <p className="text-secondary leading-relaxed text-sm">
@@ -340,10 +335,10 @@ export default function WorkHunterPage() {
         </motion.div>
       </section>
 
-      <div className="section-fade-separator" />
+      <div className="section-fade-separator max-w-4xl mx-auto" />
 
       {/* Architecture & Flow — Split Layout */}
-      <section id="wh-architecture" className="container mx-auto px-4 max-w-6xl py-24 relative z-10">
+      <section id="wh-architecture" className="container mx-auto px-4 max-w-5xl py-24 relative z-10">
         <div className="grid lg:grid-cols-2 gap-20">
           
           {/* Left: Architecture */}
@@ -351,14 +346,14 @@ export default function WorkHunterPage() {
             <motion.h2
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-4xl font-display font-black text-white tracking-tighter mb-4"
+              className="text-3xl font-display font-black text-white tracking-tighter mb-4"
             >
               {t.archTitle}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-secondary mb-12"
+              className="text-secondary text-sm mb-12"
             >
               {t.archDesc}
             </motion.p>
@@ -393,20 +388,20 @@ export default function WorkHunterPage() {
             <motion.h2
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-4xl font-display font-black text-white tracking-tighter mb-4"
+              className="text-3xl font-display font-black text-white tracking-tighter mb-4"
             >
               {t.flowTitle}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-secondary mb-12"
+              className="text-secondary text-sm mb-12"
             >
               {t.flowDesc}
             </motion.p>
 
             <div className="relative pl-6">
-              <div className="absolute left-[11px] top-4 bottom-4 w-px bg-gradient-to-b from-purple-500/40 via-purple-500/10 to-transparent" />
+              <div className="absolute left-[11px] top-4 bottom-4 w-px bg-gradient-to-b from-blue-500/40 via-blue-500/10 to-transparent" />
 
               <div className="space-y-10">
                 {flowSteps.map((step, i) => {
@@ -420,12 +415,12 @@ export default function WorkHunterPage() {
                       viewport={{ once: true }}
                       className="relative"
                     >
-                      <div className="absolute -left-[30px] top-1 w-3 h-3 bg-background border-2 border-purple-500 rounded-full flex items-center justify-center z-10">
-                        <div className="w-1 h-1 bg-purple-400 rounded-full animate-pulse" />
+                      <div className="absolute -left-[30px] top-1 w-3 h-3 bg-[#020202] border-2 border-blue-500 rounded-full flex items-center justify-center z-10">
+                        <div className="w-1 h-1 bg-blue-400 rounded-full animate-pulse" />
                       </div>
                       
-                      <h3 className="text-white font-bold mb-1 flex items-center gap-2">
-                        <span className="text-[10px] font-mono text-purple-400 bg-purple-500/10 px-1.5 rounded">{step.step}</span>
+                      <h3 className="text-white font-bold text-sm mb-1 flex items-center gap-2">
+                        <span className="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-1.5 rounded">{step.step}</span>
                         {step.title}
                       </h3>
                       <p className="text-sm text-secondary/80 leading-relaxed">
@@ -441,9 +436,6 @@ export default function WorkHunterPage() {
         </div>
       </section>
 
-      <ProjectNavigation
-        nextProject={{ id: "stockmaster", name: "StockMaster Pro" }}
-      />
     </main>
   );
 }

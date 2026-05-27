@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, Menu, X, ArrowLeft, Globe } from "lucide-react";
+import { ChevronRight, Menu, X, ArrowLeft, Globe, Search } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -29,8 +29,6 @@ export function ProjectNav({ projectName, projectColor, sections, nextProject, p
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 400);
-
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i].id);
         if (el) {
@@ -65,23 +63,20 @@ export function ProjectNav({ projectName, projectColor, sections, nextProject, p
       {/* Mobile Toggle */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed left-4 z-50 w-12 h-12 rounded-full glass border border-white/[0.04] shadow-elevated flex items-center justify-center text-secondary hover:text-white transition-all md:hidden ${
-          isVisible ? "top-4" : "-top-20"
-        } transition-all duration-500`}
+        className={`fixed left-4 z-50 w-12 h-12 rounded-full glass border border-white/[0.04] shadow-elevated flex items-center justify-center text-secondary hover:text-white transition-all md:hidden top-4 duration-500`}
       >
         {isOpen ? <X size={20} /> : <Menu size={20} />}
       </button>
 
-      {/* Desktop Sidebar */}
+      {/* Desktop Sidebar (Floating Island) */}
       <AnimatePresence>
-        {(isOpen || isVisible) && (
-          <motion.nav
-            initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
-            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden md:block"
-          >
+        <motion.nav
+          initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed left-6 top-32 z-40 hidden md:block"
+        >
             <div className="bg-surface/60 backdrop-blur-2xl border border-white/[0.04] rounded-2xl p-2.5 shadow-elevated ring-1 ring-white/5">
               <div className="space-y-1 relative">
                 {/* Active Indicator Line */}
@@ -125,6 +120,18 @@ export function ProjectNav({ projectName, projectColor, sections, nextProject, p
               </div>
 
               <div className="mt-4 pt-4 border-t border-white/[0.04] space-y-1">
+                <button
+                  onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
+                  className="w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl text-xs font-bold text-secondary/60 hover:text-white hover:bg-white/[0.03] transition-all group"
+                >
+                  <div className="flex items-center gap-3">
+                    <Search size={14} className="group-hover:scale-110 transition-transform" />
+                    Buscar / Comandos
+                  </div>
+                  <span className="text-[9px] font-mono border border-white/[0.04] bg-white/[0.02] px-1.5 py-0.5 rounded text-secondary/40 group-hover:text-secondary transition-colors">
+                    ⌘K
+                  </span>
+                </button>
                 <Link
                   href="/projetos"
                   className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold text-secondary/60 hover:text-white hover:bg-white/[0.03] transition-all group"
@@ -165,7 +172,6 @@ export function ProjectNav({ projectName, projectColor, sections, nextProject, p
               </div>
             </div>
           </motion.nav>
-        )}
       </AnimatePresence>
 
       {/* Mobile Drawer */}
@@ -212,6 +218,16 @@ export function ProjectNav({ projectName, projectColor, sections, nextProject, p
               </div>
 
               <div className="mt-8 pt-8 border-t border-white/[0.04] space-y-3">
+                <button
+                  onClick={() => {
+                    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
+                    setIsOpen(false);
+                  }}
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-secondary/80 hover:text-white hover:bg-white/[0.02] transition-colors"
+                >
+                  <Search size={16} />
+                  Buscar / Comandos
+                </button>
                 <Link href="/projetos" className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-secondary/80 hover:text-white hover:bg-white/[0.02] transition-colors">
                   <ArrowLeft size={16} />
                   Todos os Projetos

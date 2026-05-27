@@ -3,13 +3,12 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Github, Code2, Server, Shield, Activity, BarChart3, Lock, Database, FileSpreadsheet, PieChart, Layers, BookOpen } from "lucide-react";
 import Link from "next/link";
-import ProjectNavigation from "@/components/ui/ProjectNavigation";
-import { ParallaxOrb } from "@/components/ui/ParallaxOrb";
 import { ProjectNav } from "@/components/ui/ProjectNav";
 import { ProjectCommandMenu } from "@/components/ui/ProjectCommandMenu";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { TechBadge } from "@/components/ui/TechBadge";
 import { Reveal, staggerContainer, staggerItem } from "@/components/ui/Reveal";
+import { FloatingTechTags } from "@/components/ui/FloatingTechTags";
 
 const getFeatures = (lang: "pt" | "en") => [
   {
@@ -96,10 +95,8 @@ const getCmdActions = (lang: "pt" | "en", features: any[], techDetails: any[]) =
 const pageContent = {
   pt: {
     backBtn: "Voltar",
-    heroBadge: "Sistema Enterprise",
     heroDesc: "Mini-ERP completo para gestão logística e financeira. Construído com foco absoluto em segurança, performance e escalabilidade empresarial através do Next.js 14 e arquitetura edge.",
-    btnCode: "Source",
-    btnDemo: "Live Demo",
+    btnCode: "Repositório",
     statsTitle: "Métricas",
     stats: [
       { label: "Níveis Acesso", value: "3" },
@@ -114,10 +111,8 @@ const pageContent = {
   },
   en: {
     backBtn: "Back",
-    heroBadge: "Enterprise System",
     heroDesc: "A complete Mini-ERP for logistics and financial management. Built with an absolute focus on security, performance, and enterprise scalability utilizing Next.js 14 and edge architecture.",
-    btnCode: "Source",
-    btnDemo: "Live Demo",
+    btnCode: "Repository",
     statsTitle: "Metrics",
     stats: [
       { label: "Access Levels", value: "3" },
@@ -132,6 +127,15 @@ const pageContent = {
   }
 };
 
+const floatingTags = [
+  { name: "Next.js", icon: <Code2 size={12} /> },
+  { name: "MongoDB", icon: <Database size={12} /> },
+  { name: "NextAuth", icon: <Lock size={12} /> },
+  { name: "Tailwind", icon: <PieChart size={12} /> }, // using pie chart for variety
+  { name: "Recharts", icon: <BarChart3 size={12} /> },
+  { name: "ExcelJS", icon: <FileSpreadsheet size={12} /> },
+];
+
 export default function StockMasterPage() {
   const { language } = useLanguage();
   const t = pageContent[language];
@@ -143,9 +147,9 @@ export default function StockMasterPage() {
   const cmdActions = getCmdActions(language, features, techDetails);
 
   return (
-    <main className="min-h-screen bg-background pt-32 pb-24 relative overflow-hidden">
-      {/* Editorial Mesh Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none bg-mesh-warm opacity-40" />
+    <main className="min-h-screen bg-[#020202] pt-32 pb-24 relative overflow-hidden transition-all">
+      {/* Mesh Background — pure dark focus */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-noise opacity-[0.03]" />
 
       <ProjectNav
         projectName="StockMaster Pro"
@@ -159,108 +163,93 @@ export default function StockMasterPage() {
         actions={cmdActions}
       />
 
-      <ParallaxOrb color="bg-accent-cool/10" size={600} top="-5%" left="-10%" blur={160} yOffset={200} />
-      <ParallaxOrb color="bg-primary/5" size={500} bottom="10%" right="-5%" blur={140} yOffset={-150} />
+      {/* Hero Section — Centered Documentation Style */}
+      <section id="sm-hero" className="container mx-auto px-4 max-w-4xl mb-32 relative z-10 flex flex-col items-center justify-center min-h-[70vh]">
+        
+        {/* Floating tech tags behind the title */}
+        <FloatingTechTags tags={floatingTags} colorTheme="primary" />
 
-      {/* Hero Section — Asymmetric & Editorial */}
-      <section id="sm-hero" className="container mx-auto px-4 max-w-6xl mb-32 relative z-10">
-        <Link href="/projetos" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-secondary hover:text-white transition-colors mb-12 group">
-          <ArrowLeft className="mr-3 transition-transform group-hover:-translate-x-1" size={16} />
-          {t.backBtn}
-        </Link>
+        <div className="text-center relative z-10 w-full flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-elevated/40 border border-white/[0.04] text-[10px] text-secondary font-mono tracking-wider uppercase mb-12 shadow-sm"
+          >
+            <span>Projetos</span>
+            <span className="text-white/20">&gt;</span>
+            <span className="text-white font-bold">StockMaster Pro</span>
+          </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-          <div className="lg:col-span-7 pt-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-elevated/40 border border-white/[0.04] text-[10px] text-accent-cool font-mono tracking-wider uppercase mb-8"
-            >
-              <Server size={12} />
-              {t.heroBadge}
-            </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-[6.5rem] font-display font-black tracking-tighter mb-8 leading-[1.05]"
+            style={{
+              backgroundImage: "linear-gradient(to right, #ffffff, #3b82f6)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent"
+            }}
+          >
+            StockMaster <br className="md:hidden" /> Pro
+          </motion.h1>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-display font-black text-white tracking-tighter mb-8 leading-[1.05]"
-            >
-              Stock<br/>
-              <span className="text-accent-cool">Master</span> Pro.
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-lg md:text-xl text-secondary leading-relaxed mb-10 max-w-xl border-l-2 border-accent-cool/30 pl-5 glass-elevated py-4 pr-4 rounded-r-2xl"
-            >
-              {t.heroDesc}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-wrap gap-4"
-            >
-              <a href="https://stock-master-pro-app.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-accent-cool to-blue-600 text-white font-bold text-sm hover:shadow-glow-md hover:-translate-y-0.5 transition-all btn-shimmer border border-white/10">
-                <ExternalLink size={18} />
-                {t.btnDemo}
-              </a>
-              <a href="https://github.com/GabrielLuna1/stockmaster" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl glass border border-white/[0.04] text-white hover:border-white/20 hover:bg-white/[0.02] transition-all font-bold text-sm">
-                <Github size={18} />
-                {t.btnCode}
-              </a>
-            </motion.div>
-          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-secondary/80 leading-relaxed mb-12 max-w-2xl font-medium"
+          >
+            {t.heroDesc}
+          </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="lg:col-span-5 relative"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="flex items-center gap-6"
           >
-            {/* Abstract representation of the dashboard */}
-            <div className="card-spotlight rounded-[2.5rem] p-8 elevation-4 border border-white/[0.04] relative overflow-hidden bg-gradient-to-b from-surface/80 to-surface/30 backdrop-blur-xl">
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(59,130,246,0.15),transparent_50%)]" />
-              
-              <h3 className="text-[10px] font-mono text-secondary uppercase tracking-[0.2em] mb-8">{t.statsTitle}</h3>
-              
-              <div className="grid grid-cols-2 gap-x-4 gap-y-8 relative z-10">
-                {t.stats.map((stat, i) => (
-                  <div key={stat.label} className="relative group">
-                    <div className="absolute -inset-4 bg-white/[0.02] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="text-4xl md:text-5xl font-display font-black text-white tracking-tighter mb-2 group-hover:text-accent-cool transition-colors">
-                      {stat.value}
-                    </div>
-                    <div className="text-xs text-secondary/70 font-medium tracking-wide">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <a 
+              href="https://github.com/GabrielLuna1/stockmaster" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#1e40af] text-white font-bold text-sm hover:bg-[#1d4ed8] transition-all shadow-[0_0_40px_rgba(30,64,175,0.6)] hover:shadow-[0_0_60px_rgba(30,64,175,0.8)] border border-blue-400/20 group"
+            >
+              <Github size={18} />
+              {t.btnCode}
+              <ArrowLeft size={16} className="rotate-135 group-hover:translate-x-1 transition-transform" />
+            </a>
 
-              {/* Decorative chart lines */}
-              <div className="mt-12 pt-6 border-t border-white/[0.04] flex items-end gap-2 h-20 opacity-40">
-                {[40, 70, 45, 90, 65, 100, 80].map((h, i) => (
-                  <motion.div 
-                    key={i} 
-                    initial={{ height: 0 }} 
-                    animate={{ height: `${h}%` }} 
-                    transition={{ delay: 0.5 + i * 0.1, duration: 1 }}
-                    className="flex-1 bg-accent-cool/20 rounded-t-sm"
-                  />
-                ))}
-              </div>
+            {/* Little Tech Orbs */}
+            <div className="flex -space-x-3">
+              {['NX', 'MD', 'NA', 'TW'].map((tech, i) => (
+                <div key={tech} className="w-10 h-10 rounded-full bg-[#0a0a0a] border border-white/10 flex items-center justify-center text-[9px] font-bold font-mono text-secondary z-10 hover:z-20 hover:scale-110 hover:border-blue-500/50 hover:text-white transition-all cursor-default shadow-lg">
+                  {tech}
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="absolute bottom-[-10vh] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50"
+        >
+          <span className="text-[9px] font-mono tracking-[0.3em] uppercase text-secondary">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ArrowLeft size={14} className="-rotate-90 text-secondary" />
+          </motion.div>
+        </motion.div>
       </section>
 
-      {/* Tech Grid — Grid-breaking overlapping design */}
-      <section className="container mx-auto px-4 max-w-6xl mb-32 relative z-10">
+      {/* Tech Grid */}
+      <section className="container mx-auto px-4 max-w-5xl mb-32 relative z-10">
         <div className="flex flex-wrap gap-3 justify-center">
           {techDetails.map((tech, i) => {
             const Icon = tech.icon;
@@ -271,9 +260,9 @@ export default function StockMasterPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-3 px-5 py-3 rounded-2xl glass-strong border border-white/[0.04] group hover:border-accent-cool/30 transition-colors"
+                className="flex items-center gap-3 px-5 py-3 rounded-2xl glass-strong border border-white/[0.04] group hover:border-blue-400/30 transition-colors"
               >
-                <Icon size={18} className="text-accent-cool/60 group-hover:text-accent-cool transition-colors" />
+                <Icon size={18} className="text-blue-400/60 group-hover:text-blue-400 transition-colors" />
                 <span className="text-sm font-bold text-white tracking-wide">{tech.name}</span>
               </motion.div>
             );
@@ -281,22 +270,22 @@ export default function StockMasterPage() {
         </div>
       </section>
 
-      <div className="section-fade-separator" />
+      <div className="section-fade-separator max-w-4xl mx-auto" />
 
-      {/* Features — Masonry-style abstract flow */}
-      <section id="sm-features" className="container mx-auto px-4 max-w-6xl py-24 relative z-10">
+      {/* Features */}
+      <section id="sm-features" className="container mx-auto px-4 max-w-5xl py-24 relative z-10">
         <div className="mb-20 text-center max-w-3xl mx-auto">
           <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-4xl md:text-6xl font-display font-black text-white tracking-tighter mb-6"
+            className="text-4xl md:text-5xl font-display font-black text-white tracking-tighter mb-4"
           >
             {t.featuresTitle}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-xl text-secondary"
+            className="text-lg text-secondary"
           >
             {t.featuresDesc}
           </motion.p>
@@ -311,7 +300,6 @@ export default function StockMasterPage() {
         >
           {features.map((feature, i) => {
             const Icon = feature.icon;
-            // Create varied heights for masonry feel
             const isTall = i === 1 || i === 4;
             
             return (
@@ -321,10 +309,10 @@ export default function StockMasterPage() {
                 className={`card-premium p-8 group flex flex-col justify-between ${isTall ? 'md:row-span-2' : ''}`}
               >
                 <div>
-                  <div className="w-14 h-14 rounded-2xl bg-surface-elevated border border-white/[0.04] flex items-center justify-center mb-8 group-hover:bg-accent-cool/10 group-hover:scale-110 transition-all duration-500 shadow-elevated">
-                    <Icon className="text-accent-cool opacity-80 group-hover:opacity-100" size={24} />
+                  <div className="w-12 h-12 rounded-xl bg-surface-elevated border border-white/[0.04] flex items-center justify-center mb-6 group-hover:bg-blue-500/10 group-hover:scale-110 transition-all duration-500 shadow-elevated">
+                    <Icon className="text-blue-400 opacity-80 group-hover:opacity-100" size={20} />
                   </div>
-                  <h3 className="text-xl font-display font-bold text-white mb-4 group-hover:text-accent-cool transition-colors leading-tight">
+                  <h3 className="text-lg font-display font-bold text-white mb-3 group-hover:text-blue-400 transition-colors leading-tight">
                     {feature.title}
                   </h3>
                 </div>
@@ -337,54 +325,51 @@ export default function StockMasterPage() {
         </motion.div>
       </section>
 
-      <div className="section-fade-separator" />
+      <div className="section-fade-separator max-w-4xl mx-auto" />
 
-      {/* Architecture — Layers Visualization */}
-      <section id="sm-architecture" className="container mx-auto px-4 max-w-6xl py-24 relative z-10">
-        <div className="grid lg:grid-cols-5 gap-16 items-center">
-          <div className="lg:col-span-2">
+      {/* Architecture */}
+      <section id="sm-architecture" className="container mx-auto px-4 max-w-5xl py-24 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div>
             <motion.h2
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-4xl md:text-5xl font-display font-black text-white tracking-tighter mb-6"
+              className="text-3xl font-display font-black text-white tracking-tighter mb-4"
             >
               {t.archTitle}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-lg text-secondary leading-relaxed"
+              className="text-secondary text-sm leading-relaxed"
             >
               {t.archDesc}
             </motion.p>
           </div>
 
-          <div className="lg:col-span-3">
+          <div>
             <div className="relative">
-              {/* Connecting line */}
-              <div className="absolute left-8 top-10 bottom-10 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent hidden md:block" />
+              <div className="absolute left-[11px] top-4 bottom-4 w-px bg-gradient-to-b from-blue-500/40 via-blue-500/10 to-transparent hidden md:block" />
               
               <div className="space-y-6">
                 {architectureLayers.map((layer, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: 30 }}
+                    initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.15 }}
                     viewport={{ once: true }}
-                    className="relative pl-0 md:pl-20"
+                    className="relative pl-0 md:pl-10"
                   >
-                    {/* Node dot */}
-                    <div className="absolute left-[29px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white/20 hidden md:block" />
+                    <div className="absolute left-[7px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#020202] border-2 border-blue-500 hidden md:block" />
                     
                     <div className="card-spotlight p-6 elevation-2 border border-white/[0.04] bg-surface/40 hover:bg-surface/60 transition-colors group">
-                      <h3 className={`text-sm font-mono tracking-wider uppercase font-bold ${layer.color} mb-5 flex items-center gap-3`}>
-                        <span className="w-6 h-px bg-current opacity-30 hidden sm:block" />
+                      <h3 className={`text-xs font-mono tracking-wider uppercase font-bold ${layer.color} mb-4`}>
                         {layer.title}
                       </h3>
                       <div className="flex flex-wrap gap-2">
                         {layer.items.map((item, j) => (
-                          <span key={j} className="inline-flex items-center px-3 py-1.5 rounded-lg bg-white/[0.02] border border-white/[0.04] text-xs text-secondary/80 font-medium group-hover:text-white transition-colors">
+                          <span key={j} className="inline-flex items-center px-2.5 py-1 rounded-lg bg-white/[0.02] border border-white/[0.04] text-[11px] text-secondary/80 font-medium group-hover:text-white transition-colors">
                             {item}
                           </span>
                         ))}
@@ -398,9 +383,6 @@ export default function StockMasterPage() {
         </div>
       </section>
 
-      <ProjectNavigation
-        prevProject={{ id: "work-hunter", name: "WorkHunter" }}
-      />
     </main>
   );
 }
