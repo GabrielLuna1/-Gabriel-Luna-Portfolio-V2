@@ -67,7 +67,7 @@ export function About() {
 
           {/* Stats Column */}
           <Reveal direction="right" delay={0.2}>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {stats.map((stat, index) => (
                 <Card key={index} variant="glass" className="p-6 flex flex-col items-center justify-center text-center">
                   <div className="p-3 bg-primary/8 rounded-xl text-primary mb-4 group-hover:scale-110 transition-transform">

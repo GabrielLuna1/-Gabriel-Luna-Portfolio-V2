@@ -190,7 +190,7 @@ export default function WorkHunterPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-6xl md:text-[7rem] font-display font-black tracking-tighter mb-8 leading-[1]"
+            className="text-5xl sm:text-6xl md:text-[7rem] font-display font-black tracking-tighter mb-8 leading-[1]"
             style={{
               backgroundImage: "linear-gradient(to right, #ffffff, #3b82f6)",
               WebkitBackgroundClip: "text",

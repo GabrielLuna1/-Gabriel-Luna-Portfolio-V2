@@ -103,14 +103,18 @@ export function Projects({ data }: ProjectsProps) {
                 </div>
 
                 {/* Image Side */}
-                <div className="relative w-full lg:w-[55%] min-h-[280px] lg:min-h-[450px] bg-surface/15 overflow-hidden flex items-end justify-end pt-8 pl-8 md:pt-10 md:pl-10">
+                <div className={`relative w-full lg:w-[55%] min-h-[280px] lg:min-h-[450px] bg-surface/15 overflow-hidden flex items-end ${
+                  index % 2 === 1 ? "justify-center lg:justify-start pt-8 px-4 lg:pt-10 lg:pr-10 lg:pl-0" : "justify-center lg:justify-end pt-8 px-4 lg:pt-10 lg:pl-10 lg:pr-0"
+                }`}>
                   <div className="absolute inset-0 bg-gradient-to-tr from-primary/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                  <div className="relative w-full h-[90%] rounded-tl-2xl overflow-hidden border-t border-l border-white/[0.04] shadow-elevated group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-700 ease-out">
+                  <div className={`relative w-full h-[90%] overflow-hidden border-t border-white/[0.04] shadow-elevated group-hover:-translate-y-1 transition-transform duration-700 ease-out ${
+                    index % 2 === 1 ? "rounded-t-2xl lg:rounded-tr-2xl lg:rounded-tl-none border-x lg:border-r lg:border-l-0 group-hover:-translate-x-1" : "rounded-t-2xl lg:rounded-tl-2xl lg:rounded-tr-none border-x lg:border-l lg:border-r-0 group-hover:translate-x-1"
+                  }`}>
                     <img
                       src={project.imageUrl}
                       alt={project.title}
-                      className="w-full h-full object-cover object-left-top opacity-70 group-hover:opacity-95 transition-opacity duration-500"
+                      className="w-full h-full object-cover object-top opacity-70 group-hover:opacity-95 transition-opacity duration-500"
                     />
                     {/* Image overlay gradient for depth */}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />

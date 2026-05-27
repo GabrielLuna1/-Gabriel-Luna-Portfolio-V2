@@ -176,7 +176,7 @@ export default function StockMasterPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-[6.5rem] font-display font-black tracking-tighter mb-8 leading-[1.05]"
+            className="text-4xl sm:text-5xl md:text-[6.5rem] font-display font-black tracking-tighter mb-8 leading-[1.05]"
             style={{
               backgroundImage: "linear-gradient(to right, #ffffff, #3b82f6)",
               WebkitBackgroundClip: "text",

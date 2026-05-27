@@ -86,7 +86,7 @@ export function CommandMenu() {
   return (
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh] px-4">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[10vh] md:pt-[20vh] px-4">
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -111,10 +111,10 @@ export function CommandMenu() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
               />
-              <span className="text-xs text-secondary border border-white/10 px-2 py-1 rounded">ESC</span>
+              <span className="hidden md:inline-block text-xs text-secondary border border-white/10 px-2 py-1 rounded">ESC</span>
             </div>
 
-            <div className="max-h-[400px] overflow-y-auto p-2">
+            <div className="max-h-[60vh] md:max-h-[400px] overflow-y-auto p-2">
               {filtered.length === 0 ? (
                 <p className="p-4 text-center text-sm text-secondary">Nenhum resultado encontrado.</p>
               ) : (
@@ -148,11 +148,11 @@ export function CommandMenu() {
                           {action.label}
                         </span>
                         {action.shortcut && (
-                          <span className="text-xs text-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span className="hidden md:inline-block text-xs text-secondary opacity-0 group-hover:opacity-100 transition-opacity">
                             {action.shortcut}
                           </span>
                         )}
-                        <ArrowRight className={`w-4 h-4 transition-all shrink-0 ${
+                        <ArrowRight className={`hidden md:block w-4 h-4 transition-all shrink-0 ${
                           isSelected ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
                         } text-primary`} />
                       </button>
@@ -162,10 +162,10 @@ export function CommandMenu() {
               )}
             </div>
 
-            <div className="p-2 border-t border-white/5 bg-white/[0.02] text-[10px] text-secondary text-center flex gap-4 justify-center">
-              <span>↑↓ Navegar</span>
-              <span>Enter Selecionar</span>
-              <span>ESC Fechar</span>
+            <div className="p-2 border-t border-white/5 bg-white/[0.02] text-[10px] text-secondary text-center flex flex-wrap gap-2 md:gap-4 justify-center">
+              <span className="hidden md:inline">↑↓ Navegar</span>
+              <span className="hidden md:inline">Enter Selecionar</span>
+              <span className="hidden md:inline">ESC Fechar</span>
               <span>{filtered.length} resultados</span>
             </div>
           </motion.div>

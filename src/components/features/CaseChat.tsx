@@ -135,7 +135,7 @@ export function CaseChat() {
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.92 }}
         onClick={() => { setIsOpen(true); setIsMinimized(false); }}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-primary text-white rounded-full shadow-[0_0_24px_rgba(59,130,246,0.45)] flex items-center justify-center group overflow-hidden border border-white/10 hover:shadow-[0_0_32px_rgba(59,130,246,0.6)] transition-shadow duration-300"
+        className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-14 h-14 bg-primary text-white rounded-full shadow-[0_0_24px_rgba(59,130,246,0.45)] flex items-center justify-center group overflow-hidden border border-white/10 hover:shadow-[0_0_32px_rgba(59,130,246,0.6)] transition-shadow duration-300"
       >
         <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
         <div className="absolute inset-0 rounded-full animate-pulse ring-2 ring-primary/40" />
@@ -157,7 +157,7 @@ export function CaseChat() {
           exit={{ opacity: 0, scale: 0.85, y: 20 }}
           transition={{ type: "spring", stiffness: 250, damping: 28, mass: 0.9 }}
           style={{ transformOrigin: "bottom right" }}
-          className="fixed bottom-6 right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] bg-[#030303]/90 backdrop-blur-3xl border border-white/[0.08] rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(59,130,246,0.1)] overflow-hidden flex flex-col"
+          className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] bg-[#030303]/90 backdrop-blur-3xl border border-white/[0.08] rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(59,130,246,0.1)] overflow-hidden flex flex-col"
         >
           {/* Header */}
           <div
