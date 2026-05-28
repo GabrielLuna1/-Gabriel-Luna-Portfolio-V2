@@ -192,8 +192,14 @@ export function Projects({ data }: ProjectsProps) {
             ))}
           </motion.div>
 
-          <div className="pt-6 text-center">
-            <Button href="/projetos" variant="outline" icon={<ArrowRight size={16} />}>
+          <div className="pt-10 text-center">
+            <Button 
+              href="/projetos" 
+              variant="outline" 
+              size="lg"
+              className="border-primary/30 text-primary hover:bg-primary/10 hover:border-primary/60 hover:shadow-glow transition-all group"
+              icon={<ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />}
+            >
               Ver Todos os Projetos
             </Button>
           </div>

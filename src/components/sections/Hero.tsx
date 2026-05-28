@@ -190,23 +190,25 @@ export function Hero({ data }: HeroProps) {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator — more elegant */}
-      <motion.div
+      {/* Scroll Indicator — enhanced & interactive */}
+      <motion.a
+        href="#about"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3 group cursor-pointer"
       >
-        <span className="text-[10px] uppercase tracking-[0.25em] text-secondary/40 font-mono">
+        <span className="text-[10px] uppercase tracking-[0.25em] text-primary/60 font-mono group-hover:text-primary transition-colors">
           Scroll
         </span>
         <motion.div
           animate={{ y: [0, 5, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="p-2.5 rounded-full border border-primary/20 bg-primary/5 group-hover:bg-primary/10 group-hover:border-primary/40 group-hover:shadow-glow transition-all"
         >
-          <Mouse size={18} className="text-secondary/25" />
+          <Mouse size={16} className="text-primary/70 group-hover:text-primary transition-colors" />
         </motion.div>
-      </motion.div>
+      </motion.a>
     </section>
   );
 }
