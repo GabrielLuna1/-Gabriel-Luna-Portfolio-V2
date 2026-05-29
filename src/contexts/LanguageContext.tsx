@@ -75,7 +75,7 @@ const translations = {
     "projects.btn.code": "Repositório",
     "projects.btn.demo": "Ver Aplicação",
 
-    "proj.jobhunter.title": "Job Hunter AI",
+    "proj.jobhunter.title": "Work Hunter",
     "proj.jobhunter.desc": "Plataforma avançada de hunting com scraping multi-fonte contornando bloqueios via Playwright. Utiliza IA local (Ollama/LM Studio) para match scoring de currículos e auto-apply inteligente.",
     
     "proj.stockmaster.title": "StockMaster Pro",
@@ -197,7 +197,7 @@ const translations = {
     "projects.btn.code": "Source Code",
     "projects.btn.demo": "Live Application",
 
-    "proj.jobhunter.title": "Job Hunter AI",
+    "proj.jobhunter.title": "Work Hunter",
     "proj.jobhunter.desc": "Advanced hunting platform featuring multi-source scraping that bypasses blockers via Playwright. Utilizes local AI (Ollama/LM Studio) for intelligent resume match scoring and auto-apply.",
 
     "proj.stockmaster.title": "StockMaster Pro",

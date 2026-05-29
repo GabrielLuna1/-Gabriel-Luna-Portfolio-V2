@@ -166,13 +166,13 @@ export default function WorkHunterPage() {
       <div className="absolute inset-0 z-0 pointer-events-none bg-noise opacity-[0.03]" />
 
       <ProjectNav
-        projectName="Job Hunter"
+        projectName="Work Hunter"
         projectColor="primary"
         sections={navSections}
         prevProject={{ id: "stockmaster", name: "StockMaster Pro" }}
       />
       <ProjectCommandMenu
-        projectName="Job Hunter"
+        projectName="Work Hunter"
         sections={navSections}
         actions={cmdActions}
       />
@@ -197,7 +197,7 @@ export default function WorkHunterPage() {
               WebkitTextFillColor: "transparent"
             }}
           >
-            Job Hunter
+            Work Hunter
           </motion.h1>
 
           <motion.p
