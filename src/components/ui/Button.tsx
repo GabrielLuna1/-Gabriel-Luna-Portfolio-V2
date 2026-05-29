@@ -31,8 +31,7 @@ export function Button({
 
   const variants: Record<string, string> = {
     primary: `
-      bg-gradient-to-r from-primary to-primary-light
-      text-white
+      bg-primary text-white
       border border-white/10
       hover:shadow-glow-md hover:scale-[1.02] hover:border-white/20
       active:scale-[0.98]
@@ -78,11 +77,11 @@ export function Button({
     iconPosition === "left" ? (
       <>
         {icon}
-        <span>{children}</span>
+        {children}
       </>
     ) : (
       <>
-        <span>{children}</span>
+        {children}
         {icon}
       </>
     )
