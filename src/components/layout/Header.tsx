@@ -28,7 +28,7 @@ export function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ["about", "tech", "experience", "projects", "education"];
+      const sections = ["about", "tech", "experience", "projects", "education", "resume"];
       const current = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
@@ -56,6 +56,7 @@ export function Header() {
     { name: t("nav.stack"), href: "#tech", id: "tech" },
     { name: t("nav.career"), href: "#experience", id: "experience" },
     { name: t("nav.studies"), href: "#education", id: "education" },
+    { name: t("nav.resume"), href: "#resume", id: "resume" },
     { name: t("nav.projects"), href: "#projects", id: "projects" },
   ];
 

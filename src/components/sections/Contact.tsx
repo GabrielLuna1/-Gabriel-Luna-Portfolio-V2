@@ -68,7 +68,7 @@ export function Contact() {
 
       <div className="container mx-auto px-4 relative z-10">
         <SectionTitle
-          number="06"
+          number="07"
           subtitle={t("contact.subtitle")}
           title={t("contact.title")}
         />

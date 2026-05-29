@@ -4,6 +4,7 @@ import { TechStack } from "@/components/sections/TechStack";
 import { Experience } from "@/components/sections/Experience";
 import { Projects } from "@/components/sections/Projects";
 import { Education } from "@/components/sections/Education";
+import { Resume } from "@/components/sections/Resume";
 import { Contact } from "@/components/sections/Contact";
 
 // Data
@@ -38,6 +39,10 @@ export default function Home() {
       <div className="section-fade-separator" />
 
       <Education data={education} />
+
+      <div className="section-fade-separator" />
+
+      <Resume />
 
       <div className="section-fade-separator" />
 

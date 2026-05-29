@@ -23,6 +23,7 @@ const translations = {
     "nav.career": "Carreira",
     "nav.projects": "Projetos",
     "nav.studies": "Educação",
+    "nav.resume": "Currículo",
     "nav.search": "Pesquisar (Ctrl+K)",
     "nav.cta": "Vamos conversar",
 
@@ -114,6 +115,15 @@ const translations = {
     "edu.impacta.period": "2019",
     "edu.impacta.desc": "Especialização em arquitetura de dados relacionais, queries avançadas de performance e normalização.",
 
+    // --- CURRÍCULO ---
+    "resume.title": "Meu Currículo",
+    "resume.subtitle": "Download",
+    "resume.text": "Disponível para download nos formatos PDF e DOCX. Escolha o formato ideal para você.",
+    "resume.btn.download": "Baixar",
+    "resume.btn.preview": "Visualizar Online",
+    "resume.pdf.desc": "Formato universal",
+    "resume.docx.desc": "Editável (Word)",
+
     // --- CONTATO ---
     "contact.title": "Vamos Construir Algo?",
     "contact.subtitle": "Contato",
@@ -145,6 +155,7 @@ const translations = {
     "nav.career": "Career",
     "nav.projects": "Projects",
     "nav.studies": "Education",
+    "nav.resume": "Resume",
     "nav.search": "Search (Cmd+K)",
     "nav.cta": "Let's Talk",
 
@@ -235,6 +246,15 @@ const translations = {
     "edu.impacta.inst": "Faculdade Impacta",
     "edu.impacta.period": "2019",
     "edu.impacta.desc": "Specialization in relational data architecture, advanced performance queries, and normalization.",
+
+    // --- RESUME ---
+    "resume.title": "My Resume",
+    "resume.subtitle": "Download",
+    "resume.text": "Available for download in PDF and DOCX formats. Pick the format that suits you best.",
+    "resume.btn.download": "Download",
+    "resume.btn.preview": "View Online",
+    "resume.pdf.desc": "Universal format",
+    "resume.docx.desc": "Editable (Word)",
 
     // --- CONTACT ---
     "contact.title": "Let's Build Something?",
