@@ -155,19 +155,19 @@ export function Hero({ data }: HeroProps) {
             className="relative mt-8 md:mt-0"
           >
             {/* Glow behind */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary to-accent-cool rounded-full blur-[80px] opacity-15 -z-10 scale-110" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary to-accent-cool rounded-full blur-[80px] opacity-15 -z-10 scale-105 md:scale-110" />
 
             {/* HALO DASHED — faster rotation for "alive" feel */}
             <motion.div
-              className="absolute -inset-6 md:-inset-10 border-2 border-dashed border-primary/30 rounded-full"
+              className="absolute -inset-2 sm:-inset-4 md:-inset-10 border-2 border-dashed border-primary/30 rounded-full"
               animate={{ rotate: 360 }}
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             />
-            <div className="absolute -inset-6 md:-inset-10 border border-primary/15 rounded-full shadow-[0_0_30px_rgba(59,130,246,0.1)]" />
+            <div className="absolute -inset-2 sm:-inset-4 md:-inset-10 border border-primary/15 rounded-full shadow-[0_0_30px_rgba(59,130,246,0.1)]" />
 
             {/* Orbiting dot */}
             <motion.div
-              className="absolute -inset-6 md:-inset-10"
+              className="absolute -inset-2 sm:-inset-4 md:-inset-10"
               animate={{ rotate: 360 }}
               transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
             >
