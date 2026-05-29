@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel Luna — Full Stack Engineer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0a0b;
+    color: #e4e4e7;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 210mm;
+    margin: 0 auto;
+    background: #0f0f11;
+    padding: 0;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  }
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0f0f11 0%, #1a1a2e 100%);
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid rgba(59,130,246,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-content { position: relative; z-index: 1; }
+  .header h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .header .title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #3b82f6;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .header .subtitle {
+    font-size: 13px;
+    color: #a1a1aa;
+    font-weight: 400;
+    max-width: 80%;
+  }
+  .contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    margin-top: 16px;
+    font-size: 12.5px;
+    color: #a1a1aa;
+  }
+  .contact-bar a {
+    color: #93c5fd;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(59,130,246,0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s;
+  }
+  .contact-bar a[target="_blank"]::after {
+    content: '\2197';
+    font-size: 10px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .contact-bar a:hover { color: #60a5fa; text-decoration-color: #60a5fa; }
+  .contact-bar a[target="_blank"]:hover::after { opacity: 1; }
+  .contact-bar .dot { color: #3b82f6; font-size: 8px; }
+
+  /* BODY GRID */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+  }
+  .main-col { padding: 32px 40px 40px 48px; }
+  .side-col {
+    padding: 32px 24px 40px 24px;
+    background: rgba(59,130,246,0.03);
+    border-left: 1px solid rgba(59,130,246,0.08);
+  }
+
+  /* SECTIONS */
+  .section { margin-bottom: 28px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(59,130,246,0.12);
+  }
+  .section-header .icon {
+    width: 20px;
+    height: 20px;
+    background: rgba(59,130,246,0.15);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #3b82f6;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #3b82f6;
+  }
+
+  /* SUMMARY */
+  .summary-text {
+    font-size: 13px;
+    color: #d4d4d8;
+    line-height: 1.7;
+  }
+  .summary-text strong { color: #fff; font-weight: 600; }
+
+  /* SKILL TAGS */
+  .skill-group { margin-bottom: 14px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-group-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #71717a;
+    margin-bottom: 6px;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .skill-tag {
+    padding: 3px 10px;
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.12);
+    border-radius: 4px;
+    font-size: 11.5px;
+    color: #c4c4cf;
+    font-weight: 450;
+    letter-spacing: 0.01em;
+  }
+  .skill-tag.highlight {
+    background: rgba(59,130,246,0.15);
+    border-color: rgba(59,130,246,0.25);
+    color: #93c5fd;
+  }
+
+  /* EXPERIENCE */
+  .exp-item { margin-bottom: 20px; }
+  .exp-item:last-child { margin-bottom: 0; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+  .exp-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .exp-header .date {
+    font-size: 11.5px;
+    color: #71717a;
+    font-weight: 450;
+    white-space: nowrap;
+  }
+  .exp-company {
+    font-size: 12.5px;
+    color: #3b82f6;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .exp-desc {
+    font-size: 12.5px;
+    color: #a1a1aa;
+    line-height: 1.65;
+  }
+  .exp-desc ul {
+    list-style: none;
+    padding: 0;
+  }
+  .exp-desc ul li {
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 3px;
+  }
+  .exp-desc ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: #3b82f6;
+    font-weight: 700;
+  }
+
+  /* PROJECTS */
+  .project-item { margin-bottom: 20px; }
+  .project-item:last-child { margin-bottom: 0; }
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+  .project-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .project-header .tag {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #3b82f6;
+    background: rgba(59,130,246,0.1);
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .project-stack {
+    font-size: 11.5px;
+    color: #71717a;
+    margin-bottom: 5px;
+    font-weight: 450;
+  }
+  .project-desc {
+    font-size: 12.5px;
+    color: #a1a1aa;
+    line-height: 1.65;
+  }
+  .project-desc ul {
+    list-style: none;
+    padding: 0;
+  }
+  .project-desc ul li {
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 2px;
+  }
+  .project-desc ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: #3b82f6;
+    font-weight: 700;
+  }
+
+  /* SIDE COLUMN */
+  .side-col .section { margin-bottom: 24px; }
+  .side-col .section-header { margin-bottom: 12px; }
+  .side-col .section-header h2 { font-size: 12px; }
+
+  .info-list { font-size: 12.5px; color: #a1a1aa; line-height: 1.8; }
+  .info-list strong { color: #d4d4d8; font-weight: 500; }
+
+  .cert-item {
+    font-size: 12.5px;
+    color: #a1a1aa;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .cert-item strong { color: #d4d4d8; font-weight: 500; }
+  .cert-item .cert-inst {
+    font-size: 11.5px;
+    color: #71717a;
+  }
+
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .lang-item .lang-name { font-size: 12.5px; color: #d4d4d8; }
+  .lang-item .lang-level { font-size: 11.5px; color: #71717a; }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: rgba(59,130,246,0.08);
+    margin: 20px 0;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; }
+    .page { max-width: 100%; box-shadow: none; }
+    .header { background: #0f0f11 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .side-col { background: rgba(59,130,246,0.03) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .skill-tag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .header::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section, .exp-item, .project-item, .skill-group { page-break-inside: avoid; }
+    .project-item:last-child, .exp-item:last-child { page-break-after: avoid; }
+    .side-col .section:last-child { page-break-inside: avoid; }
+    a { text-decoration: none !important; }
+  }
+
+  @media (max-width: 768px) {
+    .body-grid { grid-template-columns: 1fr; }
+    .side-col { border-left: none; border-top: 1px solid rgba(59,130,246,0.08); }
+    .header { padding: 28px 20px 24px; }
+    .main-col { padding: 24px 20px; }
+    .side-col { padding: 24px 20px; }
+    .header h1 { font-size: 28px; }
+    .header .subtitle { max-width: 100%; font-size: 12px; }
+    .contact-bar { gap: 8px 16px; font-size: 11.5px; }
+    .project-header { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .project-header .tag { align-self: flex-start; }
+    .exp-header { flex-direction: column; align-items: flex-start; gap: 2px; }
+    .exp-header .date { font-size: 11px; }
+  }
+  @media (max-width: 480px) {
+    .header { padding: 20px 16px 20px; }
+    .header h1 { font-size: 22px; }
+    .header .title { font-size: 13px; }
+    .main-col { padding: 16px; }
+    .side-col { padding: 16px; }
+    .contact-bar { gap: 6px 12px; font-size: 10.5px; flex-direction: column; align-items: flex-start; }
+    .contact-bar .dot { display: none; }
+    .section-header h2 { font-size: 12px; }
+    .skill-tag { font-size: 10px; padding: 2px 8px; }
+    .summary-text { font-size: 12px; }
+    .project-stack { font-size: 10.5px; }
+    .project-desc { font-size: 11.5px; }
+    .exp-desc { font-size: 11.5px; }
+    .info-list { font-size: 11.5px; }
+    .cert-item { font-size: 11.5px; }
+    .project-header .tag { font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-content">
+      <h1>Gabriel Luna</h1>
+      <div class="title">Full Stack Engineer &bull; Front-End Specialist</div>
+      <div class="subtitle">Arquiteturas escaláveis no ecossistema Next.js + TypeScript. Integração de agentes de IA para automação de workflows, análise inteligente e geração de conteúdo com modelos locais.</div>
+      <div class="contact-bar">
+        <span>Poá, SP &mdash; Brasil</span>
+        <span class="dot">&bullet;</span>
+        <a href="mailto:gabriellunajob@gmail.com">gabriellunajob@gmail.com</a>
+        <span class="dot">&bullet;</span>
+        <a href="https://gabriel-luna-portfolio-v2-qj3o.vercel.app/" target="_blank">Portfólio</a>
+        <span class="dot">&bullet;</span>
+        <a href="https://linkedin.com/in/gabriel-lunaa" target="_blank">LinkedIn</a>
+        <span class="dot">&bullet;</span>
+        <a href="https://github.com/GabrielLuna1" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body-grid">
+
+    <!-- MAIN COLUMN -->
+    <div class="main-col">
+
+      <!-- RESUMO -->
+      <div class="section">
+        <div class="section-header">
+          <div class="icon">&#9679;</div>
+          <h2>Resumo Profissional</h2>
+        </div>
+        <div class="summary-text">
+          <strong>Full Stack Engineer</strong> especializado em <strong>Next.js, React e TypeScript</strong>, com s&oacute;lida experi&ecirc;ncia em arquiteturas escal&aacute;veis, sistemas SaaS e dashboards em tempo real. Dom&iacute;nio do ecossistema moderno de front-end aliado a conhecimento avan&ccedil;ado em <strong>agentes de IA</strong> (LM Studio, Ollama, LangChain) para automa&ccedil;&atilde;o de workflows e an&aacute;lise inteligente de dados. Experi&ecirc;ncia pr&aacute;tica com <strong>gera&ccedil;&atilde;o de imagens e v&iacute;deos via ComfyUI</strong> (FLUX, Stable Diffusion, WAN 2.1), integrando modelos locais de IA generativa ao ciclo de produ&ccedil;&atilde;o. Focado em c&oacute;digo limpo, performance e entregas com qualidade de produ&ccedil;&atilde;o.
+        </div>
+      </div>
+
+      <!-- EXPERIÊNCIA -->
+      <div class="section">
+        <div class="section-header">
+          <div class="icon">&#9679;</div>
+          <h2>Experi&ecirc;ncia Profissional</h2>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header">
+            <h3>Desenvolvedor Front-End &amp; Suporte Web</h3>
+            <span class="date">Mar 2023 &mdash; Atual</span>
+          </div>
+          <div class="exp-company">ESC Cursos &mdash; SaaS Educacional</div>
+          <div class="exp-desc">
+            <ul>
+              <li>Garanto estabilidade e alta disponibilidade de plataforma educacional SaaS com alto tr&aacute;fego, atuando em manuten&ccedil;&atilde;o preventiva e corretiva de ambientes de produ&ccedil;&atilde;o.</li>
+              <li>Liderei corre&ccedil;&atilde;o de incidentes cr&iacute;ticos em integra&ccedil;&otilde;es de pagamento (Hotmart) e automa&ccedil;&otilde;es de marketing, reduzindo falhas operacionais e de convers&atilde;o.</li>
+              <li>Implementei layouts responsivos e otimizados em landing pages, melhorando performance e reten&ccedil;&atilde;o de visitantes.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header">
+            <h3>Desenvolvedor Full Stack (Freelance)</h3>
+            <span class="date">2022 &mdash; 2023</span>
+          </div>
+          <div class="exp-company">Projetos Diversos</div>
+          <div class="exp-desc">
+            <ul>
+              <li>Desenvolvimento de sistemas web completos utilizando Next.js, React, Node.js e MongoDB.</li>
+              <li>Cria&ccedil;&atilde;o de dashboards interativos e APIs RESTful para clientes de pequeno e m&eacute;dio porte.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJETOS AUTORAIS -->
+      <div class="section">
+        <div class="section-header">
+          <div class="icon">&#9679;</div>
+          <h2>Projetos de Engenharia</h2>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <h3>WorkHunter &mdash; Job Intelligence Platform</h3>
+            <span class="tag">Full Stack + IA &bull; Em Desenvolvimento</span>
+          </div>
+          <div class="project-stack">Next.js 15 / React 19 / FastAPI / MongoDB / Celery + Redis / LM Studio / Ollama / Playwright</div>
+          <div class="project-desc">
+            <ul>
+              <li>Plataforma completa de monitoria de vagas com coleta de 7+ fontes (Gupy, InfoJobs, LinkedIn, Catho, Indeed, Programathor, 99Jobs).</li>
+              <li>Pipeline Kanban com 8 colunas, drag-and-drop e calend&aacute;rio integrado.</li>
+              <li>Chat IA Copilot via SSE com tool calling: an&aacute;lise de vagas, c&aacute;lculo de match, gera&ccedil;&atilde;o de cover letter e auto-apply (LinkedIn + Gupy).</li>
+              <li>Fallback chain: LM Studio (Qwen 3.6 35B) &rarr; Ollama &rarr; OpenRouter (GPT-4o-mini) com circuit breaker.</li>
+              <li>Detec&ccedil;&atilde;o de vagas "falso junior" via heur&iacute;stica + IA, proxy pool (BrightData) e fingerprint rotation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <h3>CityLeads CRM &mdash; Prospec&ccedil;&atilde;o Local</h3>
+            <span class="tag">Full Stack &bull; Em Desenvolvimento</span>
+          </div>
+          <div class="project-stack">Next.js 15 / TypeScript / Tailwind CSS v4 / Shadcn/UI / MongoDB / SheetJS / @hello-pangea/dnd</div>
+          <div class="project-desc">
+            <ul>
+              <li>CRM completo para prospec&ccedil;&atilde;o de neg&oacute;cios locais com importa&ccedil;&atilde;o XLS/XLSX e scoring heur&iacute;stico (0-100).</li>
+              <li>Kanban pipeline com 6 colunas, otimistic updates e dashboard com estat&iacute;sticas em tempo real.</li>
+              <li>Integra&ccedil;&atilde;o WhatsApp via whatsapp-web.js com fila BullMQ + Redis e auto-messaging.</li>
+              <li>Sales Agent com IA local (LM Studio) para gera&ccedil;&atilde;o de abordagens personalizadas.</li>
+              <li>Design System inspirado em Linear (linear.app): dark mode premium, canvas #010102.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <h3>AgendaPro &mdash; Agendamento Multi-Nicho</h3>
+            <span class="tag">Full Stack</span>
+          </div>
+          <div class="project-stack">Next.js 16 / React 19 / TypeScript / Prisma + SQLite / BullMQ + Redis / Electron / WhatsApp</div>
+          <div class="project-desc">
+            <ul>
+              <li>Sistema de agendamento multi-nicho com painel admin, calend&aacute;rio e dashboard.</li>
+              <li>Arquitetura DDD com SSE para atualiza&ccedil;&otilde;es em tempo real e WebSocket.</li>
+              <li>WhatsApp Engine dual-mode (single process ou BullMQ worker) com auto-mensagens, lembretes e resposta a SIM/N&Atilde;O.</li>
+              <li>Desktop app em Electron para uso local.</li>
+              <li>C&oacute;digo: <a href="https://github.com/GabrielLuna1/agendamento-multi-nicho" target="_blank" style="color:#3b82f6;text-decoration:underline;text-underline-offset:2px;text-decoration-color:rgba(59,130,246,0.3);">Git ↗</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <h3>StockMaster Pro &mdash; Mini ERP Enterprise</h3>
+            <span class="tag">Full Stack</span>
+          </div>
+          <div class="project-stack">Next.js 14 / TypeScript / MongoDB / Tailwind CSS / NextAuth</div>
+          <div class="project-desc">
+            <ul>
+              <li>Backend robusto com 100% de integridade referencial e travas de seguran&ccedil;a contra inconsist&ecirc;ncias cr&iacute;ticas.</li>
+              <li>RBAC completo e logs de auditoria nativos para rastreabilidade total de opera&ccedil;&otilde;es de estoque.</li>
+              <li>Dashboards financeiros em tempo real com renderiza&ccedil;&atilde;o h&iacute;brida (SSR/CSR) e relat&oacute;rios export&aacute;veis em PDF.</li>
+              <li>C&oacute;digo: <a href="https://github.com/GabrielLuna1/Stock-master-pro" target="_blank" style="color:#3b82f6;text-decoration:underline;text-underline-offset:2px;text-decoration-color:rgba(59,130,246,0.3);">Git ↗</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <h3>Portfolio Profissional V2 &mdash; Obsidian Forge</h3>
+            <span class="tag">Front-End</span>
+          </div>
+          <div class="project-stack">Next.js 16 / React 19 / TypeScript / Tailwind CSS / Framer Motion</div>
+          <div class="project-desc">
+            <ul>
+              <li>Estrat&eacute;gia de Version Polling para AutoUpdate sem interrup&ccedil;&atilde;o ao usu&aacute;rio.</li>
+              <li>i18n escal&aacute;vel (PT/EN) via Context API e design system pr&oacute;prio "Obsidian Forge".</li>
+              <li>CaseChat: chatbot TF-IDF com 47+ Q&As e prote&ccedil;&atilde;o contra injection.</li>
+              <li>CommandMenu com ~50 a&ccedil;&otilde;es via Ctrl+K.</li>
+              <li>Dispon&iacute;vel em <a href="https://gabriel-luna-portfolio-v2-qj3o.vercel.app/" target="_blank" style="color:#3b82f6;text-decoration:underline;text-underline-offset:2px;text-decoration-color:rgba(59,130,246,0.3);">Portfólio ↗</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SIDE COLUMN -->
+    <div class="side-col">
+
+      <!-- SKILLS -->
+      <div class="section">
+        <div class="section-header">
+          <div class="icon">&#9679;</div>
+          <h2>Compet&ecirc;ncias</h2>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Front-End</div>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">React.js</span>
+            <span class="skill-tag highlight">Next.js 14/15/16</span>
+            <span class="skill-tag highlight">TypeScript</span>
+            <span class="skill-tag">Tailwind CSS v3/v4</span>
+            <span class="skill-tag">Framer Motion</span>
+            <span class="skill-tag">Shadcn/UI</span>
+            <span class="skill-tag">HTML5 / CSS3</span>
+            <span class="skill-tag">Responsive Design</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Back-End &amp; Database</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">RESTful APIs</span>
+            <span class="skill-tag">Serverless</span>
+            <span class="skill-tag">MongoDB / Atlas</span>
+            <span class="skill-tag">Mongoose</span>
+            <span class="skill-tag">Prisma</span>
+            <span class="skill-tag">SQLite / SQL Server</span>
+            <span class="skill-tag">Redis / BullMQ</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">IA &amp; Machine Learning</div>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">LLMs Locais</span>
+            <span class="skill-tag highlight">LM Studio</span>
+            <span class="skill-tag highlight">Ollama</span>
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">ChromaDB / RAG</span>
+            <span class="skill-tag">Sentence-Transformers</span>
+            <span class="skill-tag">OpenRouter</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">IA Generativa &mdash; Imagem &amp; V&iacute;deo</div>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">ComfyUI</span>
+            <span class="skill-tag highlight">FLUX.1 Dev / Schnell</span>
+            <span class="skill-tag">Stable Diffusion</span>
+            <span class="skill-tag">WAN 2.1 (T2V / I2V)</span>
+            <span class="skill-tag">LTX Video</span>
+            <span class="skill-tag">Hunyuan Video</span>
+            <span class="skill-tag">ControlNet</span>
+            <span class="skill-tag">IPAdapter</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Agentes &amp; Automa&ccedil;&atilde;o</div>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">Agentes de IA</span>
+            <span class="skill-tag">GSD (Spec-Driven Dev)</span>
+            <span class="skill-tag">ECC (60+ Agents)</span>
+            <span class="skill-tag">Graphify</span>
+            <span class="skill-tag">Playwright</span>
+            <span class="skill-tag">Celery</span>
+            <span class="skill-tag">N8n</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Ferramentas &amp; DevOps</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Git / GitHub</span>
+            <span class="skill-tag">Vercel</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">VS Code / Cursor</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Electron</span>
+            <span class="skill-tag">Linux</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- EDUCAÇÃO -->
+      <div class="section">
+        <div class="section-header">
+          <div class="icon">&#9679;</div>
+          <h2>Forma&ccedil;&atilde;o</h2>
+        </div>
+        <div class="info-list">
+          <strong>An&aacute;lise e Desenvolvimento de Sistemas</strong><br>
+          Tecn&oacute;logo &mdash; Conclu&iacute;do Dez/2020<br>
+          <span style="color:#71717a;font-size:11.5px;">Universidade de Mogi das Cruzes</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- CERTIFICAÇÕES -->
+      <div class="section">
+        <div class="section-header">
+          <div class="icon">&#9679;</div>
+          <h2>Certifica&ccedil;&otilde;es</h2>
+        </div>
+        <div class="cert-item">
+          <strong>Programador Full Stack JavaScript</strong><br>
+          <span class="cert-inst">OneBitCode &mdash; Bootcamp Intensivo</span>
+        </div>
+        <div class="cert-item">
+          <strong>Especializa&ccedil;&atilde;o Front-End (React &amp; TypeScript)</strong><br>
+          <span class="cert-inst">Origamid</span>
+        </div>
+        <div class="cert-item">
+          <strong>SQL Server 2016 &mdash; Modelagem de Dados</strong><br>
+          <span class="cert-inst">Faculdade Impacta</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- IDIOMAS -->
+      <div class="section">
+        <div class="section-header">
+          <div class="icon">&#9679;</div>
+          <h2>Idiomas</h2>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Portugu&ecirc;s</span>
+          <span class="lang-level">Nativo</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Ingl&ecirc;s</span>
+          <span class="lang-level">Intermedi&aacute;rio (T&eacute;cnico Avan&ccedil;ado)</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- INTERESSES TECNOLÓGICOS -->
+      <div class="section">
+        <div class="section-header">
+          <div class="icon">&#9679;</div>
+          <h2>Stack Principal</h2>
+        </div>
+        <div class="info-list" style="font-size:11.5px; line-height:1.7;">
+          <strong>Front:</strong> Next.js + TypeScript + Tailwind + Framer<br>
+          <strong>Back:</strong> Node.js / FastAPI + MongoDB + Redis<br>
+          <strong>IA:</strong> LM Studio / Ollama + LangChain + ChromaDB<br>
+          <strong>Gen AI:</strong> ComfyUI + FLUX + WAN 2.1<br>
+          <strong>Agents:</strong> ECC / GSD / Playwright<br>
+          <strong>Deploy:</strong> Vercel + Docker + Linux
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
