@@ -96,7 +96,7 @@ export function Hero({ data }: HeroProps) {
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1, y: [0, -4, 0] }}
+                animate={{ opacity: 1, scale: 1, y: [0, -10, 0] }}
                 transition={{
                   delay: 0.5,
                   duration: 0.4,
