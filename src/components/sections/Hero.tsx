@@ -96,14 +96,16 @@ export function Hero({ data }: HeroProps) {
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: [1, 1.4, 1] }}
+                animate={{ opacity: 1, scale: 1, y: [0, -4, 0] }}
                 transition={{
-                  times: [0, 0.5, 1],
                   delay: 0.5,
-                  duration: 0.6,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatDelay: 2,
+                  duration: 0.4,
+                  ease: [0.34, 1.56, 0.64, 1],
+                  y: {
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  },
                 }}
                 className="inline-block text-primary ml-0.5 text-display-lg"
               >
