@@ -10,12 +10,12 @@ import { ParallaxOrb } from "@/components/ui/ParallaxOrb";
 const projects = [
   {
     id: "work-hunter",
-    title: "WorkHunter",
-    subtitle: "AI-Powered Job Hunting Platform",
-    descriptionKey: "jh.overview.desc", // We will add translations
+    title: "WorkPlus",
+    subtitle: "AI-Powered Job Search Platform",
+    descriptionKey: "jh.overview.desc",
     icon: Brain,
     gradient: "from-primary/20 via-primary-light/5 to-transparent",
-    tags: ["FastAPI", "MongoDB", "Next.js 15", "Playwright", "LM Studio"],
+    tags: ["FastAPI", "MongoDB", "Next.js 15", "LM Studio"],
   },
   {
     id: "stockmaster",
