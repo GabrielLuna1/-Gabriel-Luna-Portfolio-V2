@@ -52,7 +52,7 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["ajuda", "help", "o que voce faz", "o que voce sabe", "como funciona", "menu", "opcoes", "o que posso perguntar"],
     question: "O que você faz? / Como funciona? / O que posso perguntar?",
     answer:
-      "Posso responder sobre:\n\n• **Quem é o Gabriel** — trajetória, formação e valores\n• **Projetos** — StockMaster, WorkHunter, Galactic Luna, ESC Cursos e mais\n• **Skills técnicas** — frontend, backend, banco de dados, DevOps\n• **Experiência profissional** — onde trabalhou e o que entregou\n• **Contato** — LinkedIn, GitHub e e-mail\n• **Disponibilidade** — freelance e projetos\n\nPode perguntar em linguagem natural, sem precisar de comandos.",
+      "Posso responder sobre:\n\n• **Quem é o Gabriel** — trajetória, formação e valores\n• **Projetos** — StockMaster, WorkPlus, Galactic Luna, ESC Cursos e mais\n• **Skills técnicas** — frontend, backend, banco de dados, DevOps\n• **Experiência profissional** — onde trabalhou e o que entregou\n• **Contato** — LinkedIn, GitHub e e-mail\n• **Disponibilidade** — freelance e projetos\n\nPode perguntar em linguagem natural, sem precisar de comandos.",
     tags: ["greeting", "meta"],
   },
   {
@@ -76,7 +76,7 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["anos", "experiencia", "tempo", "quanto tempo", "senioridade", "junior", "pleno", "senior", "nivel"],
     question: "Quantos anos de experiência? / Qual seu nível?",
     answer:
-      "Tenho alguns anos de experiência prática com desenvolvimento web, com projetos reais que vão desde dashboards complexos com controle de acesso até ferramentas de automação com scraping e IA. Me considero pleno, com pegada de sênior em arquitetura frontend e integração de sistemas.",
+      "Tenho alguns anos de experiência prática com desenvolvimento web, com projetos reais que vão desde dashboards complexos com controle de acesso até ferramentas de automação e IA. Me considero pleno, com pegada de sênior em arquitetura frontend e integração de sistemas.",
     tags: ["about", "experience"],
   },
   {
@@ -116,7 +116,7 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["skills", "skill", "tecnologia", "tecnologias", "tech", "stack", "ferramentas", "conhecimento", "conhecimentos", "domina", "sabe"],
     question: "Quais são suas skills? / Quais tecnologias você usa?",
     answer:
-      "As principais tecnologias do dia a dia:\n\n**Frontend:** React, Next.js, TypeScript, Tailwind CSS, Framer Motion\n**Backend:** Node.js, Express, REST APIs, Server Actions\n**Banco de dados:** MongoDB, PostgreSQL\n**Auth & Segurança:** NextAuth, JWT, RBAC\n**DevOps / Infra:** Docker, Git, GitHub Actions, Vercel\n**IA / Automação:** Integração com LLMs, scraping com Puppeteer/Playwright",
+      "As principais tecnologias do dia a dia:\n\n**Frontend:** React, Next.js, TypeScript, Tailwind CSS, Framer Motion\n**Backend:** Node.js, Express, REST APIs, Server Actions, FastAPI\n**Banco de dados:** MongoDB, PostgreSQL\n**Auth & Segurança:** NextAuth, JWT, RBAC\n**DevOps / Infra:** Docker, Git, GitHub Actions, Vercel\n**IA / Automação:** Integração com LLMs (LM Studio, OpenRouter), automação de workflows",
     tags: ["skills", "tech"],
   },
   {
@@ -156,7 +156,7 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["ia", "ai", "inteligencia artificial", "llm", "openai", "gpt", "claude", "modelo", "machine learning", "ml", "automacao", "nlp"],
     question: "Você trabalha com IA? / Usa LLMs?",
     answer:
-      "Sim, tenho integrado IA em projetos práticos. No WorkHunter, por exemplo, uso LLMs para analisar compatibilidade entre vagas e perfil do candidato e para geração de cartas de apresentação personalizadas. Trabalho com APIs de modelos de linguagem e sei integrar IA como ferramenta de produtividade em aplicações reais.",
+      "Sim, tenho integrado IA em projetos práticos. No WorkPlus, por exemplo, uso LLMs para analisar compatibilidade entre vagas e perfil do candidato e para geração de cartas de apresentação personalizadas. Trabalho com APIs de modelos de linguagem e sei integrar IA como ferramenta de produtividade em aplicações reais.",
     tags: ["skills", "ai", "workhunter"],
   },
   {
@@ -168,11 +168,11 @@ export const qaDatabase: QAEntry[] = [
     tags: ["skills", "auth", "security"],
   },
   {
-    id: "skills-scraping",
-    keywords: ["scraping", "web scraping", "puppeteer", "playwright", "crawler", "crawl", "raspagem", "automacao web", "bot"],
-    question: "Você faz web scraping? / Usa Puppeteer?",
+    id: "skills-web-integration",
+    keywords: ["web integration", "integracao web", "coleta dados", "dados web", "fontes abertas", "integração"],
+    question: "Você faz integração com fontes web? / Usa APIs?",
     answer:
-      "Sim! No WorkHunter construí um engine de scraping que coleta vagas em múltiplas plataformas de forma automatizada. Trabalho com Puppeteer e sei lidar com os desafios clássicos: paginação dinâmica, JavaScript-rendered content, rate limiting e evitar bloqueios.",
+      "Sim! No WorkPlus construí um sistema de integração que consulta vagas em múltiplas plataformas de tecnologia de forma automatizada. Trabalho com APIs REST e consulta a sites de carreira para centralizar oportunidades de forma organizada.",
     tags: ["skills", "scraping", "workhunter"],
   },
   {
@@ -180,7 +180,7 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["portfolio", "projetos", "projeto", "o que criou", "o que desenvolveu", "trabalhos", "trabalho", "lista", "quais projetos"],
     question: "Quais projetos você tem? / Me mostra o portfólio",
     answer:
-      "Os projetos principais são:\n\n• **StockMaster** — sistema de gestão de estoque com RBAC, relatórios e auditoria\n• **WorkHunter** — plataforma de busca de emprego com scraping, match por IA e auto-apply\n• **Galactic Luna** — e-commerce com loja virtual e painel de gerenciamento\n• **ESC Cursos** — plataforma educacional completa\n• **Este portfólio** — com design system próprio, animações e este chat\n\nPode perguntar mais detalhes de qualquer um deles!",
+      "Os projetos principais são:\n\n• **StockMaster** — sistema de gestão de estoque com RBAC, relatórios e auditoria\n• **WorkPlus** — plataforma de busca e gestão de vagas tech com match por IA local\n• **Galactic Luna** — e-commerce com loja virtual e painel de gerenciamento\n• **ESC Cursos** — plataforma educacional completa\n• **Este portfólio** — com design system próprio, animações e este chat\n\nPode perguntar mais detalhes de qualquer um deles!",
     tags: ["portfolio", "projects"],
   },
   {
@@ -188,15 +188,15 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["quantos", "numero", "total", "count", "lista completa"],
     question: "Quantos projetos você tem?",
     answer:
-      "O portfólio apresenta 4 projetos principais — StockMaster, WorkHunter, Galactic Luna e ESC Cursos — além do próprio portfólio, que também é um projeto por si só. Cada um resolve um problema diferente e demonstra stacks e técnicas distintas.",
+      "O portfólio apresenta 4 projetos principais — StockMaster, WorkPlus, Galactic Luna e ESC Cursos — além do próprio portfólio, que também é um projeto por si só. Cada um resolve um problema diferente e demonstra stacks e técnicas distintas.",
     tags: ["portfolio", "projects"],
   },
   {
     id: "portfolio-comparison",
-    keywords: ["diferenca", "diferença", "comparacao", "comparação", "compara", "versus", "vs", "melhor", "stockmaster workhunter", "workhunter stockmaster"],
-    question: "Qual a diferença entre StockMaster e WorkHunter?",
+    keywords: ["diferenca", "diferença", "comparacao", "comparação", "compara", "versus", "vs", "melhor", "stockmaster workplus", "workplus stockmaster", "stockmaster workhunter", "workhunter stockmaster"],
+    question: "Qual a diferença entre StockMaster e WorkPlus?",
     answer:
-      "São projetos com propósitos completamente diferentes:\n\n**StockMaster** é voltado para empresas — um sistema interno de gestão de estoque, com controle de usuários, permissões, relatórios e auditoria. O foco é confiabilidade, rastreabilidade e segurança de dados corporativos.\n\n**WorkHunter** é voltado para candidatos — uma plataforma que automatiza a busca de emprego, coletando vagas de múltiplos sites, calculando compatibilidade via IA e podendo até aplicar automaticamente. O foco é automação inteligente e experiência do usuário.\n\nUm é B2B, o outro é B2C. Stacks similares, arquiteturas bem diferentes.",
+      "São projetos com propósitos completamente diferentes:\n\n**StockMaster** é voltado para empresas — um sistema interno de gestão de estoque, com controle de usuários, permissões, relatórios e auditoria. O foco é confiabilidade, rastreabilidade e segurança de dados corporativos.\n\n**WorkPlus** é voltado para candidatos — uma plataforma que centraliza a busca de vagas tech, calculando compatibilidade via IA local e organizando o pipeline seletivo. O foco é inteligência de mercado e experiência do usuário.\n\nUm é B2B, o outro é B2C. Stacks similares, arquiteturas bem diferentes.",
     tags: ["portfolio", "stockmaster", "workhunter", "comparison"],
   },
   {
@@ -273,50 +273,50 @@ export const qaDatabase: QAEntry[] = [
   },
   {
     id: "workhunter-overview",
-    keywords: ["workhunter", "emprego", "vaga", "vagas", "candidatura", "candidato", "busca emprego", "job", "jobs", "hunting"],
-    question: "O que é o WorkHunter?",
+    keywords: ["workhunter", "workplus", "emprego", "vaga", "vagas", "candidatura", "candidato", "busca emprego", "job", "jobs", "hunting"],
+    question: "O que é o WorkPlus?",
     answer:
-      "WorkHunter é uma plataforma que automatiza a busca de emprego. Em vez de o candidato entrar em 10 sites diferentes, o WorkHunter coleta vagas de múltiplas fontes via scraping, calcula um score de compatibilidade com o perfil do usuário usando IA, organiza tudo num Kanban e ainda pode aplicar automaticamente nas melhores oportunidades.",
+      "WorkPlus é uma plataforma inteligente de busca e gestão de vagas tech. Ela centraliza oportunidades de múltiplas fontes, calcula compatibilidade com o perfil do usuário usando IA local (LM Studio), organiza tudo num Kanban e oferece analytics de mercado para ajudar na tomada de decisão.",
     tags: ["workhunter", "projects"],
   },
   {
     id: "workhunter-scraping",
-    keywords: ["scraping", "coleta", "coletar", "vagas", "sites", "plataformas", "linkedin", "indeed", "glassdoor", "fonte"],
-    question: "Como o WorkHunter coleta vagas?",
+    keywords: ["coleta", "coletar", "vagas", "sites", "plataformas", "linkedin", "indeed", "glassdoor", "fonte"],
+    question: "Como o WorkPlus coleta vagas?",
     answer:
-      "O engine de scraping do WorkHunter acessa múltiplas plataformas de emprego de forma automatizada, coletando título, empresa, localização, descrição e requisitos de cada vaga. Usa Puppeteer para lidar com páginas dinâmicas, respeita rate limits para não ser bloqueado e salva tudo numa base central para o matching.",
+      "O WorkPlus se integra com múltiplas plataformas de emprego através de APIs abertas e consulta a sites de carreira, centralizando título, empresa, localização, descrição e requisitos de cada vaga em um único banco de dados.",
     tags: ["workhunter", "scraping"],
   },
   {
     id: "workhunter-match",
-    keywords: ["match", "matching", "compatibilidade", "score", "pontuacao", "algoritmo", "relevancia", "rank", "ranking"],
+    keywords: ["match", "matching", "compatibilidade", "score", "pontuacao", "algoritmo", "relevancia", "rank", "ranking", "workplus"],
     question: "Como funciona o matching de vagas?",
     answer:
-      "O WorkHunter compara o perfil do candidato (skills, experiências, preferências) com a descrição de cada vaga usando IA. O resultado é um score de compatibilidade de 0 a 100%. Vagas com score alto aparecem no topo e recebem um destaque visual. O usuário pode ajustar os critérios do perfil para refinar os resultados.",
+      "O WorkPlus compara o perfil do candidato (skills, experiências, preferências) com a descrição de cada vaga usando IA local (LM Studio). O resultado é um score de compatibilidade de 0 a 100%. Vagas com score alto aparecem no topo e recebem um destaque visual. O usuário pode ajustar os critérios do perfil para refinar os resultados.",
     tags: ["workhunter", "match", "ai"],
   },
   {
     id: "workhunter-kanban",
     keywords: ["kanban", "board", "quadro", "coluna", "arrastar", "drag", "drop", "pipeline", "funil", "etapa", "status"],
-    question: "O WorkHunter tem Kanban?",
+    question: "O WorkPlus tem Kanban?",
     answer:
       "Sim! Após encontrar as vagas, o usuário gerencia as candidaturas num Kanban com colunas personalizáveis: Encontradas, Aplicadas, Em Triagem, Entrevista, Oferta, Recusada. Dá pra arrastar os cards entre colunas, adicionar notas e acompanhar todo o processo seletivo num só lugar.",
     tags: ["workhunter", "kanban"],
   },
   {
     id: "workhunter-autoapply",
-    keywords: ["auto apply", "aplicacao automatica", "aplicar automaticamente", "candidatura automatica", "automaric", "automatico"],
-    question: "Como funciona o auto-apply?",
+    keywords: ["kanban", "pipeline", "candidatura manual", "aplicar"],
+    question: "Como gerenciar as candidaturas no WorkPlus?",
     answer:
-      "Para vagas compatíveis com score alto, o WorkHunter pode aplicar automaticamente usando as informações do perfil do candidato. O sistema preenche formulários, anexa currículo e envia carta de apresentação gerada por IA, personalizada para cada vaga. O usuário controla quais vagas entram no auto-apply e pode revisar antes de enviar.",
+      "O WorkPlus não faz candidatura automática. Após encontrar as vagas de interesse, o usuário gerencia o processo seletivo manualmente através do Kanban integrado. O sistema ajuda na organização com 8 estágios: Salvas, Analisadas, Aplicadas, Em Triagem, Entrevista, Oferta, Contratado e Rejeitado.",
     tags: ["workhunter", "autoapply", "ai"],
   },
   {
     id: "workhunter-architecture",
-    keywords: ["arquitetura", "estrutura", "como foi feito", "tecnologia", "stack workhunter"],
-    question: "Qual a arquitetura do WorkHunter?",
+    keywords: ["arquitetura", "estrutura", "como foi feito", "tecnologia", "stack workhunter", "stack workplus"],
+    question: "Qual a arquitetura do WorkPlus?",
     answer:
-      "O WorkHunter tem:\n\n• **Frontend:** Next.js + TypeScript + Tailwind CSS para a interface do candidato\n• **Scraping Engine:** Puppeteer rodando em workers separados\n• **IA:** Integração com LLMs para match e geração de texto\n• **Banco:** MongoDB para armazenar vagas, perfis e candidaturas\n• **Auth:** NextAuth com suporte a múltiplos provedores",
+      "O WorkPlus tem:\n\n• **Frontend:** Next.js + TypeScript + Tailwind CSS para a interface do usuário\n• **Backend:** FastAPI + Celery para processamento assíncrono\n• **IA:** LM Studio com LLMs locais para match score e análise\n• **Banco:** MongoDB para armazenar vagas, perfis e pipeline\n• **Auth:** JWT com suporte a múltiplos perfis",
     tags: ["workhunter", "architecture"],
   },
   {

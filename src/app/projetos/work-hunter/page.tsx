@@ -13,33 +13,33 @@ import { FloatingTechTags } from "@/components/ui/FloatingTechTags";
 
 const getFeatures = (lang: "pt" | "en") => [
   {
-    title: lang === "pt" ? "Scraping Inteligente" : "Smart Scraping",
-    description: lang === "pt" ? "Coleta automatizada de 9+ fontes com proxies rotativos anti-bloqueio." : "Automated collection from 9+ sources with anti-blocking rotating proxies.",
+    title: lang === "pt" ? "Coleta Multi-Fonte" : "Multi-Source Collection",
+    description: lang === "pt" ? "Integração com 12 plataformas de vagas para centralizar oportunidades." : "Integration with 12 job platforms to centralize opportunities.",
     icon: Globe,
   },
   {
-    title: lang === "pt" ? "Match Scoring com IA" : "AI Match Scoring",
-    description: lang === "pt" ? "Análise profunda de currículo vs vaga usando LLMs locais (Qwen 3.6 35B)." : "Deep analysis of resume vs job using local LLMs (Qwen 3.6 35B).",
+    title: lang === "pt" ? "Match Score com IA" : "AI Match Scoring",
+    description: lang === "pt" ? "Análise de currículo vs vaga usando LLMs locais (LM Studio)." : "Resume vs job analysis using local LLMs (LM Studio).",
     icon: Brain,
   },
   {
-    title: lang === "pt" ? "Auto-Apply" : "Auto-Apply",
-    description: lang === "pt" ? "Candidatura em 1-clique com preenchimento dinâmico de formulários." : "1-click applications with dynamic form filling and context generation.",
-    icon: Zap,
-  },
-  {
-    title: lang === "pt" ? "Kanban Analítico" : "Analytical Kanban",
-    description: lang === "pt" ? "Pipeline visual com métricas preditivas de probabilidade de avanço." : "Visual pipeline with predictive advancement probability metrics.",
+    title: lang === "pt" ? "Pipeline Kanban" : "Kanban Pipeline",
+    description: lang === "pt" ? "8 estágios drag-and-drop com métricas de conversão." : "8 drag-and-drop stages with conversion metrics.",
     icon: Target,
   },
   {
-    title: lang === "pt" ? "Rastreabilidade SHA256" : "SHA256 Traceability",
-    description: lang === "pt" ? "Deduplicação de currículos e mapeamento bidirecional vaga-currículo." : "Resume deduplication and bidirectional job-resume mapping.",
+    title: lang === "pt" ? "Currículo Inteligente" : "Smart Resume",
+    description: lang === "pt" ? "Upload, extração automática, versionamento e exportação." : "Upload, automatic extraction, versioning and export.",
     icon: GitBranch,
   },
   {
-    title: lang === "pt" ? "Fallback Cascade" : "Fallback Cascade",
-    description: lang === "pt" ? "Circuito LM Studio → Ollama → OpenRouter para alta disponibilidade." : "LM Studio → Ollama → OpenRouter circuit for high availability.",
+    title: lang === "pt" ? "Radar de Mercado" : "Market Radar",
+    description: lang === "pt" ? "Análise de stacks, salários e skills mais demandadas." : "Analysis of trending stacks, salaries and skills.",
+    icon: BarChart3,
+  },
+  {
+    title: lang === "pt" ? "Copilot de Carreira" : "Career Copilot",
+    description: lang === "pt" ? "Chat IA com análise de vagas, match e cover letter." : "AI chat for job analysis, matching and cover letters.",
     icon: Cpu,
   },
 ];
@@ -62,22 +62,22 @@ const getArchitectureLayers = (lang: "pt" | "en") => [
   {
     title: "Workers (Celery)",
     items: lang === "pt"
-      ? ["Playwright Stealth", "Redis Queue", "Rate limits", "Beautiful Soup"]
-      : ["Playwright Stealth", "Redis Queue", "Rate limits", "Beautiful Soup"],
+      ? ["Redis Queue", "Rate limits", "Processamento Assíncrono"]
+      : ["Redis Queue", "Rate limits", "Async Processing"],
     color: "text-amber-400",
   },
   {
     title: "IA Engine",
     items: lang === "pt"
-      ? ["LM Studio", "Ollama Fallback", "Semantic Embeddings", "Prompt Fine-tuning"]
-      : ["LM Studio", "Ollama Fallback", "Semantic Embeddings", "Prompt Fine-tuning"],
+      ? ["LM Studio", "Semantic Embeddings", "Prompt Fine-tuning"]
+      : ["LM Studio", "Semantic Embeddings", "Prompt Fine-tuning"],
     color: "text-purple-400",
   },
 ];
 
 const getTechDetails = (lang: "pt" | "en") => [
   { name: "FastAPI", desc: "Async REST Backend", icon: Server },
-  { name: "Playwright", desc: "Headless Scraping", icon: Globe },
+  { name: "Next.js", desc: "React Framework", icon: Globe },
   { name: "LM Studio", desc: "Local LLMs", icon: Brain },
   { name: "Celery", desc: "Distributed Workers", icon: Cpu },
 ];
@@ -94,26 +94,26 @@ const getCmdActions = (lang: "pt" | "en", features: any[], techDetails: any[]) =
 ];
 
 const getFlowSteps = (lang: "pt" | "en") => [
-  { step: "01", title: lang === "pt" ? "Descoberta" : "Discovery", desc: lang === "pt" ? "Playwright coleta vagas de 9+ fontes com stealth mode." : "Playwright collects jobs from 9+ sources using stealth mode.", icon: Radar },
+  { step: "01", title: lang === "pt" ? "Coleta" : "Collection", desc: lang === "pt" ? "Busca de vagas em múltiplas plataformas de tecnologia." : "Job search across multiple tech platforms.", icon: Radar },
   { step: "02", title: lang === "pt" ? "Análise" : "Analysis", desc: lang === "pt" ? "IA local analisa a vaga contra o currículo do candidato." : "Local AI analyzes the job against your resume.", icon: Brain },
-  { step: "03", title: "Match Score", desc: lang === "pt" ? "Score multidimendional com explicação por IA." : "Multidimensional scoring with AI explanation.", icon: BarChart3 },
-  { step: "04", title: "Auto-Apply", desc: lang === "pt" ? "Candidatura automatizada com currículo otimizado." : "Automated applications tailored specifically for the job.", icon: Zap },
+  { step: "03", title: "Match Score", desc: lang === "pt" ? "Score multidimensional com explicação por IA." : "Multidimensional scoring with AI explanation.", icon: BarChart3 },
+  { step: "04", title: "Pipeline", desc: lang === "pt" ? "Acompanhamento visual do status de cada oportunidade." : "Visual tracking of each opportunity's status.", icon: Zap },
 ];
 
 const pageContent = {
   pt: {
     backBtn: "Voltar",
-    heroDesc: "Plataforma inteligente que unifica scraping multi-fonte, match por inteligência artificial, auto-apply, pipeline kanban e analytics em tempo real.",
+    heroDesc: "Plataforma inteligente de busca e gestão de vagas tech com match por IA local, pipeline kanban, analytics de mercado e currículo inteligente.",
     btnCode: "Repositório",
     statsTitle: "Capacidade",
     stats: [
-      { label: "Fontes", value: "9+" },
-      { label: "Modelos IA", value: "4" },
+      { label: "Fontes", value: "12" },
+      { label: "Modelos IA", value: "1" },
       { label: "Estágios", value: "8" },
       { label: "Workers", value: "16" },
     ],
     featuresTitle: "Core Features.",
-    featuresDesc: "Inteligência artificial aplicada para automatizar o funil de contratação.",
+    featuresDesc: "Ferramentas inteligentes para otimizar sua busca de vagas.",
     archTitle: "Architecture.",
     archDesc: "Arquitetura de microsserviços projetada para processamento assíncrono e inferência de IA local.",
     flowTitle: "Pipeline.",
@@ -121,17 +121,17 @@ const pageContent = {
   },
   en: {
     backBtn: "Back",
-    heroDesc: "Intelligent platform that unifies multi-source scraping, artificial intelligence matching, auto-apply, kanban pipeline, and real-time analytics.",
+    heroDesc: "Intelligent tech job search and management platform with local AI matching, kanban pipeline, market analytics, and smart resume management.",
     btnCode: "Repository",
     statsTitle: "Capacity",
     stats: [
-      { label: "Sources", value: "9+" },
-      { label: "AI Models", value: "4" },
+      { label: "Sources", value: "12" },
+      { label: "AI Models", value: "1" },
       { label: "Stages", value: "8" },
       { label: "Workers", value: "16" },
     ],
     featuresTitle: "Core Features.",
-    featuresDesc: "Artificial intelligence applied to automate the hiring funnel.",
+    featuresDesc: "Smart tools to optimize your job search.",
     archTitle: "Architecture.",
     archDesc: "Microservices architecture designed for asynchronous processing and local AI inference.",
     flowTitle: "Pipeline.",
@@ -141,7 +141,6 @@ const pageContent = {
 
 const floatingTags = [
   { name: "Python", icon: <Code2 size={12} /> },
-  { name: "Playwright", icon: <Globe size={12} /> },
   { name: "Celery", icon: <Cpu size={12} /> },
   { name: "Docker", icon: <Server size={12} /> },
   { name: "FastAPI", icon: <Zap size={12} /> },
@@ -149,7 +148,7 @@ const floatingTags = [
   { name: "React", icon: <Layers size={12} /> },
 ];
 
-export default function WorkHunterPage() {
+export default function WorkPlusPage() {
   const { language } = useLanguage();
   const t = pageContent[language];
 
@@ -166,13 +165,13 @@ export default function WorkHunterPage() {
       <div className="absolute inset-0 z-0 pointer-events-none bg-noise opacity-[0.03]" />
 
       <ProjectNav
-        projectName="Work Hunter"
+        projectName="WorkPlus"
         projectColor="primary"
         sections={navSections}
         prevProject={{ id: "stockmaster", name: "StockMaster Pro" }}
       />
       <ProjectCommandMenu
-        projectName="Work Hunter"
+        projectName="WorkPlus"
         sections={navSections}
         actions={cmdActions}
       />
@@ -197,7 +196,7 @@ export default function WorkHunterPage() {
               WebkitTextFillColor: "transparent"
             }}
           >
-            Work Hunter
+            WorkPlus
           </motion.h1>
 
           <motion.p

@@ -76,8 +76,8 @@ const translations = {
     "projects.btn.code": "Repositório",
     "projects.btn.demo": "Ver Aplicação",
 
-    "proj.jobhunter.title": "Work Hunter",
-    "proj.jobhunter.desc": "Plataforma avançada de hunting com scraping multi-fonte contornando bloqueios via Playwright. Utiliza IA local (Ollama/LM Studio) para match scoring de currículos e auto-apply inteligente.",
+    "proj.jobhunter.title": "WorkPlus",
+    "proj.jobhunter.desc": "Plataforma inteligente de busca e gestão de vagas tech. Integração com múltiplas fontes, match score por IA local (LM Studio), pipeline kanban, analytics de mercado e currículo inteligente.",
     
     "proj.stockmaster.title": "StockMaster Pro",
     "proj.stockmaster.desc": "ERP Enterprise-grade para gestão logística. Arquitetura serverless com Next.js, controle de acesso refinado (RBAC), auditoria imutável de logs e relatórios financeiros dinâmicos.",
@@ -208,8 +208,8 @@ const translations = {
     "projects.btn.code": "Source Code",
     "projects.btn.demo": "Live Application",
 
-    "proj.jobhunter.title": "Work Hunter",
-    "proj.jobhunter.desc": "Advanced hunting platform featuring multi-source scraping that bypasses blockers via Playwright. Utilizes local AI (Ollama/LM Studio) for intelligent resume match scoring and auto-apply.",
+    "proj.jobhunter.title": "WorkPlus",
+    "proj.jobhunter.desc": "Intelligent job search and management platform for tech roles. Integrates with multiple sources, AI match scoring via local LLMs (LM Studio), kanban pipeline, market analytics, and smart resume management.",
 
     "proj.stockmaster.title": "StockMaster Pro",
     "proj.stockmaster.desc": "Enterprise-grade ERP for logistics management. Features a Next.js serverless architecture, refined Role-Based Access Control (RBAC), immutable log auditing, and dynamic financial reporting.",
