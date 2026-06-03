@@ -88,7 +88,7 @@ export default function ProjetosPage() {
                     
                     <p className="text-secondary text-body leading-relaxed mb-8 flex-grow">
                       {project.id === "work-hunter" 
-                        ? "Plataforma inteligente de hunting que unifica scraping multi-fonte, match por IA, auto-apply e analytics em um só lugar."
+                        ? "Plataforma inteligente que centraliza vagas tech de múltiplas fontes, calcula compatibilidade via IA local e organiza o pipeline seletivo em um só lugar."
                         : "Mini-ERP completo para gestão logística com MVC, controle de acesso, auditoria, relatórios e dashboard em tempo real."}
                     </p>
                     
