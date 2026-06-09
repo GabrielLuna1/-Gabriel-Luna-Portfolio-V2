@@ -215,7 +215,7 @@ export default function WorkHunterPage() {
             className="flex items-center justify-center"
           >
               <a 
-              href="https://github.com/GabrielLuna1/WorkPlus" 
+              href="https://github.com/GabrielLuna1/WorkHunter" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#1e40af] text-white font-bold text-sm hover:bg-[#1d4ed8] transition-all shadow-[0_0_40px_rgba(30,64,175,0.6)] hover:shadow-[0_0_60px_rgba(30,64,175,0.8)] border border-blue-400/20 group"
