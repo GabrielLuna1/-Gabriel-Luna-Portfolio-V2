@@ -276,7 +276,7 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["workhunter", "workplus", "emprego", "vaga", "vagas", "candidatura", "candidato", "busca emprego", "job", "jobs", "hunting"],
     question: "O que é o WorkHunter?",
     answer:
-      "WorkHunter é uma plataforma inteligente de busca e gestão de vagas tech. Ela centraliza oportunidades de múltiplas fontes, calcula compatibilidade com o perfil do usuário usando IA local (LM Studio), organiza tudo num Kanban e oferece analytics de mercado para ajudar na tomada de decisão.",
+      "WorkHunter é uma plataforma inteligente de busca e gestão de vagas tech. Ela centraliza oportunidades de 3 portais brasileiros, calcula compatibilidade com o perfil do usuário usando IA local (Ollama/LM Studio), organiza tudo num Kanban e oferece analytics de mercado para ajudar na tomada de decisão.",
     tags: ["workhunter", "projects"],
   },
   {
@@ -284,7 +284,7 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["coleta", "coletar", "vagas", "sites", "plataformas", "linkedin", "indeed", "glassdoor", "fonte"],
     question: "Como o WorkHunter coleta vagas?",
     answer:
-      "O WorkHunter se integra com múltiplas plataformas de emprego através de APIs abertas e consulta a sites de carreira, centralizando título, empresa, localização, descrição e requisitos de cada vaga em um único banco de dados.",
+      "O WorkHunter se integra com 3 portais brasileiros de emprego (Gupy, InfoJobs e Vagas.com.br), centralizando título, empresa, localização, descrição e requisitos de cada vaga em um único banco de dados.",
     tags: ["workhunter", "scraping"],
   },
   {
@@ -292,7 +292,7 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["match", "matching", "compatibilidade", "score", "pontuacao", "algoritmo", "relevancia", "rank", "ranking", "workplus"],
     question: "Como funciona o matching de vagas?",
     answer:
-      "O WorkHunter compara o perfil do candidato (skills, experiências, preferências) com a descrição de cada vaga usando IA local (LM Studio). O resultado é um score de compatibilidade de 0 a 100%. Vagas com score alto aparecem no topo e recebem um destaque visual. O usuário pode ajustar os critérios do perfil para refinar os resultados.",
+      "O WorkHunter compara o perfil do candidato (skills, experiências, preferências) com a descrição de cada vaga usando IA local (Ollama/LM Studio). O resultado é um score de compatibilidade de 0 a 100%. Vagas com score alto aparecem no topo e recebem um destaque visual. O usuário pode ajustar os critérios do perfil para refinar os resultados.",
     tags: ["workhunter", "match", "ai"],
   },
   {
@@ -300,7 +300,7 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["kanban", "board", "quadro", "coluna", "arrastar", "drag", "drop", "pipeline", "funil", "etapa", "status"],
     question: "O WorkHunter tem Kanban?",
     answer:
-      "Sim! Após encontrar as vagas, o usuário gerencia as candidaturas num Kanban com colunas personalizáveis: Encontradas, Aplicadas, Em Triagem, Entrevista, Oferta, Recusada. Dá pra arrastar os cards entre colunas, adicionar notas e acompanhar todo o processo seletivo num só lugar.",
+      "Sim! Após encontrar as vagas, o usuário gerencia as candidaturas num Kanban com 8 estágios: Salvas, Aplicadas, Em Análise, Entrevista RH, Entrevista Técnica, Teste Técnico, Contratado e Rejeitado. Dá pra arrastar os cards entre colunas, adicionar notas e acompanhar todo o processo seletivo num só lugar.",
     tags: ["workhunter", "kanban"],
   },
   {
@@ -308,7 +308,7 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["kanban", "pipeline", "candidatura manual", "aplicar"],
     question: "Como gerenciar as candidaturas no WorkHunter?",
     answer:
-      "O WorkHunter não faz candidatura automática. Após encontrar as vagas de interesse, o usuário gerencia o processo seletivo manualmente através do Kanban integrado. O sistema ajuda na organização com 8 estágios: Salvas, Analisadas, Aplicadas, Em Triagem, Entrevista, Oferta, Contratado e Rejeitado.",
+      "O WorkHunter não faz candidatura automática. Após encontrar as vagas de interesse, o usuário gerencia o processo seletivo manualmente através do Kanban integrado. O sistema ajuda na organização com 8 estágios: Salvas, Aplicadas, Em Análise, Entrevista RH, Entrevista Técnica, Teste Técnico, Contratado e Rejeitado.",
     tags: ["workhunter", "autoapply", "ai"],
   },
   {
@@ -316,7 +316,7 @@ export const qaDatabase: QAEntry[] = [
     keywords: ["arquitetura", "estrutura", "como foi feito", "tecnologia", "stack workhunter", "stack workplus"],
     question: "Qual a arquitetura do WorkHunter?",
     answer:
-      "O WorkHunter tem:\n\n• **Frontend:** Next.js + TypeScript + Tailwind CSS para a interface do usuário\n• **Backend:** FastAPI + Celery para processamento assíncrono\n• **IA:** LM Studio com LLMs locais para match score e análise\n• **Banco:** MongoDB para armazenar vagas, perfis e pipeline\n• **Auth:** JWT com suporte a múltiplos perfis",
+      "O WorkHunter tem:\n\n• **Frontend:** Next.js + TypeScript + Tailwind CSS para a interface do usuário\n• **Backend:** FastAPI + Celery para processamento assíncrono\n• **IA:** Ollama (padrão) ou LM Studio com LLMs locais para match score e análise\n• **Banco:** MongoDB para armazenar vagas, perfis e pipeline\n• **Auth:** JWT com suporte a múltiplos perfis",
     tags: ["workhunter", "architecture"],
   },
   {

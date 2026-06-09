@@ -14,12 +14,12 @@ import { FloatingTechTags } from "@/components/ui/FloatingTechTags";
 const getFeatures = (lang: "pt" | "en") => [
   {
     title: lang === "pt" ? "Coleta Multi-Fonte" : "Multi-Source Collection",
-    description: lang === "pt" ? "Integração com 12 plataformas de vagas para centralizar oportunidades." : "Integration with 12 job platforms to centralize opportunities.",
+    description: lang === "pt" ? "Integração com 3 portais brasileiros de vagas para centralizar oportunidades." : "Integration with 3 brazilian job portals to centralize opportunities.",
     icon: Globe,
   },
   {
     title: lang === "pt" ? "Match Score com IA" : "AI Match Scoring",
-    description: lang === "pt" ? "Análise de currículo vs vaga usando LLMs locais (LM Studio)." : "Resume vs job analysis using local LLMs (LM Studio).",
+    description: lang === "pt" ? "Análise de currículo vs vaga usando LLMs locais (Ollama/LM Studio)." : "Resume vs job analysis using local LLMs (Ollama/LM Studio).",
     icon: Brain,
   },
   {
@@ -48,15 +48,15 @@ const getArchitectureLayers = (lang: "pt" | "en") => [
   {
     title: "Frontend (Next.js 15)",
     items: lang === "pt" 
-      ? ["Server Components", "Streaming SSR", "WebSocket Real-time", "ResizablePanel Hub"]
-      : ["Server Components", "Streaming SSR", "Real-time WebSockets", "ResizablePanel Hub"],
+      ? ["Server Components", "Streaming SSR", "SSE Streaming", "ResizablePanel Hub"]
+      : ["Server Components", "Streaming SSR", "SSE Streaming", "ResizablePanel Hub"],
     color: "text-primary",
   },
   {
     title: "API Gateway (FastAPI)",
     items: lang === "pt"
-      ? ["RESTful API v1", "Pydantic v2", "JWT Auth", "WebSocket Events"]
-      : ["RESTful API v1", "Pydantic v2", "JWT Auth", "WebSocket Events"],
+      ? ["RESTful API v1", "Pydantic v2", "JWT Auth", "SSE Streaming"]
+      : ["RESTful API v1", "Pydantic v2", "JWT Auth", "SSE Streaming"],
     color: "text-emerald-400",
   },
   {
@@ -69,8 +69,8 @@ const getArchitectureLayers = (lang: "pt" | "en") => [
   {
     title: "IA Engine",
     items: lang === "pt"
-      ? ["LM Studio", "Semantic Embeddings", "Prompt Fine-tuning"]
-      : ["LM Studio", "Semantic Embeddings", "Prompt Fine-tuning"],
+      ? ["Ollama (padrão)", "LM Studio (alt.)", "LLM Local", "Análise semântica"]
+      : ["Ollama (default)", "LM Studio (alt.)", "Local LLM", "Semantic Analysis"],
     color: "text-purple-400",
   },
 ];
@@ -78,7 +78,7 @@ const getArchitectureLayers = (lang: "pt" | "en") => [
 const getTechDetails = (lang: "pt" | "en") => [
   { name: "FastAPI", desc: "Async REST Backend", icon: Server },
   { name: "Next.js", desc: "React Framework", icon: Globe },
-  { name: "LM Studio", desc: "Local LLMs", icon: Brain },
+  { name: "Ollama", desc: "Local LLMs", icon: Brain },
   { name: "Celery", desc: "Distributed Workers", icon: Cpu },
 ];
 
@@ -90,12 +90,12 @@ const getNavSections = (lang: "pt" | "en") => [
 ];
 
 const getCmdActions = (lang: "pt" | "en", features: any[], techDetails: any[]) => [
-  { id: "gh", label: "GitHub", icon: <Github size={16} />, action: () => window.open("https://github.com/GabrielLuna1/job-hunter-ai", "_blank") },
+  { id: "gh", label: "GitHub", icon: <Github size={16} />, action: () => window.open("https://github.com/GabrielLuna1/WorkPlus", "_blank") },
 ];
 
 const getFlowSteps = (lang: "pt" | "en") => [
-  { step: "01", title: lang === "pt" ? "Coleta" : "Collection", desc: lang === "pt" ? "Busca de vagas em múltiplas plataformas de tecnologia." : "Job search across multiple tech platforms.", icon: Radar },
-  { step: "02", title: lang === "pt" ? "Análise" : "Analysis", desc: lang === "pt" ? "IA local analisa a vaga contra o currículo do candidato." : "Local AI analyzes the job against your resume.", icon: Brain },
+  { step: "01", title: lang === "pt" ? "Coleta" : "Collection", desc: lang === "pt" ? "Busca de vagas em portais brasileiros de tecnologia." : "Job search across brazilian tech portals.", icon: Radar },
+  { step: "02", title: lang === "pt" ? "Análise" : "Analysis", desc: lang === "pt" ? "IA local analisa a vaga e calcula compatibilidade (match score)." : "Local AI analyzes the job and calculates match score.", icon: Brain },
   { step: "03", title: "Match Score", desc: lang === "pt" ? "Score multidimensional com explicação por IA." : "Multidimensional scoring with AI explanation.", icon: BarChart3 },
   { step: "04", title: "Pipeline", desc: lang === "pt" ? "Acompanhamento visual do status de cada oportunidade." : "Visual tracking of each opportunity's status.", icon: Zap },
 ];
@@ -107,8 +107,8 @@ const pageContent = {
     btnCode: "Repositório",
     statsTitle: "Capacidade",
     stats: [
-      { label: "Fontes", value: "12" },
-      { label: "Modelos IA", value: "1" },
+      { label: "Fontes", value: "3" },
+      { label: "Modelos IA", value: "N" },
       { label: "Estágios", value: "8" },
       { label: "Workers", value: "16" },
     ],
@@ -125,8 +125,8 @@ const pageContent = {
     btnCode: "Repository",
     statsTitle: "Capacity",
     stats: [
-      { label: "Sources", value: "12" },
-      { label: "AI Models", value: "1" },
+      { label: "Sources", value: "3" },
+      { label: "AI Models", value: "N" },
       { label: "Stages", value: "8" },
       { label: "Workers", value: "16" },
     ],
@@ -214,8 +214,8 @@ export default function WorkHunterPage() {
             transition={{ delay: 0.3 }}
             className="flex items-center justify-center"
           >
-            <a 
-              href="https://github.com/GabrielLuna1/job-hunter-ai" 
+              <a 
+              href="https://github.com/GabrielLuna1/WorkPlus" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#1e40af] text-white font-bold text-sm hover:bg-[#1d4ed8] transition-all shadow-[0_0_40px_rgba(30,64,175,0.6)] hover:shadow-[0_0_60px_rgba(30,64,175,0.8)] border border-blue-400/20 group"
