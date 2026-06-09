@@ -10,7 +10,7 @@ import { ParallaxOrb } from "@/components/ui/ParallaxOrb";
 const projects = [
   {
     id: "work-hunter",
-    title: "WorkPlus",
+    title: "WorkHunter",
     subtitle: "AI-Powered Job Search Platform",
     descriptionKey: "jh.overview.desc",
     icon: Brain,

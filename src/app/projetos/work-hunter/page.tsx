@@ -148,7 +148,7 @@ const floatingTags = [
   { name: "React", icon: <Layers size={12} /> },
 ];
 
-export default function WorkPlusPage() {
+export default function WorkHunterPage() {
   const { language } = useLanguage();
   const t = pageContent[language];
 
@@ -165,13 +165,13 @@ export default function WorkPlusPage() {
       <div className="absolute inset-0 z-0 pointer-events-none bg-noise opacity-[0.03]" />
 
       <ProjectNav
-        projectName="WorkPlus"
+        projectName="WorkHunter"
         projectColor="primary"
         sections={navSections}
         prevProject={{ id: "stockmaster", name: "StockMaster Pro" }}
       />
       <ProjectCommandMenu
-        projectName="WorkPlus"
+        projectName="WorkHunter"
         sections={navSections}
         actions={cmdActions}
       />
@@ -196,7 +196,7 @@ export default function WorkPlusPage() {
               WebkitTextFillColor: "transparent"
             }}
           >
-            WorkPlus
+            WorkHunter
           </motion.h1>
 
           <motion.p

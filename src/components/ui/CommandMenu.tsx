@@ -49,7 +49,7 @@ export function CommandMenu() {
   ];
 
   const projectActions: Action[] = [
-    { id: "work-hunter", label: "WorkPlus — IA & Análise de Vagas", icon: <Brain className="w-4 h-4 text-primary" />, category: "Projetos", keywords: "ia inteligencia artificial lm studio emprego vagas job busca coleta compatibilidade", action: () => { router.push('/projetos/work-hunter'); setOpen(false); } },
+    { id: "work-hunter", label: "WorkHunter — IA & Análise de Vagas", icon: <Brain className="w-4 h-4 text-primary" />, category: "Projetos", keywords: "ia inteligencia artificial lm studio emprego vagas job busca coleta compatibilidade", action: () => { router.push('/projetos/work-hunter'); setOpen(false); } },
     { id: "stock-master", label: "StockMaster Pro — ERP & Logística", icon: <Server className="w-4 h-4 text-primary" />, category: "Projetos", keywords: "erp logistica nextauth rbac exceljs recharts estoque financeiro", action: () => { router.push('/projetos/stockmaster'); setOpen(false); } },
     { id: "galactic-luna", label: "Galactic Luna — Landing Page Espacial", icon: <Globe className="w-4 h-4 text-purple-500" />, category: "Projetos", keywords: "landing page espacial chatbot seguranca", action: () => window.open("https://gabrielluna1.github.io", "_blank") },
     { id: "esc-cursos", label: "Portal ESC Cursos — Educação", icon: <BookOpen className="w-4 h-4 text-amber-500" />, category: "Projetos", keywords: "portal educacional gulp cache build", action: () => window.open("https://github.com/GabrielLuna1/esc-new", "_blank") },

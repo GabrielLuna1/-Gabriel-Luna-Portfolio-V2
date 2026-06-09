@@ -155,7 +155,7 @@ export default function StockMasterPage() {
         projectName="StockMaster Pro"
         projectColor="primary"
         sections={navSections}
-        nextProject={{ id: "work-hunter", name: "WorkPlus" }}
+        nextProject={{ id: "work-hunter", name: "WorkHunter" }}
       />
       <ProjectCommandMenu
         projectName="StockMaster Pro"

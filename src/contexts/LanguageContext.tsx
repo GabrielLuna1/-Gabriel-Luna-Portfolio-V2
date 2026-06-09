@@ -76,7 +76,7 @@ const translations = {
     "projects.btn.code": "Repositório",
     "projects.btn.demo": "Ver Aplicação",
 
-    "proj.jobhunter.title": "WorkPlus",
+    "proj.jobhunter.title": "WorkHunter",
     "proj.jobhunter.desc": "Plataforma inteligente de busca e gestão de vagas tech. Integração com múltiplas fontes, match score por IA local (LM Studio), pipeline kanban, analytics de mercado e currículo inteligente.",
     
     "proj.stockmaster.title": "StockMaster Pro",
@@ -208,7 +208,7 @@ const translations = {
     "projects.btn.code": "Source Code",
     "projects.btn.demo": "Live Application",
 
-    "proj.jobhunter.title": "WorkPlus",
+    "proj.jobhunter.title": "WorkHunter",
     "proj.jobhunter.desc": "Intelligent job search and management platform for tech roles. Integrates with multiple sources, AI match scoring via local LLMs (LM Studio), kanban pipeline, market analytics, and smart resume management.",
 
     "proj.stockmaster.title": "StockMaster Pro",
